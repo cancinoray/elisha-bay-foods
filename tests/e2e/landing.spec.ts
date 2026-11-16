@@ -333,6 +333,40 @@ test.describe('Elisha Bay landing page', () => {
     }
   });
 
+  // The photograph stays the dominant element, but on a phone it is inset from the
+  // shell instead of running edge to edge. Desktop keeps the large frame.
+  test('hero photograph is inset on phones and full size on desktop', async ({ page }) => {
+    const measureHero = () =>
+      page.locator('#home figure img').evaluate((img) => {
+        const rect = img.getBoundingClientRect();
+        return {
+          width: rect.width,
+          height: rect.height,
+          viewport: window.innerWidth,
+        };
+      });
+
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto('/');
+      await page.evaluate(() => document.fonts.ready);
+
+      const hero = await measureHero();
+      expect(hero.width / hero.viewport, `hero photograph too wide at ${width}px`).toBeLessThanOrEqual(
+        0.78,
+      );
+      expect(hero.width, `hero photograph collapsed at ${width}px`).toBeGreaterThan(190);
+    }
+
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
+
+    const desktop = await measureHero();
+    expect(desktop.width, 'hero photograph shrank on desktop').toBeGreaterThan(430);
+    expect(desktop.width / desktop.height).toBeCloseTo(5 / 6, 1);
+  });
+
   test('has no WCAG A/AA accessibility violations at desktop and mobile', async ({
     page,
   }) => {
