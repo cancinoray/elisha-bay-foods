@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.npm-cache/
+.tmp-assets/
+.DS_Store
+*.local
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+.playwright/
