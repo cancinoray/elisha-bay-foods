@@ -3,7 +3,7 @@
 > A premium Filipino seafood brand landing page that builds trust and turns discovery into an
 > inquiry.
 
-Status: **live baseline** · Version: 1.1 · Owner: human owner · Last updated: 2026-11-16
+Status: **live baseline** · Version: 1.2 · Owner: human owner · Last updated: 2026-11-16
 
 This is the source of truth for behaviour. Code follows this document; when they disagree, one of
 them is a bug. Acceptance criteria here are what QA judges.
@@ -69,10 +69,11 @@ can start a relevant conversation.
 
 | Id | Criterion | Tag |
 | --- | --------- | --- |
-| US2-AC1 | Products renders exactly four cards from `src/data/products.ts`, each with an image, name and Inquire affordance. | `e2e` |
-| US2-AC2 | The product placeholder disclaimer is visible beneath the grid: names, packaging and photography are placeholders pending official assets. | `e2e` |
+| US2-AC1 | Products shows the actual range photograph and eight cards: seven real products from `src/data/products.ts` (Pinoy Adobo, Ba-Yo, Hawaiian Style Bangus, Bangus in Fresh Basil Pesto, Portuguese Style Bangus, Pesto Tuyo Delizioso, Tuyo Delizioso) plus an “And More Seafood Delights” enquiry card. | `e2e` |
+| US2-AC2 | The disclaimer is visible beneath the grid: the hero still-life is concept photography; the range photograph is actual; individual packshots, sizes and final packaging details are pending. | `e2e` |
 | US2-AC3 | Activating a product card scrolls to Contact, sets inquiry type to “Product inquiry”, and pre-fills the message with that product name. | `e2e` |
 | US2-AC4 | Cards have a visible hover/focus state and remain operable by keyboard. | `manual` |
+| US2-AC5 | Each product card displays the supplied category and description from the brand’s range signs; no invented size, price or ingredient is introduced. | `e2e` + `manual` |
 
 ### US3 — Verify quality and safety
 
@@ -96,8 +97,8 @@ resale, distribution or partnership.
 | US4-AC1 | A required name, required valid email, optional phone, required inquiry type and required message are labelled and validated with inline errors. | `e2e` |
 | US4-AC2 | Invalid submission does not open any external channel and marks every invalid field with `aria-invalid` and an associated error. | `e2e` |
 | US4-AC3 | Valid submission opens the official Messenger URL with the inquiry pre-filled (name, email, type, message) and shows an inquiry-status region with a reopen link. | `e2e` |
-| US4-AC4 | The form exposes a copy-message fallback, and the contact section links only to the official Facebook page and Messenger endpoint. | `e2e` + `manual` |
-| US4-AC5 | Phone/email/address remain unlisted until confirmed; the contact section says contact details are pending. | `e2e` + `manual` |
+| US4-AC4 | The form exposes a copy-message fallback, and the contact section links to the confirmed Facebook, Instagram, Messenger, email and phone channels only. | `e2e` + `manual` |
+| US4-AC5 | The confirmed phones (0919 270 1448 / 0917 511 0223), email (elisha_bay2017@yahoo.com) and @elishabayfoods Instagram are displayed and actionable; the street address remains unlisted. | `e2e` + `manual` |
 
 ### US5 — Use the site on any device and with assistive tech
 
@@ -121,7 +122,7 @@ identity; as the business, I can be found for relevant terms.
 | --- | --------- | ---- |
 | US6-AC1 | The document title and meta description match the approved SEO copy and describe Elisha Bay, Dagupan bangus and seafood. | `e2e` |
 | US6-AC2 | Open Graph/Twitter metadata, a 1200×630 share image, favicon, web manifest and brand icons are present and return 200. | `e2e` |
-| US6-AC3 | Organization JSON-LD exists and names Elisha Bay, the tagline, Dagupan/Pangasinan and the official Facebook page. | `e2e` |
+| US6-AC3 | Organization JSON-LD exists and names Elisha Bay, the tagline, Dagupan/Pangasinan, the confirmed phone/email and the official Facebook/Instagram pages. | `e2e` |
 | US6-AC4 | Every content image has descriptive alt text and explicit dimensions; the hero is preloaded with a responsive source. | `e2e` + `manual` |
 
 ## 5. Invariants
@@ -129,8 +130,8 @@ identity; as the business, I can be found for relevant terms.
 | Id | Invariant | Enforced by | Proved by |
 | -- | --------- | ----------- | --------- |
 | I1 | No unverified business claim, certification, contact detail or history is presented as fact. | content review + config | US3-AC2..4, US4-AC5; human sign-off |
-| I2 | The only inquiry destinations are the official Facebook page and Messenger endpoint. | `src/data/site.ts` | US4-AC3/4; manual link check |
-| I3 | Product names, packaging and photography are disclosed as placeholders until replaced. | `src/data/products.ts` + UI | US2-AC2 |
+| I2 | Inquiry destinations are the confirmed Facebook, Instagram, Messenger, email and phone channels; the form still hands off to Messenger. | `src/data/site.ts` | US4-AC3/4/5; manual link check |
+| I3 | Product names/descriptions come from the brand’s range signs; individual packshots, sizes and final packaging copy are disclosed as pending; the hero is not presented as a packshot. | `src/data/products.ts` + UI | US2-AC1/2/5 |
 | I4 | The site remains lead generation only: no cart, checkout, payment or account flow. | scope rules | PR review; no such routes/state |
 | I5 | Contact PII is not stored by the site. The form hands a composed message to Messenger. | no backend | code review + form test |
 
@@ -139,10 +140,8 @@ identity; as the business, I can be found for relevant terms.
 This is a static page, not an API. Its external contracts are:
 
 - **Section anchors:** `#home`, `#products`, `#quality`, `#about`, `#contact`.
-- **Product data:** `src/data/products.ts`; the UI must adapt to a changed array rather than
-  hard-coding four cards.
-- **Site/contact data:** `src/data/site.ts`; phone/email rows appear only when configured, and
-  `credentialsVerified` controls whether the verification note remains.
+- **Product data:** `src/data/products.ts`; the UI must adapt to the array of seven products plus the enquiry card rather than hard-coding a product count.
+- **Site/contact data:** `src/data/site.ts`; phone/email/Instagram rows render from confirmed config, and `credentialsVerified` controls whether the verification note remains.
 - **Inquiry handoff:** `https://m.me/elishabayfoods?text=<encoded message>`.
 - **Build outputs:** `dist/` (ignored by git), plus public SEO/icon assets.
 
@@ -153,23 +152,26 @@ Any change to these shapes updates this section and the affected tests in the sa
 - Shopping cart, online payment, order tracking, stock counts or prices.
 - A content management system or admin area.
 - Inventing or displaying certifications before documentary approval.
-- Publishing phone, email or a street address before the client supplies it.
+- Publishing a street address before the client supplies it, or unverified certification claims.
 - Email delivery, CRM integration or a custom form backend in this phase.
 - Blog, recipe library, testimonials or multilingual content before an approved issue.
 
 ## 8. Current known limits
 
-- Product names, packaging and photography are placeholders.
+- Product names and descriptions are supplied from the brand’s range signs. Individual packshots,
+  sizes, prices and final packaging copy are still pending.
+- The hero still-life is concept photography, not an actual Elisha Bay packshot.
 - About copy is proposed, not client-approved history.
-- Phone, email and street address are unknown.
+- Phone, email and Instagram are confirmed; the street address is still unknown.
 - Certification wording is withheld; the verification-pending UI is intentional.
 - `og:image` is relative until the production domain is known; canonical/absolute URLs are a
   deployment task.
-- There is no remote repository yet; the current workflow is local git with a human merge gate.
+- The repository is local git with no remote yet; the workflow uses a human merge gate.
 
 ## 9. Changelog
 
 | Version | Date | Change |
 | ------- | ---- | ------ |
+| 1.2 | 2026-11-16 | Added the seven supplied products/descriptions, actual range photograph, phone/email/Instagram contacts and the full-range enquiry card. |
 | 1.1 | 2026-11-16 | Integrated the supplied official Elisha Bay logo, transparent variants, app icons and share image. |
 | 1.0 | 2026-11-16 | Baseline site, Playwright/axe QA suite, PM → engineer → QA process. |

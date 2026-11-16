@@ -32,11 +32,12 @@ to merge.
 
 | Area | Proves |
 | ---- | ------ |
-| Brand + sections | H1, five sections, four product cards, placeholder disclaimer, official Facebook link |
-| Metadata/assets | title, description, OG image, JSON-LD, manifest, official logo, icon assets, image alt + dimensions |
+| Brand + sections | H1, five sections, eight product cards, actual range photo, product disclaimer, official Facebook/Instagram links |
+| Metadata/assets | title, description, OG image, JSON-LD (including email/phone/Instagram), manifest, official logo, range photo, icon assets, image alt + dimensions |
 | Content invariant | no “FDA Certified/Registered/Approved” claim; pending verification UI present |
-| Products → inquiry | a product card sets type + message + topic; valid Messenger URL and status region |
+| Products → inquiry | the first real product card sets type + message + topic; valid Messenger URL and status region |
 | Form validation | empty form marks four fields invalid and never opens a channel |
+| Contact channels | email, phone and Instagram links are present and correctly targeted |
 | Mobile menu | open, Escape, focus return, link closes and reaches Contact |
 | Responsive | no horizontal overflow at 320/375/414/768/1024/1440/1920 |
 | Accessibility | axe WCAG 2.1 A/AA = 0 violations at 1440 and 390 |
@@ -52,14 +53,18 @@ Automation cannot prove taste, claims or every keyboard path:
 
 1. Read the quality, about, product and contact copy against `AGENTS.md`.
 2. Confirm no official badges/logos or unverified “certified” language appears.
-3. Confirm placeholders are disclosed and no generated packaging is presented as approved.
+3. Confirm the product names/descriptions match the supplied signs, the range photo is actual, and
+   the hero is not described as a packshot. Individual packshots/sizes are still pending.
 4. Keyboard-walk the page: nav, product cards, form, copy/open Messenger, footer.
 5. Confirm the official logo appears in the header, footer and share image; no old custom crest
    remains. The transparent header logo should sit cleanly on cream, and the footer logo should use
    the cream badge.
-6. Inspect 375px, 768px and 1440px for clipped CTAs, awkward wrapping and missing focus.
-7. Compare the composition and identity against the design reference.
-8. Open the real Facebook/Messenger links and confirm they resolve to Elisha Bay.
+6. Confirm the trade-show frame does not expose third-party certification leaflets; the current
+   crop/overlay should keep them out of view.
+7. Inspect 375px, 768px and 1440px for clipped CTAs, awkward wrapping and missing focus.
+8. Compare the composition and identity against the design reference.
+9. Open the real Facebook/Instagram and Messenger links, email link and both phone links; confirm
+   they resolve to Elisha Bay.
 
 Any manual FAIL needs a screenshot or a precise reproduction in the verdict.
 

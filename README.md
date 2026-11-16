@@ -62,7 +62,7 @@ cart, payment, backend or checkout — this phase is intentionally a brand/lead-
 ```text
 public/
   logo/                   official transparent lockup (256/512/1024 WebP + PNG fallback)
-  images/                 optimized concept photography + paper grain
+  images/                 real range photo, concept hero/about, paper grain
   favicon-32.png          logo-derived favicon
   apple-touch-icon.png    logo-derived Apple icon
   icon-192.png
@@ -74,7 +74,7 @@ src/
   components/
     Navbar.tsx            sticky nav, scroll spy, mobile menu, focus trap
     HeroSection.tsx
-    ProductsSection.tsx   configurable product grid
+    ProductsSection.tsx   actual range banner + product description cards
     QualitySection.tsx    certification placeholders (not claims)
     AboutSection.tsx      brand story + expandable values
     ContactSection.tsx    contact channels + inquiry form
@@ -84,7 +84,7 @@ src/
     Decor.tsx             sunburst, brush stroke, gold rule
     Waves.tsx             organic section dividers
   data/
-    products.ts           product placeholder content
+    products.ts           supplied product names and descriptions
     site.ts               brand, links, contact, credentials
   hooks/                  reveal, scroll state, scroll spy
   App.tsx
@@ -103,7 +103,7 @@ _docs/
   task-template.md
 .agents/agents/           PM, engineer and QA subagent definitions
 .github/                  CI + issue/PR templates
-assets/brand/             supplied logo source + transparent master (not served)
+assets/brand/             supplied logo and product-line source files (not served)
 AGENTS.md                 agent entry point and guardrails
 product-spec.md           behaviour, ACs, invariants and non-goals
 playwright.config.ts
@@ -122,7 +122,9 @@ The **official supplied Elisha Bay logo** is integrated from `assets/brand/elish
 
 ### Product line
 
-The four products and their photography are **placeholders** taken from the supplied reference. Replace `src/data/products.ts` and the files in `public/images/product-*` with approved product names, packaging, and photography. Do not add prices, weights, ingredients, or packaging claims until they are confirmed.
+The product names and descriptions in `src/data/products.ts` come from the brand’s own signs in the supplied range photograph: **Pinoy Adobo, Ba-Yo, Hawaiian Style Bangus, Bangus in Fresh Basil Pesto, Portuguese Style Bangus, Pesto Tuyo Delizioso** and **Tuyo Delizioso**. The section shows the actual range photograph above a card per product plus an “And More” enquiry card.
+
+Individual packshots, sizes, exact packaging copy and prices are still pending. Do not add those until confirmed. The hero still-life remains concept photography; the range photograph is actual.
 
 ### About copy
 
@@ -140,12 +142,14 @@ Do not add government logos or certification seals without written permission an
 
 ### Contact details
 
-The official public Facebook/Messenger channel is linked:
+Confirmed contact channels are configured in `src/data/site.ts`:
 
-- Facebook: `https://www.facebook.com/elishabayfoods/`
+- Mobile: **0919 270 1448** · **0917 511 0223**
+- Email: **elisha_bay2017@yahoo.com**
+- Facebook / Instagram: **@elishabayfoods**
 - Messenger: `https://m.me/elishabayfoods`
 
-Phone, email, and street address are intentionally blank pending confirmation. Add them to `site.contact` when supplied; the contact section will render phone and email rows automatically.
+The street address is still pending and intentionally not displayed. Add it to `site.contact` when supplied. The contact section and footer render the phone, email and Instagram data automatically.
 
 ### Inquiry workflow
 
@@ -155,12 +159,12 @@ There is no server-side form submission in this phase. If email notification or 
 
 ### Photography credits
 
-- Hero and product jar imagery: generated concept photography (placeholder only; not authentic Elisha Bay packaging).
-- Official Elisha Bay logo: supplied by the brand owner; transparent and icon variants derived from the supplied file.
+- Official Elisha Bay logo: supplied by the brand owner; transparent, icon and share variants derived from the supplied file.
+- Product range photograph: supplied by the brand owner (`assets/brand/elisha-bay-products-lineup-2026.jpg`); cropped and color-graded for the Products section. The trade-show context and visible third-party leaflets are excluded from the site crop.
+- Hero still-life: generated concept photography, not actual Elisha Bay packaging. It remains the interim hero until a styled brand shoot is available.
 - About food photograph: [Unsplash image source](https://images.unsplash.com/photo-1644784643137-b9073dd262f6), used under the Unsplash License. Confirm and add photographer credit before launch.
-- All imagery is marked as concept/placeholder in the interface where product transparency matters.
 
-Replace all concept photography with approved brand photography before launch.
+The product disclaimer in the UI states that the hero still-life is concept photography and individual packshots/sizes are pending. Replace concept imagery with approved brand photography before launch.
 
 ---
 
@@ -195,7 +199,8 @@ Defined in `src/index.css`:
 
 ### Before launch checklist
 
-- [ ] Replace product names, packaging, and imagery with approved assets (see [backlog](_docs/backlog.md)).
+- [ ] Supply individual product packshots, sizes and approved packaging copy (product names/descriptions are done; see [backlog](_docs/backlog.md)).
+- [ ] Commission the real hero still-life (three hero jars, label-forward, negative space for the headline).
 - [ ] Approve or rewrite the About copy.
 - [ ] Confirm certification wording and documents; update or remove the “verification pending” slots.
 - [ ] Supply phone, email, and full address.

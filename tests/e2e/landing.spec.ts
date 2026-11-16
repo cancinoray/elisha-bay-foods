@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const PRODUCT_TOPIC = 'Bangus in Soy Sauce';
+const PRODUCT_TOPIC = 'Pinoy Adobo';
 
 /**
  * The site should be verified against the running page, not against internal
@@ -72,17 +72,28 @@ test.describe('Elisha Bay landing page', () => {
       page.getByRole('heading', { name: 'Delicious Seafood Goodness' }),
     ).toBeVisible();
     const cards = page.locator('#products ul > li');
-    await expect(cards).toHaveCount(4);
-    for (let index = 0; index < 4; index += 1) {
+    await expect(cards).toHaveCount(8);
+    for (let index = 0; index < 8; index += 1) {
       await expect(cards.nth(index).locator('h3')).toBeVisible();
-      await expect(cards.nth(index).locator('img')).toHaveAttribute('alt', /.+/);
+      await expect(cards.nth(index).locator('p').first()).toBeVisible();
     }
+    await expect(cards.first()).toContainText('Pinoy Adobo');
+    await expect(cards.nth(1)).toContainText('Ba-Yo (Bangus & Tuyo)');
     await expect(
-      page.getByText(/Product names, packaging and photography are placeholders/),
+      page.getByRole('img', {
+        name: /The actual Elisha Bay range/,
+      }),
+    ).toBeVisible();
+    await expect(cards.first()).toContainText(/special adobo sauce/);
+    await expect(
+      page.getByText(/The range photograph shows actual Elisha Bay products/),
     ).toBeVisible();
     await expect(
       page.getByRole('link', { name: 'Elisha Bay on Facebook' }),
     ).toHaveAttribute('href', 'https://www.facebook.com/elishabayfoods/');
+    await expect(
+      page.getByRole('link', { name: 'Elisha Bay on Instagram' }),
+    ).toHaveAttribute('href', 'https://www.instagram.com/elishabayfoods/');
 
     const metadata = await page.evaluate(() => ({
       description: document.querySelector('meta[name="description"]')?.getAttribute('content'),
@@ -100,6 +111,9 @@ test.describe('Elisha Bay landing page', () => {
     expect(metadata.description).toBeTruthy();
     expect(metadata.ogImage).toContain('og-image.jpg');
     expect(metadata.structuredData).toContain('Organization');
+    expect(metadata.structuredData).toContain('elisha_bay2017@yahoo.com');
+    expect(metadata.structuredData).toContain('+639192701448');
+    expect(metadata.structuredData).toContain('instagram.com/elishabayfoods');
     expect(metadata.manifest).toBe('/site.webmanifest');
     expect(metadata.heroPreload).toContain('hero-jars');
     for (const image of metadata.images) {
@@ -113,6 +127,7 @@ test.describe('Elisha Bay landing page', () => {
     for (const path of [
       '/favicon-32.png',
       '/logo/elisha-bay-logo-512.webp',
+      '/images/elisha-bay-range-1200.webp',
       '/apple-touch-icon.png',
       '/icon-192.png',
       '/icon-512.png',
@@ -202,7 +217,13 @@ test.describe('Elisha Bay landing page', () => {
       'href',
       /^https:\/\/m\.me\/elishabayfoods\?text=/,
     );
-    await expect(page.getByText(/Phone and email contact details will be added/)).toBeVisible();
+    await expect(
+      page.getByRole('link', { name: /elisha_bay2017@yahoo\.com/ }).first(),
+    ).toHaveAttribute('href', 'mailto:elisha_bay2017@yahoo.com');
+    await expect(page.locator('a[href="tel:+639192701448"]').first()).toBeVisible();
+    await expect(
+      page.locator('a[href="https://www.instagram.com/elishabayfoods/"]').first(),
+    ).toBeVisible();
 
     const url = await openedUrl(page);
     expect(url).toContain('https://m.me/elishabayfoods?text=');

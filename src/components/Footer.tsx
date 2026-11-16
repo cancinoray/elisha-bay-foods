@@ -1,4 +1,4 @@
-import { ArrowUp, Facebook, Heart, MapPin, MessageCircle, ShieldCheck } from 'lucide-react';
+import { ArrowUp, Facebook, Heart, Instagram, Mail, MapPin, MessageCircle, ShieldCheck } from 'lucide-react';
 import { site } from '../data/site';
 import { Logo } from './Logo';
 
@@ -60,6 +60,15 @@ export function Footer() {
               <Facebook className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
             </a>
             <a
+              href={site.social.instagram}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Elisha Bay on Instagram"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/25 text-cream transition-colors hover:border-gold hover:bg-gold hover:text-burgundy-deep"
+            >
+              <Instagram className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
+            </a>
+            <a
               href={site.social.messenger}
               target="_blank"
               rel="noreferrer noopener"
@@ -97,6 +106,25 @@ export function Footer() {
             <span className="flex items-center gap-2">
               <MapPin className="h-3.5 w-3.5 text-gold/80" aria-hidden="true" />
               {site.location.label}, {site.location.country}
+            </span>
+            <a
+              href={`mailto:${site.contact.email}`}
+              className="inline-flex w-fit items-center gap-2 text-cream/80 transition-colors hover:text-gold"
+            >
+              <Mail className="h-3.5 w-3.5 text-gold/80" aria-hidden="true" />
+              {site.contact.email}
+            </a>
+            <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="sr-only">Phone</span>
+              {site.contact.phones.map((phone) => (
+                <a
+                  key={phone.href}
+                  href={`tel:${phone.href}`}
+                  className="inline-flex w-fit items-center text-cream/80 underline decoration-gold/40 decoration-1 underline-offset-4 transition-colors hover:text-gold"
+                >
+                  {phone.label}
+                </a>
+              ))}
             </span>
             <a
               href="#contact"

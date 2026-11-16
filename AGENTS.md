@@ -42,7 +42,7 @@ not bypassed.
 ```text
 src/
   components/       page sections, nav, footer, form, decorations
-  data/             site config and placeholder product data
+  data/             site config, supplied product data, contact channels
   hooks/            scroll, reveal and scroll-spy hooks
   index.css         design tokens, shared component styles, motion rules
   App.tsx           page composition
@@ -57,16 +57,19 @@ _docs/              process, roles, spec support, testing, handoff, backlog
 
 1. **Never invent business facts.** Do not add certifications, awards, addresses, phone numbers,
    emails, product sizes, ingredients, prices, or company-history claims without a human-confirmed
-   source. Use the placeholders in `src/data/site.ts` and `src/data/products.ts`.
+   source. Use the confirmed contact data in `src/data/site.ts` and the supplied product names and
+   descriptions in `src/data/products.ts`.
 2. **Certification claims stay withheld until approved.** The Quality section must not display FDA,
    US FDA, GMP or other official marks/claims until the client supplies documentation. Keep the
    neutral “Verification pending” treatment and its note until a human confirms the exact wording.
-3. **Products and packaging are placeholders.** Keep the disclaimer visible. Do not present
-   generated packaging as authentic Elisha Bay packaging.
+3. **Product data is supplied; packshots are not.** The product names/descriptions in
+   `src/data/products.ts` come from the brand’s own range signs. Keep the disclaimer visible until
+   individual packshots, sizes and final packaging copy are approved. Do not reuse the generated
+   hero as a product packshot.
 4. **No e-commerce.** No cart, checkout, payment gateway, inventory or account system in this phase.
-5. **The inquiry channel is the official Facebook/Messenger page.** Do not invent an email, phone,
-   WhatsApp number, or alternative form backend. The form must keep its Messenger handoff and copy
-   fallback.
+5. **Use the confirmed contact channels.** Phone, email, Facebook, Instagram and Messenger are
+   configured in `src/data/site.ts`; do not invent additional channels or a different form backend.
+   The form must keep its Messenger handoff and copy fallback.
 6. **The agent that writes code does not decide whether it is correct.** QA runs in a fresh context
    with the issue, acceptance criteria and running site. The engineer never approves its own work.
 7. **One issue, one branch.** Branch from current `main`; do not mix unrelated changes. New ideas
@@ -83,9 +86,13 @@ _docs/              process, roles, spec support, testing, handoff, backlog
 
 These are product requirements, not suggestions:
 
-- Product names, imagery and packaging in the current build are **illustrative placeholders**.
+- Product names and descriptions are supplied by the brand; individual packshots, sizes and final
+  packaging copy are still pending.
+- The hero still-life is **concept photography**. The range photograph is actual product
+  photography; do not describe the hero as an actual packshot.
 - The About paragraph is **proposed copy**, not verified history.
-- Phone, email and street address are **unknown**; do not fill them in.
+- Phone, email, Facebook and Instagram are confirmed. The **street address is unknown**; do not fill
+  it in.
 - “Quality You Can Trust” and “A Taste of the Philippines” are brand lines, not certifications.
 - The official Elisha Bay logo is supplied. Use the transparent assets in `public/logo/`; on dark
   surfaces use the cream badge treatment. Do not recolor, crop or replace it with the old custom

@@ -136,7 +136,7 @@ export function AboutSection() {
               </figcaption>
             </figure>
             <p className="mt-9 text-right text-[0.62rem] leading-relaxed text-bark-soft sm:mt-8">
-              Concept food photography. Official product imagery to follow.
+              Concept food photography for the brand story. Actual product photography appears in Our Products.
             </p>
           </div>
         </div>

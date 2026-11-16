@@ -12,17 +12,21 @@ export const site = {
   },
   social: {
     facebook: 'https://www.facebook.com/elishabayfoods/',
+    instagram: 'https://www.instagram.com/elishabayfoods/',
     messenger: 'https://m.me/elishabayfoods',
     handle: '@elishabayfoods',
   },
   /**
-   * Client contact details are intentionally withheld until supplied and confirmed.
-   * Add email / phone / full address here when available; the contact section
-   * and footer adapt automatically.
+   * Confirmed contact details supplied by the brand owner on 2026-11-16.
+   * The street address is still pending. The contact section renders the
+   * phone rows and email automatically from this data.
    */
   contact: {
-    email: '',
-    phone: '',
+    phones: [
+      { label: '0919 270 1448', href: '+639192701448' },
+      { label: '0917 511 0223', href: '+639175110223' },
+    ],
+    email: 'elisha_bay2017@yahoo.com',
     streetAddress: '',
   },
   credentials: [

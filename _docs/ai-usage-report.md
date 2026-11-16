@@ -3,6 +3,47 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-16 — Real products, range photograph and contact channels
+
+**Branch:** `feat/real-products-contacts` (stacked on `feat/logo-integration`; unmerged)
+
+**Scope:** Replace the four illustrative product cards with the seven actual products and their
+sign descriptions, use the supplied range photograph as the real product visual, and publish the
+confirmed phone/email/Instagram channels.
+
+**What AI produced**
+
+- `src/data/products.ts`: seven products from the supplied range signs (Pinoy Adobo, Ba-Yo,
+  Hawaiian Style Bangus, Bangus in Fresh Basil Pesto, Portuguese Style Bangus, Pesto Tuyo Delizioso,
+  Tuyo Delizioso) with the sign descriptions. No sizes, prices or extra ingredients were invented.
+- Products section: actual range photo (cropped and colour-graded; third-party leaflets excluded),
+  seven description cards and an “And More Seafood Delights” enquiry card.
+- `src/data/site.ts`: phones 0919 270 1448 / 0917 511 0223, email
+  `elisha_bay2017@yahoo.com`, Instagram `@elishabayfoods`; street address remains blank.
+- Contact section/footer: phone, email and Instagram rows/links added; the “pending contact details”
+  state is removed. Organization JSON-LD now carries email/telephone and the Instagram profile.
+- QA suite updated for eight cards, real names/descriptions, range image, contact links and JSON-LD.
+- Product description disclaimer now distinguishes concept hero photography from the actual range
+  photograph and pending individual packshots.
+
+**Builder verification**
+
+- `make verify` — typecheck, build and **14/14** Playwright tests passed.
+- axe WCAG A/AA: 0 violations at 1440px and 390px.
+- No horizontal overflow at the tested breakpoints.
+
+**Independent QA**
+
+- Not yet run as a separate fresh-context session. This entry is engineering evidence, not a QA PASS.
+
+**Human verification required**
+
+- Confirm the seven names/descriptions and that no size/price/ingredient should be added yet.
+- Approve the trade-show range crop as temporary imagery; commission individual packshots and a
+  real hero still-life. The trade show photo is not suitable as the hero.
+- Approve the contact channels and confirm the street address (still withheld).
+- Confirm the header logo treatment and the cream footer badge.
+
 ## 2026-11-16 — Official logo integration
 
 **Branch:** `feat/logo-integration` (unmerged, awaiting human review/merge)

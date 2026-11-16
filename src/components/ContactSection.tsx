@@ -1,4 +1,4 @@
-import { Facebook, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { site } from '../data/site';
 import { WaveScratch } from './Waves';
 import { InquiryForm } from './InquiryForm';
@@ -90,6 +90,29 @@ export function ContactSection({ topic }: ContactSectionProps) {
                 </li>
                 <li>
                   <a
+                    href={site.social.instagram}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="flex items-center gap-4 rounded-xl px-4 py-4 transition-colors hover:bg-cream/[0.06]"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream/[0.06] text-gold">
+                      <Instagram className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-display text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-gold/90">
+                        Instagram
+                      </span>
+                      <span className="mt-0.5 block truncate text-[0.9rem] text-cream">
+                        {site.social.handle}
+                      </span>
+                    </span>
+                    <span className="ml-auto text-[0.65rem] text-cream/70" aria-hidden="true">
+                      Follow
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a
                     href={site.social.messenger}
                     target="_blank"
                     rel="noreferrer noopener"
@@ -111,42 +134,45 @@ export function ContactSection({ topic }: ContactSectionProps) {
                     </span>
                   </a>
                 </li>
-                {site.contact.phone && (
-                  <li>
-                    <a
-                      href={`tel:${site.contact.phone.replace(/[^\d+]/g, '')}`}
-                      className="flex items-center gap-4 rounded-xl px-4 py-4 transition-colors hover:bg-cream/[0.06]"
-                    >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream/[0.06] text-gold">
-                        <Phone className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
+                <li className="flex items-start gap-4 px-4 py-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream/[0.06] text-gold">
+                    <Phone className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-display text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-gold/90">
+                      Call or text
+                    </span>
+                    <span className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
+                      {site.contact.phones.map((phone) => (
+                        <a
+                          key={phone.href}
+                          href={`tel:${phone.href}`}
+                          className="text-[0.9rem] text-cream underline decoration-gold/35 decoration-1 underline-offset-4 transition-colors hover:text-gold"
+                        >
+                          {phone.label}
+                        </a>
+                      ))}
+                    </span>
+                  </span>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${site.contact.email}`}
+                    className="flex items-center gap-4 rounded-xl px-4 py-4 transition-colors hover:bg-cream/[0.06]"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream/[0.06] text-gold">
+                      <Mail className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-display text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-gold/90">
+                        Email us
                       </span>
-                      <span className="min-w-0">
-                        <span className="block font-display text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-gold/90">
-                          Call us
-                        </span>
-                        <span className="mt-0.5 block truncate text-[0.9rem] text-cream">{site.contact.phone}</span>
+                      <span className="mt-0.5 block truncate text-[0.9rem] text-cream">
+                        {site.contact.email}
                       </span>
-                    </a>
-                  </li>
-                )}
-                {site.contact.email && (
-                  <li>
-                    <a
-                      href={`mailto:${site.contact.email}`}
-                      className="flex items-center gap-4 rounded-xl px-4 py-4 transition-colors hover:bg-cream/[0.06]"
-                    >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream/[0.06] text-gold">
-                        <Mail className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
-                      </span>
-                      <span className="min-w-0">
-                        <span className="block font-display text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-gold/90">
-                          Email us
-                        </span>
-                        <span className="mt-0.5 block truncate text-[0.9rem] text-cream">{site.contact.email}</span>
-                      </span>
-                    </a>
-                  </li>
-                )}
+                    </span>
+                  </a>
+                </li>
                 <li className="flex items-center gap-4 px-4 py-4">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream/[0.06] text-gold">
                     <MapPin className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
@@ -161,11 +187,9 @@ export function ContactSection({ topic }: ContactSectionProps) {
               </ul>
             </div>
 
-            {!site.contact.phone && !site.contact.email && (
-              <p className="mt-4 max-w-[27rem] text-[0.7rem] leading-relaxed text-cream/70">
-                Phone and email contact details will be added once confirmed by Elisha Bay.
-              </p>
-            )}
+            <p className="mt-4 max-w-[27rem] text-[0.7rem] leading-relaxed text-cream/70">
+              For wholesale, reseller and export inquiries, use the form or any contact channel above.
+            </p>
           </div>
 
           <div
