@@ -62,7 +62,7 @@ cart, payment, backend or checkout — this phase is intentionally a brand/lead-
 ```text
 public/
   logo/                   official transparent lockup (256/512/1024 WebP + PNG fallback)
-  images/                 10 real packshots, range photo, concept hero/about, paper grain
+  images/                 10 real packshots, combined hero, range photo, concept About, paper grain
   favicon-32.png          logo-derived favicon
   apple-touch-icon.png    logo-derived Apple icon
   icon-192.png
@@ -124,7 +124,7 @@ The **official supplied Elisha Bay logo** is integrated from `assets/brand/elish
 
 `src/data/products.ts` contains the ten products shown in the supplied packshots and range signs: **Pinoy Adobo, Ba-Yo, Hawaiian Style Bangus, Portuguese Style Bangus, Bangus in Fresh Basil Pesto, Bangus with Tomato Sauce, Bangus with Turmeric, Bangus with Sun-Dried Tomatoes, Pesto Tuyo Delizioso** and **Tuyo Delizioso**. Each card uses its supplied packshot; the range photograph opens the section and a full-range enquiry strip closes it.
 
-Printed sizes, batch details, exact packaging copy and prices are still pending confirmation and are intentionally not repeated in text. The hero still-life remains concept photography; the range and card packshots are actual.
+Printed sizes, batch details, exact packaging copy and prices are still pending confirmation and are intentionally not repeated in text. The hero is a composite of two supplied food photographs; the range and card packshots are actual.
 
 ### About copy
 
@@ -162,10 +162,10 @@ There is no server-side form submission in this phase. If email notification or 
 - Official Elisha Bay logo: supplied by the brand owner; transparent, icon and share variants derived from the supplied file.
 - Product range photograph: supplied by the brand owner (`assets/brand/elisha-bay-products-lineup-2026.jpg`); cropped and color-graded for the Products section. The trade-show context and visible third-party leaflets are excluded from the site crop.
 - Product card packshots: supplied by the brand owner (`assets/brand/products/`); lightly graded and cropped to a 3:4 card frame. The green factory/display background is part of the supplied photographs.
-- Hero still-life: generated concept photography, not actual Elisha Bay packaging. It remains the interim hero until a styled brand shoot is available.
+- Hero image: a composite of two supplied photographs (`bangus-steak.jpg` and `tuyo-closeup.jpg`), colour-graded and composited with a circular tuyo detail. The baked-in bottle label and logo in the dish photograph are cropped out.
 - About food photograph: [Unsplash image source](https://images.unsplash.com/photo-1644784643137-b9073dd262f6), used under the Unsplash License. Confirm and add photographer credit before launch.
 
-The product disclaimer in the UI states that the hero still-life is concept photography, the cards use supplied packshots, and sizes/batch details are pending confirmation. Replace the concept hero with approved brand photography before launch.
+The product disclaimer in the UI states that the hero is a composite of supplied food photography, the cards use supplied packshots, and sizes/batch details are pending confirmation.
 
 ---
 
@@ -201,7 +201,7 @@ Defined in `src/index.css`:
 ### Before launch checklist
 
 - [ ] Confirm the printed sizes, batch details and exact packaging copy (packshots are supplied; see [backlog](_docs/backlog.md)).
-- [ ] Commission the real hero still-life (three hero jars, label-forward, negative space for the headline).
+- [ ] Optional: commission a dedicated art-directed hero photograph; the current hero is a supplied-photo composite.
 - [ ] Approve or rewrite the About copy.
 - [ ] Confirm certification wording and documents; update or remove the “verification pending” slots.
 - [ ] Supply phone, email, and full address.

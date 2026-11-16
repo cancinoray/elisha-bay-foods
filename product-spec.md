@@ -3,7 +3,7 @@
 > A premium Filipino seafood brand landing page that builds trust and turns discovery into an
 > inquiry.
 
-Status: **live baseline** · Version: 1.3 · Owner: human owner · Last updated: 2026-11-16
+Status: **live baseline** · Version: 1.4 · Owner: human owner · Last updated: 2026-11-16
 
 This is the source of truth for behaviour. Code follows this document; when they disagree, one of
 them is a bug. Acceptance criteria here are what QA judges.
@@ -70,7 +70,7 @@ can start a relevant conversation.
 | Id | Criterion | Tag |
 | --- | --------- | --- |
 | US2-AC1 | Products shows the actual range photograph and ten product cards from `src/data/products.ts` (Pinoy Adobo, Ba-Yo, Hawaiian Style, Portuguese Style, Fresh Basil Pesto, Tomato Sauce, Turmeric, Sun-Dried Tomatoes, Pesto Tuyo, Tuyo Delizioso), followed by an “And More Seafood Delights” full-range CTA. | `e2e` |
-| US2-AC2 | The disclaimer is visible beneath the CTA: the hero still-life is concept photography; product cards use supplied packshots; published sizes, batch details and final packaging copy are pending. | `e2e` |
+| US2-AC2 | The disclaimer is visible beneath the CTA: the hero is a composite of supplied food photography; product cards use supplied packshots; published sizes, batch details and final packaging copy are pending. | `e2e` |
 | US2-AC3 | Activating a product card scrolls to Contact, sets inquiry type to “Product inquiry”, and pre-fills the message with that product name. | `e2e` |
 | US2-AC4 | Cards have a visible hover/focus state and remain operable by keyboard. | `manual` |
 | US2-AC5 | Each product card displays the supplied category, description and its own real packshot; no invented size, price or ingredient is introduced. | `e2e` + `manual` |
@@ -160,8 +160,8 @@ Any change to these shapes updates this section and the affected tests in the sa
 
 - Product names, descriptions and individual packshots are supplied by the brand. Printed sizes,
   prices, batch details and final packaging copy are still pending.
-- The hero still-life is concept photography, not an actual Elisha Bay packshot. The product-card
-  packshots and range photograph are actual.
+- The hero is a composite of two supplied food photographs (cooked bangus and tuyo), not a packaged
+  product shot. The product-card packshots and range photograph are actual.
 - About copy is proposed, not client-approved history.
 - Phone, email and Instagram are confirmed; the street address is still unknown.
 - Certification wording is withheld; the verification-pending UI is intentional.
@@ -173,6 +173,7 @@ Any change to these shapes updates this section and the affected tests in the sa
 
 | Version | Date | Change |
 | ------- | ---- | ------ |
+| 1.4 | 2026-11-16 | Replaced the concept hero with a composite of supplied cooked bangus and tuyo photography; moved the caption below the frame. |
 | 1.3 | 2026-11-16 | Added the ten supplied product packshots, the three additional products, responsive image cards and full-range CTA. |
 | 1.2 | 2026-11-16 | Added the seven supplied products/descriptions, actual range photograph, phone/email/Instagram contacts and the full-range enquiry card. |
 | 1.1 | 2026-11-16 | Integrated the supplied official Elisha Bay logo, transparent variants, app icons and share image. |

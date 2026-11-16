@@ -110,10 +110,10 @@ Rules:
   fact. Use the placeholder state and flag it for human approval.
 - Product copy uses the supplied name, category, description and packshot. Do not add sizes, prices
   or ingredients that are not in the approved source; printed size/batch details are pending.
-- The hero still-life is concept photography; the range photograph is actual. Keep the distinction
-  clear in the product disclaimer and do not present the hero as a packshot.
+- The hero is a composite of supplied food photographs; the range and cards are actual. Keep the
+  distinction clear in the product disclaimer and do not present the hero as a packshot.
 - Contact channels use the confirmed phone/email/Facebook/Instagram data. The street address is
   withheld until supplied.
 - Errors say what happened and what to do next; they do not blame the user.
-- Keep disclosures legible: concept hero photography, pending packshots and concept About
-  photography are visible, not buried.
+- Keep disclosures legible: the supplied-photo hero, pending sizes and concept About photography are
+  visible, not buried.

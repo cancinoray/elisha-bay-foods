@@ -16,8 +16,8 @@ Last updated: 2026-11-16 · Status: **live baseline, content pending**
 | Repo | local git on `main`, bootstrap commits complete, **no remote yet** |
 | In flight | `feat/logo-integration` (logo) → `feat/real-products-contacts` (products/contacts) → `feat/product-card-images` (packshots), all awaiting human review/merge in that order |
 | Tracker | no remote/issue tracker yet; `_docs/backlog.md` is the local queue |
-| Blocking on you | printed sizes/final packaging copy, a real hero shoot, About approval, certification documents, street address, domain |
-| Next action | confirm printed sizes/final packaging copy, commission the hero shoot and collect the remaining About/certification/address facts; the logo, ten products, packshots and contact channels are integrated |
+| Blocking on you | printed sizes/final packaging copy, About approval, certification documents, street address, domain |
+| Next action | confirm printed sizes/final packaging copy and collect the remaining About/certification/address facts; the logo, ten products, packshots, combined hero and contact channels are integrated |
 
 ## 2. What we are building and why it has this shape
 
@@ -37,7 +37,7 @@ are in [AGENTS.md](../AGENTS.md).
 | D1 | Vite + React + TypeScript + Tailwind v4 | Next.js, plain HTML | The site is a single static landing page; Vite is the simplest build with strong typing and component reuse. |
 | D2 | Inquiry via official Messenger handoff | Backend email form, invented contact data | No backend in this phase; Messenger remains the handoff. Email/phone are now displayed as alternative confirmed channels. |
 | D3 | Certifications withheld with neutral “Verification pending” slots | Display claimed FDA/US FDA badges | The handoff requires documentary confirmation; fabricating trust marks is unacceptable. |
-| D4 | Concept hero/About photography with visible disclosure; product cards use supplied packshots and signs | Present generated packaging as real Elisha Bay assets | Official assets arrived later; the hero stays concept until a real shoot, but the cards are actual. |
+| D4 | Hero composite from two supplied food photographs; About remains concept; product cards use supplied packshots | Present generated packaging as real Elisha Bay assets | Official assets arrived later; the hero and cards are actual, and the About image is disclosed. |
 | D5 | Human merge/deploy gate | Agent merges or deploys | The repo has no protected remote yet and production is irreversible; a human owns release. |
 | D6 | Kaushan + Poppins + Inter | Single generic sans or a stock template | Preserves the warm Filipino editorial identity; script is restricted to statements. |
 | D7 | Official supplied logo used directly (transparent variants for web) | Keep the earlier custom crest | The brand owner supplied the real mark; it is the identity, not a placeholder. |
@@ -79,7 +79,7 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
 | O3 | What is the official street address? | Human / Elisha Bay | open; phones, email, Facebook/Instagram are supplied |
 | O4 | Is the About paragraph approved as written? | Human | open |
 | O5 | What is the production domain, and where will the site be hosted? | Human | open |
-| O7 | Who will shoot the real hero still-life and individual product packshots? | Human | open |
+| O7 | Is a dedicated art-directed hero photograph still desired? | Human | optional; the current hero is a supplied-photo composite |
 | O6 | Should the form later deliver to email/CRM as well as Messenger? | Human | open |
 
 ## 7. Traps and lessons
@@ -88,8 +88,9 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
   editing them to look complete without approval is a product defect.
 - **The “no FDA claim” test is intentional.** If certification documents arrive, update the spec,
   config and test together — do not silently weaken the assertion.
-- **The hero is still concept photography; the range photo is actual.** Do not describe the hero as
-  a packshot or reuse it as an individual product image. The products disclaimer states this.
+- **The hero is a composite of supplied food photographs; the range and cards are actual.** Do not
+  describe the hero as a packshot or reuse it as an individual product image. The products
+  disclaimer states this.
 - **The product range photo is a trade-show display.** It is cropped/colour-graded and the visible
   third-party leaflets are excluded. Do not add certification marks from that scene.
 - **Product descriptions come from the range signs; packshots are supplied.** Do not add sizes,
@@ -116,8 +117,8 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
 
 ## 8. Next action
 
-Open the next content issue for **remaining facts and a hero shoot**: printed sizes/final packaging
-copy, About approval, certification documents, the street address, the production domain and a
-styled hero photograph. The logo, ten products, packshots and phone/email/Instagram are integrated;
-do not fill the remaining gaps with guesses. If a purely technical task is preferred first, set up the remote
+Open the next content issue for **remaining facts**: printed sizes/final packaging copy, About
+approval, certification documents, the street address and the production domain. A dedicated hero
+reshoot is optional. The logo, ten products, packshots, combined hero and phone/email/Instagram are
+integrated; do not fill the remaining gaps with guesses. If a purely technical task is preferred first, set up the remote
 and branch protection with the human owner; the workflow is already documented for that mode.

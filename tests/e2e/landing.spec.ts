@@ -88,7 +88,7 @@ test.describe('Elisha Bay landing page', () => {
     ).toBeVisible();
     await expect(cards.first()).toContainText(/special adobo sauce/);
     await expect(
-      page.getByText(/Product cards use supplied packshots/),
+      page.getByText(/The hero image is a composite of supplied Elisha Bay food photography/),
     ).toBeVisible();
     await expect(
       page.getByRole('link', { name: 'Elisha Bay on Facebook' }),
@@ -117,7 +117,7 @@ test.describe('Elisha Bay landing page', () => {
     expect(metadata.structuredData).toContain('+639192701448');
     expect(metadata.structuredData).toContain('instagram.com/elishabayfoods');
     expect(metadata.manifest).toBe('/site.webmanifest');
-    expect(metadata.heroPreload).toContain('hero-jars');
+    expect(metadata.heroPreload).toContain('hero-bangus-tuyo');
     for (const image of metadata.images) {
       expect(image.alt).toBeTruthy();
       expect(image.width).toBeTruthy();
@@ -131,6 +131,7 @@ test.describe('Elisha Bay landing page', () => {
       '/logo/elisha-bay-logo-512.webp',
       '/images/elisha-bay-range-1200.webp',
       '/images/product-pinoy-adobo-800.webp',
+      '/images/hero-bangus-tuyo-1200.webp',
       '/apple-touch-icon.png',
       '/icon-192.png',
       '/icon-512.png',

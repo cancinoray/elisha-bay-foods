@@ -3,6 +3,41 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-16 — Combined bangus + tuyo hero
+
+**Branch:** `feat/product-card-images` (stacked on the product/contact branch; unmerged)
+
+**Scope:** Replace the concept hero still-life with a composite of the two supplied food photographs,
+keeping the product cards and page content intact.
+
+**What AI produced**
+
+- A 1200×1440 hero composite: cooked bangus on a wooden board as the main image, with a circular
+  tuyo-in-oil detail at bottom-left, cream/gold ring and soft shadow.
+- The baked-in bottle label and Elisha Bay logo in the cooked-dish source were cropped out. Both
+  source photographs were colour-graded, gently sharpened and vignetted.
+- The hero caption was moved below the arch so it no longer overlaps the circular detail.
+- Updated hero preload, image srcSet, alt text, dimensions and QA assertions.
+- Product disclaimer now says the hero is a composite of supplied food photography, not concept or
+  packshot photography.
+
+**Builder verification**
+
+- `make verify` — typecheck, build and **14/14** Playwright tests passed.
+- axe WCAG A/AA: 0 violations at 1440px and 390px.
+- Hero checked at 1280, 1440 and 390 widths; caption below image, no overlap or overflow.
+
+**Independent QA**
+
+- Not yet run as a separate fresh-context session. This entry is engineering evidence, not a QA PASS.
+
+**Human verification required**
+
+- Approve the crop, the circular inset and the recipe/dish as representative of Elisha Bay.
+- Confirm that no bottle or third-party mark remains visible (the source’s bottle label and baked-in
+  logo were cropped out).
+- A dedicated art-directed hero shoot is optional; the current hero uses only supplied photographs.
+
 ## 2026-11-16 — Ten product packshots and card images
 
 **Branch:** `feat/product-card-images` (stacked on `feat/real-products-contacts`; unmerged)

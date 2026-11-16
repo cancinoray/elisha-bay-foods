@@ -15,7 +15,7 @@ These block any honest launch. They are not “just copy”; they are the facts 
 | EB-003 | P0 | open | Human | Confirm certification wording and supply documents | Unblocks US3-AC1..4; do not change `credentialsVerified` before this |
 | EB-004 | P0 | partial | Human | Supply the official street address | Phone, email, Facebook and Instagram are supplied and wired |
 | EB-005 | P0 | open | Human | Confirm the live domain and hosting; make canonical/OG URLs absolute | Unblocks production SEO |
-| EB-008 | P0 | open | Human | Commission a real hero still-life (three label-forward jars, cream/wood, ingredients, copy space) | The current hero is concept; the ten packshots are supplied, and the trade-show display is not suitable as the hero |
+| EB-008 | P2 | done (branch) | Engineer | Build a hero from the supplied bangus and tuyo photographs | A dedicated reshoot is optional; the trade-show display is not used as the hero |
 | EB-006 | P1 | open | Human + PM | Complete an independent QA baseline of the current site | Run the QA role against `product-spec.md`; record the verdict |
 | EB-007 | P1 | open | Human | Create a remote repository, protect `main`, require CI, add the human merge gate | Process already documents the mode |
 

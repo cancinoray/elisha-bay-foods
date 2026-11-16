@@ -82,34 +82,30 @@ export function HeroSection() {
                 <picture>
                   <source
                     type="image/webp"
-                    srcSet="/images/hero-jars-800.webp 800w, /images/hero-jars-1200.webp 1200w"
+                    srcSet="/images/hero-bangus-tuyo-800.webp 800w, /images/hero-bangus-tuyo-1200.webp 1200w"
                     sizes="(min-width: 1024px) 44vw, (min-width: 640px) 80vw, 92vw"
                   />
                   <img
-                    src="/images/hero-jars-1200.jpg"
-                    alt="Three glass jars of preserved bangus in tomato sauce, olive oil, and soy sauce, arranged on a wooden board with garlic and tomatoes"
+                    src="/images/hero-bangus-tuyo-1200.jpg"
+                    alt="Grilled Elisha Bay bangus steak on a wooden board, with a circular inset of tuyo in olive oil and fresh basil"
                     width={1200}
-                    height={1200}
+                    height={1440}
                     fetchPriority="high"
                     decoding="async"
-                    className="aspect-[5/6] h-full w-full object-cover object-[50%_54%] sm:aspect-[1/1] lg:aspect-[5/6]"
+                    className="aspect-[5/6] h-full w-full object-cover object-[50%_50%]"
                   />
                 </picture>
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-burgundy-deep/65 via-burgundy-deep/15 to-transparent"
-                />
-                <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 px-5 pb-5 pt-10 sm:px-6 sm:pb-6">
-                  <span className="font-script text-[1.3rem] leading-none text-cream sm:text-[1.5rem]">
-                    From Dagupan, with pride.
-                  </span>
-                  <span className="mb-0.5 inline-flex items-center gap-1.5 rounded-full border border-cream/30 bg-cream/10 px-2.5 py-1 font-display text-[0.56rem] font-medium uppercase tracking-[0.16em] text-cream/95 backdrop-blur-sm">
-                    <MapPin className="h-3 w-3 text-gold" aria-hidden="true" />
-                    Pangasinan
-                  </span>
-                </figcaption>
               </div>
 
+              <figcaption className="mt-4 flex items-center justify-end gap-3 px-2">
+                <span className="font-script text-[1.2rem] leading-none text-burgundy sm:text-[1.35rem]">
+                  From Dagupan, with pride.
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-burgundy/15 bg-cream-soft/80 px-2.5 py-1 font-display text-[0.56rem] font-medium uppercase tracking-[0.16em] text-burgundy/80">
+                  <MapPin className="h-3 w-3 text-gold-deep" aria-hidden="true" />
+                  Pangasinan
+                </span>
+              </figcaption>
             </figure>
           </div>
         </div>
