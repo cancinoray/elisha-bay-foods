@@ -14,7 +14,7 @@ Last updated: 2026-11-16 · Status: **remote live on GitHub, content pending**
 | Ship | `make build` → `dist/`; the production image (`Dockerfile`) serves it with nginx on `$PORT` |
 | Deploy | Railway via GitHub — `railway.json` + `Dockerfile` are ready; **no Railway service or domain exists yet** |
 | Gate | `make verify` locally, plus GitHub Actions `ci` on every push to `main` and every PR |
-| Repo | [cancinoray/elisha-bay-foods](https://github.com/cancinoray/elisha-bay-foods) — **public**; `main` at `3498091`, CI green |
+| Repo | [cancinoray/elisha-bay-foods](https://github.com/cancinoray/elisha-bay-foods) — **public**; `main` at `8f74f35`, CI green |
 | Mode | remote in place: feature work uses branch + PR + CI; the human merge gate is unchanged |
 | In flight | `feat/logo-integration` → `feat/real-products-contacts` → `feat/product-card-images` were merged into `main` by fast-forward; the branches remain for history, no open PR |
 | Tracker | GitHub repo + Actions CI; `_docs/backlog.md` is still the queue — no issues filed on GitHub yet |

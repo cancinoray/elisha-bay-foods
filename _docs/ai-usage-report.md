@@ -5,7 +5,7 @@ Append, newest first. Do not record “done” unless the evidence is named.
 
 ## 2026-11-16 — Railway deploy config (nginx container)
 
-**Branch:** `chore/railway-deploy` (open for review; not merged)
+**Branch:** `chore/railway-deploy` (merged to `main` as `8f74f35` by rebase merge)
 
 **Scope:** Make the repo deployable on Railway over a GitHub connection. No application code, copy
 or assets changed — the site still ships as the same Vite build.
