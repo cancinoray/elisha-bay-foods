@@ -31,6 +31,45 @@ Messenger-only “is not good”. Groomed as issue
 - Pick A, B, C or D. B and C need a privacy/consent approval because inquiry PII would leave the
   visitor's machine; A needs confirmation that the published email inbox is monitored.
 
+## 2026-11-17 — Fix: About Us never highlighted in the nav
+
+**Branch:** `fix/nav-scrollspy-order`
+
+**Scope:** Bug report — “when I click the About Us nav it's not highlighting”. The link scrolled to
+the right section but `aria-current="location"` landed on “Quality & Certifications”.
+
+**Root cause**
+
+`useScrollSpy` walked the `ids` array and kept the **last** section whose top was above the scroll
+marker. That is only correct when the array is in document order. The nav lists About Us before
+Quality & Certifications, but `App.tsx` renders Quality before About, so while viewing About the loop
+assigned `about` and then overwrote it with `quality` — About was unreachable, Quality lit up
+instead. Confirmed by a probe against the running page: after clicking About Us, the only
+`aria-current` in the primary nav was on “Quality & Certifications”.
+
+**What AI produced**
+
+- A regression test that clicks each nav link and asserts the clicked link is the **only** active
+  one — red on About before the fix.
+- `useScrollSpy` now selects the section with the greatest top at or above the marker (nearest
+  section above the scroll position), so the result follows document order regardless of how the nav
+  is ordered. Measured with `getBoundingClientRect().top + scrollY` instead of `offsetTop`, which is
+  relative to the nearest positioned ancestor.
+
+**Builder verification**
+
+- New test observed failing first: `expect.poll(... aria-current).toBe('location')` on the About Us
+  link timed out, with `aria-current` on the Quality link.
+- `make verify` — typecheck, build and **17/17** tests pass (14 existing + 3 new nav tests).
+
+**Independent QA**
+
+- None; builder evidence only.
+
+**Human verification required**
+
+- Confirm the highlight follows the section in view on a real device, desktop and the mobile panel.
+
 ## 2026-11-16 — Railway deploy config (nginx container)
 
 **Branch:** `chore/railway-deploy` (merged to `main` as `8f74f35` by rebase merge)
