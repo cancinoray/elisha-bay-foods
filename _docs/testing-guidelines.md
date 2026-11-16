@@ -33,7 +33,7 @@ to merge.
 | Area | Proves |
 | ---- | ------ |
 | Brand + sections | H1, five sections, four product cards, placeholder disclaimer, official Facebook link |
-| Metadata/assets | title, description, OG image, JSON-LD, manifest, image alt + dimensions |
+| Metadata/assets | title, description, OG image, JSON-LD, manifest, official logo, icon assets, image alt + dimensions |
 | Content invariant | no “FDA Certified/Registered/Approved” claim; pending verification UI present |
 | Products → inquiry | a product card sets type + message + topic; valid Messenger URL and status region |
 | Form validation | empty form marks four fields invalid and never opens a channel |
@@ -54,9 +54,12 @@ Automation cannot prove taste, claims or every keyboard path:
 2. Confirm no official badges/logos or unverified “certified” language appears.
 3. Confirm placeholders are disclosed and no generated packaging is presented as approved.
 4. Keyboard-walk the page: nav, product cards, form, copy/open Messenger, footer.
-5. Inspect 375px, 768px and 1440px for clipped CTAs, awkward wrapping and missing focus.
-6. Compare the composition and identity against the design reference.
-7. Open the real Facebook/Messenger links and confirm they resolve to Elisha Bay.
+5. Confirm the official logo appears in the header, footer and share image; no old custom crest
+   remains. The transparent header logo should sit cleanly on cream, and the footer logo should use
+   the cream badge.
+6. Inspect 375px, 768px and 1440px for clipped CTAs, awkward wrapping and missing focus.
+7. Compare the composition and identity against the design reference.
+8. Open the real Facebook/Messenger links and confirm they resolve to Elisha Bay.
 
 Any manual FAIL needs a screenshot or a precise reproduction in the verdict.
 

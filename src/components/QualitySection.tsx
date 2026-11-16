@@ -1,6 +1,5 @@
 import { ArrowRight, BadgeCheck, Factory, Info, ShieldCheck } from 'lucide-react';
 import { site } from '../data/site';
-import { FishMark } from './Logo';
 
 const iconMap = {
   'shield-check': ShieldCheck,
@@ -73,10 +72,6 @@ export function QualitySection() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_35%,rgba(242,189,54,0.12),transparent_46%),radial-gradient(ellipse_at_88%_80%,rgba(0,0,0,0.18),transparent_45%)]"
       />
-      <FishMark
-        className="pointer-events-none absolute -bottom-10 right-[-3rem] hidden h-[24rem] w-[24rem] text-cream opacity-[0.06] lg:block"
-      />
-
       <div className="eb-shell relative z-10">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 xl:gap-20">
           <div data-reveal>

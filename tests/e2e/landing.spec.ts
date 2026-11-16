@@ -56,6 +56,11 @@ test.describe('Elisha Bay landing page', () => {
     await openSite(page);
 
     await expect(page).toHaveTitle(/Elisha Bay/);
+    const brandLogos = page.getByRole('img', {
+      name: 'Elisha Bay Dagupan Bangus and Seafoods',
+    });
+    await expect(brandLogos).toHaveCount(2);
+    await expect(brandLogos.first()).toBeVisible();
     for (const id of ['home', 'products', 'quality', 'about', 'contact']) {
       await expect(page.locator(`#${id}`)).toBeAttached();
     }
@@ -106,7 +111,8 @@ test.describe('Elisha Bay landing page', () => {
 
   test('public brand and share assets are reachable', async ({ request }) => {
     for (const path of [
-      '/favicon.svg',
+      '/favicon-32.png',
+      '/logo/elisha-bay-logo-512.webp',
       '/apple-touch-icon.png',
       '/icon-192.png',
       '/icon-512.png',

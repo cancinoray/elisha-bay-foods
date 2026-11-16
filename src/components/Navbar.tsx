@@ -80,9 +80,9 @@ export function Navbar() {
           : 'bg-gradient-to-b from-cream/90 via-cream/60 to-transparent'
       }`}
     >
-      <div className="eb-shell flex h-[80px] items-center justify-between gap-4 lg:h-[92px]">
+      <div className="eb-shell flex h-[96px] items-center justify-between gap-4 lg:h-[112px]">
         <a href="#home" className="rounded-lg" onClick={closeMenu}>
-          <Logo markClassName="h-11 w-11 lg:h-[3.25rem] lg:w-[3.25rem]" />
+          <Logo priority className="h-20 lg:h-[6.125rem]" />
         </a>
 
         <nav aria-label="Primary" className="hidden items-center lg:flex">

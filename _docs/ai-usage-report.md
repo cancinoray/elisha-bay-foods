@@ -3,6 +3,43 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-16 — Official logo integration
+
+**Branch:** `feat/logo-integration` (unmerged, awaiting human review/merge)
+
+**Scope:** Replace the designed placeholder crest with the official Elisha Bay logo and regenerate
+every brand asset that depends on it.
+
+**What AI produced**
+
+- Preserved the supplied 2048×2048 JPEG in `assets/brand/elisha-bay-logo-source.jpg` and created a
+  transparent master.
+- Generated transparent 256/512/1024 WebP lockups plus a 512 PNG fallback in `public/logo/`.
+- Header and footer now render the official logo; the footer uses a cream badge on burgundy because
+  the logo’s tagline needs a light ground. Header height/sizing was adjusted for legibility.
+- Favicon, Apple touch icon, 192/512 app icons and the 1200×630 OG image are derived from the same
+  official asset.
+- Removed the earlier custom crest from the Quality/Contact decorative watermarks.
+- Added US1-AC5 and a test that both header/footer logos render with alt text and dimensions; the
+  asset-reachability test now covers the logo and new favicon.
+
+**Builder verification**
+
+- `make verify` — typecheck, production build and **14/14** Playwright tests passed.
+- axe WCAG A/AA: 0 violations at 1440px and 390px.
+- Logo-derived public assets return 200; no browser console errors observed during the visual pass.
+
+**Independent QA**
+
+- Not yet run as a separate fresh-context session. This entry is engineering evidence, not a QA PASS.
+
+**Human verification required**
+
+- Confirm the logo crop, clear space and the cream footer badge are acceptable.
+- Confirm the larger header/logo treatment is the intended brand presence.
+- Provide a vector/SVG master if available; regenerate the logo variants and icons from it.
+- Confirm that the supplied red is the official red; it has not been recolored.
+
 ## 2026-11-16 — Baseline site + QA harness + agent workflow
 
 **Scope:** Build the Elisha Bay landing page from the supplied reference, optimize the assets, wire

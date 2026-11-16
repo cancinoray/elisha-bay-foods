@@ -61,11 +61,15 @@ cart, payment, backend or checkout — this phase is intentionally a brand/lead-
 
 ```text
 public/
+  logo/                   official transparent lockup (256/512/1024 WebP + PNG fallback)
   images/                 optimized concept photography + paper grain
-  favicon.svg             brand crest favicon
-  apple-touch-icon.png
-  og-image.jpg            1200x630 share card
+  favicon-32.png          logo-derived favicon
+  apple-touch-icon.png    logo-derived Apple icon
+  icon-192.png
+  icon-512.png
+  og-image.jpg            1200x630 share card with the official logo
   site.webmanifest
+  robots.txt
 src/
   components/
     Navbar.tsx            sticky nav, scroll spy, mobile menu, focus trap
@@ -76,7 +80,7 @@ src/
     ContactSection.tsx    contact channels + inquiry form
     InquiryForm.tsx       validation + Messenger handoff
     Footer.tsx
-    Logo.tsx              crest / wordmark lockup
+    Logo.tsx              official logo image lockup
     Decor.tsx             sunburst, brush stroke, gold rule
     Waves.tsx             organic section dividers
   data/
@@ -99,6 +103,7 @@ _docs/
   task-template.md
 .agents/agents/           PM, engineer and QA subagent definitions
 .github/                  CI + issue/PR templates
+assets/brand/             supplied logo source + transparent master (not served)
 AGENTS.md                 agent entry point and guardrails
 product-spec.md           behaviour, ACs, invariants and non-goals
 playwright.config.ts
@@ -113,7 +118,7 @@ This build intentionally withholds unverified business details.
 
 ### Logo and identity
 
-The crest and wordmark lockup in `src/components/Logo.tsx` is a **designed placeholder** built for this concept. Replace it with the official Elisha Bay logo (preferably SVG) when supplied, keeping the favicon/app icons in sync.
+The **official supplied Elisha Bay logo** is integrated from `assets/brand/elisha-bay-logo-source.jpg`. The build uses transparent, optimized variants in `public/logo/`; the header and footer render the full lockup, and the favicon, app icons and share image are derived from the same asset. Do not recolor, crop or replace the mark without the owner’s approval. If a vector SVG is supplied later, swap the image sources and regenerate the icons.
 
 ### Product line
 
@@ -151,6 +156,7 @@ There is no server-side form submission in this phase. If email notification or 
 ### Photography credits
 
 - Hero and product jar imagery: generated concept photography (placeholder only; not authentic Elisha Bay packaging).
+- Official Elisha Bay logo: supplied by the brand owner; transparent and icon variants derived from the supplied file.
 - About food photograph: [Unsplash image source](https://images.unsplash.com/photo-1644784643137-b9073dd262f6), used under the Unsplash License. Confirm and add photographer credit before launch.
 - All imagery is marked as concept/placeholder in the interface where product transparency matters.
 

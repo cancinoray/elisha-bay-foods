@@ -87,6 +87,9 @@ These are product requirements, not suggestions:
 - The About paragraph is **proposed copy**, not verified history.
 - Phone, email and street address are **unknown**; do not fill them in.
 - “Quality You Can Trust” and “A Taste of the Philippines” are brand lines, not certifications.
+- The official Elisha Bay logo is supplied. Use the transparent assets in `public/logo/`; on dark
+  surfaces use the cream badge treatment. Do not recolor, crop or replace it with the old custom
+  crest without the owner’s approval.
 - Any change to the above needs a human decision. If an issue asks for a claim without a source,
   stop and escalate to the human owner.
 

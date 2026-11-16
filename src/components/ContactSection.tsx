@@ -1,6 +1,5 @@
 import { Facebook, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { site } from '../data/site';
-import { FishMark } from './Logo';
 import { WaveScratch } from './Waves';
 import { InquiryForm } from './InquiryForm';
 
@@ -48,8 +47,6 @@ export function ContactSection({ topic }: ContactSectionProps) {
           backgroundSize: '44px 28px',
         }}
       />
-      <FishMark className="pointer-events-none absolute -left-16 bottom-10 hidden h-64 w-64 text-cream opacity-[0.06] lg:block" />
-
       <div className="eb-shell relative z-20">
         <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 xl:gap-20">
           <div data-reveal>

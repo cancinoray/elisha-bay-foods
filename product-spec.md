@@ -3,7 +3,7 @@
 > A premium Filipino seafood brand landing page that builds trust and turns discovery into an
 > inquiry.
 
-Status: **live baseline** · Version: 1.0 · Owner: human owner · Last updated: 2026-11-16
+Status: **live baseline** · Version: 1.1 · Owner: human owner · Last updated: 2026-11-16
 
 This is the source of truth for behaviour. Code follows this document; when they disagree, one of
 them is a bug. Acceptance criteria here are what QA judges.
@@ -60,6 +60,7 @@ know within seconds whether to keep reading.
 | US1-AC2 | The primary hero CTA “Inquire Now” reaches the contact section; “Explore our products” reaches the Products section. | `e2e` |
 | US1-AC3 | The page contains the five primary sections: Home, Products, Quality & Certifications, About, Contact, with working in-page navigation. | `e2e` |
 | US1-AC4 | The hero contains large food photography with descriptive alt text, and the page has a visible Dagupan/Pangasinan location cue. | `manual` |
+| US1-AC5 | The official Elisha Bay logo is rendered in the header and footer with alt text and explicit dimensions; no placeholder crest is presented as the brand mark. | `e2e` |
 
 ### US2 — Browse the seafood range
 
@@ -159,7 +160,6 @@ Any change to these shapes updates this section and the affected tests in the sa
 ## 8. Current known limits
 
 - Product names, packaging and photography are placeholders.
-- The logo/crest is a designed placeholder pending the official asset.
 - About copy is proposed, not client-approved history.
 - Phone, email and street address are unknown.
 - Certification wording is withheld; the verification-pending UI is intentional.
@@ -171,4 +171,5 @@ Any change to these shapes updates this section and the affected tests in the sa
 
 | Version | Date | Change |
 | ------- | ---- | ------ |
+| 1.1 | 2026-11-16 | Integrated the supplied official Elisha Bay logo, transparent variants, app icons and share image. |
 | 1.0 | 2026-11-16 | Baseline site, Playwright/axe QA suite, PM → engineer → QA process. |

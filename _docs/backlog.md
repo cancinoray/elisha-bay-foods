@@ -10,7 +10,7 @@ These block any honest launch. They are not “just copy”; they are the facts 
 
 | Id | Priority | State | Owner | Item | Notes / ACs |
 | -- | -------- | ----- | ----- | ---- | ----------- |
-| EB-001 | P0 | open | Human | Collect the official logo, product names, packaging photos and approved product facts | Unblocks US2-AC1..3 and the product disclaimer removal |
+| EB-001 | P0 | open | Human | Collect approved product names, packaging photos and product facts | Logo is supplied; this unblocks US2-AC1..3 and the product disclaimer removal |
 | EB-002 | P0 | open | Human | Approve or rewrite the About paragraph | Current copy is proposed; see US1/US3 content rules |
 | EB-003 | P0 | open | Human | Confirm certification wording and supply documents | Unblocks US3-AC1..4; do not change `credentialsVerified` before this |
 | EB-004 | P0 | open | Human | Supply official phone, email and street address | Unblocks US4-AC5; the UI adapts via `src/data/site.ts` |

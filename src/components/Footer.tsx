@@ -30,8 +30,11 @@ export function Footer() {
 
       <div className="eb-shell relative z-10 pb-8 pt-14 sm:pt-16">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-          <a href="#home" className="w-fit rounded-lg">
-            <Logo tone="light" markClassName="h-12 w-12 sm:h-[3.4rem] sm:w-[3.4rem]" />
+          <a
+            href="#home"
+            className="w-fit rounded-2xl bg-cream p-2 shadow-[0_12px_30px_-18px_rgba(0,0,0,0.7)]"
+          >
+            <Logo className="h-[4.5rem] sm:h-20" />
           </a>
 
           <ul className="flex flex-wrap items-center gap-x-7 gap-y-3 text-[0.82rem]">

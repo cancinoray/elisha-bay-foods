@@ -14,9 +14,10 @@ Last updated: 2026-11-16 · Status: **live baseline, content pending**
 | Ship | `make build` → `dist/`; hosting/domain not configured yet |
 | Gate | `make verify` (typecheck + build + 14 Playwright/axe tests) |
 | Repo | local git on `main`, bootstrap commits complete, **no remote yet** |
+| In flight | `feat/logo-integration` — official logo integrated, tests green, awaiting human review/merge |
 | Tracker | no remote/issue tracker yet; `_docs/backlog.md` is the local queue |
-| Blocking on you | official logo, product data/photography, About approval, certificates, contact details, domain |
-| Next action | run the PM/content-intake issue for the approved assets; then replace placeholders |
+| Blocking on you | product data/photography, About approval, certificates, contact details, domain |
+| Next action | run the PM/content-intake issue for the remaining approved assets; the logo is integrated |
 
 ## 2. What we are building and why it has this shape
 
@@ -39,6 +40,7 @@ are in [AGENTS.md](../AGENTS.md).
 | D4 | Concept photography and product placeholders with visible disclosure | Present generated packaging as real Elisha Bay assets | No official brand assets were supplied; honesty is a product requirement. |
 | D5 | Human merge/deploy gate | Agent merges or deploys | The repo has no protected remote yet and production is irreversible; a human owns release. |
 | D6 | Kaushan + Poppins + Inter | Single generic sans or a stock template | Preserves the warm Filipino editorial identity; script is restricted to statements. |
+| D7 | Official supplied logo used directly (transparent variants for web) | Keep the earlier custom crest | The brand owner supplied the real mark; it is the identity, not a placeholder. |
 
 ## 4. Where everything lives
 
@@ -69,7 +71,7 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
 
 | Id | Question | Owner | Status |
 | -- | -------- | ----- | ------ |
-| O1 | What are the approved product names, packaging and photos? | Human / Elisha Bay | open |
+| O1 | What are the approved product names, packaging and photos? | Human / Elisha Bay | open; logo now supplied |
 | O2 | Which certifications can be displayed, and with what exact wording/documents? | Human / Elisha Bay | open |
 | O3 | What phone, email, street address and Facebook handle are official? | Human / Elisha Bay | open (Facebook/Messenger already wired) |
 | O4 | Is the About paragraph approved as written? | Human | open |
@@ -96,10 +98,13 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
   absolute.
 - **The product section must stay four cards.** Adding products is a content decision that needs
   approved data and an updated spec; the grid is not an e-commerce catalogue.
+- **The logo is official now.** Use the transparent variants in `public/logo/`; on dark surfaces place
+  it on the cream badge used in the footer. Do not recolor, crop or replace it with the earlier
+  custom crest. The raw source is preserved in `assets/brand/`.
 
 ## 8. Next action
 
-Open the first groomed issue for **approved brand assets and content** (logo, product names/photos,
-About approval, certification documents, contact details, domain). Until those arrive, do not
-replace placeholders with guesses. If a purely technical task is preferred first, set up the remote
+Open the first groomed issue for **remaining approved content** (product names/photos, About
+approval, certification documents, contact details, domain). The logo is already integrated; until
+the rest arrives, do not replace placeholders with guesses. If a purely technical task is preferred first, set up the remote
 and branch protection with the human owner; the workflow is already documented for that mode.

@@ -40,7 +40,16 @@ use the existing `rounded-*`/`eb-arch`/`eb-organic` treatments, not arbitrary ne
 Type scale is fluid via `clamp()` in components. Keep the H1 as the only H1; section headings are
 H2; cards use H3. Do not add a second script face.
 
-## 4. Components
+## 4. Logo
+
+The supplied official logo is the only brand mark. Transparent variants live in `public/logo/`;
+`assets/brand/` keeps the source and master. Use the full lockup in the header/footer/OG; keep its
+clear space and aspect ratio. On burgundy surfaces, place it on the cream badge used in the footer —
+the tagline and fish rely on a light ground. Never recolor, redraw, crop the tagline or substitute
+the earlier custom crest. Favicons/app icons are derived from the same asset; regenerate them if the
+official vector replaces the source.
+
+## 5. Components
 
 | Component | Responsibility | States |
 | --------- | -------------- | ------ |
@@ -50,6 +59,7 @@ H2; cards use H3. Do not add a second script face.
 | `QualitySection` | trust posture and withheld credentials | neutral “verification pending” only |
 | `AboutSection` | story, values disclosure, image | collapsed/expanded, reduced motion |
 | `ContactSection` / `InquiryForm` | channels and form | default, focus, invalid, submitted, blocked popup, copied |
+| `Logo` | official Elisha Bay lockup | header on cream, footer on cream badge, OG, icons |
 | `Footer` | brand, trust lines, social, location | light-on-dark only |
 | `Decor` / `Waves` | sunbursts, brush stroke, dividers | decorative, `aria-hidden` |
 
@@ -63,7 +73,7 @@ Rules:
 - Hover effects never carry information alone; the same action is available by keyboard.
 - Do not introduce a component library or icon set. Lucide is the icon source.
 
-## 5. Layout and responsive
+## 6. Layout and responsive
 
 - Content shell: `eb-shell`, max width 78rem with 1.25rem/2rem/2.5rem gutters.
 - Breakpoints follow Tailwind defaults; the important behavior changes are:
@@ -74,14 +84,14 @@ Rules:
 - Verify 320, 375, 414, 768, 1024, 1440 and 1920. No horizontal overflow at any of them.
 - Images always have width/height and a meaningful `sizes`/`srcSet`. No layout shift.
 
-## 6. Motion
+## 7. Motion
 
 - Purposeful only: hero entrance, scroll reveals, card lift, menu panel, hover arrows.
 - Respect `prefers-reduced-motion: reduce`; content must be readable with transitions and
   animations disabled.
 - No parallax, autoplay video, looping ambient motion or scroll hijacking.
 
-## 7. Accessibility
+## 8. Accessibility
 
 - WCAG 2.1 AA contrast for all text. Gold is not used for small text on cream.
 - Semantic landmarks, one H1, labelled sections, skip link, visible focus.
@@ -92,7 +102,7 @@ Rules:
 - Decorative SVG is `aria-hidden`; icons never replace a text label for a meaningful action.
 - axe must report zero WCAG A/AA violations at 1440 and 390 before merge.
 
-## 8. Content
+## 9. Content
 
 - Voice: warm, confident, specific, never over-claiming. “Every mouthful is delightful!” is the
   brand line.
