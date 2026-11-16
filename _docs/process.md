@@ -207,3 +207,29 @@ Handoffs are files, not conversation:
 The checklist lives in [`AGENTS.md`](../AGENTS.md) so every agent reads it at the entry point. In
 short: every AC proved, `make verify` green, no invented claims, accessibility/responsive checks
 done, docs updated, QA PASS posted, human merged.
+
+## 12. Starting a role
+
+Use a separate session per role. Paste the issue and the role entry point; do not paste the previous
+role's reasoning.
+
+**PM**
+
+> Read `.agents/agents/pm.md`, `_docs/process.md`, `product-spec.md` and `_docs/task-template.md`.
+> Groom this request into a ready issue: `<request>`. Do not write code. Flag every human content
+> checkpoint.
+
+**Software engineer**
+
+> Read `.agents/agents/software-engineer.md`, `AGENTS.md` and this issue: `<issue>`. Implement the
+> smallest change on a branch from `main`, failing test first, and run `make verify`. Do not merge.
+> Report the branch and evidence.
+
+**QA**
+
+> Read `.agents/agents/qa-engineer.md`, `AGENTS.md`, `product-spec.md` and this issue: `<issue>`.
+> Verify independently against the running site. Do not read the engineer's explanation first. Run
+> `make verify`, do the manual content/keyboard/responsive checks, and post the AC-by-AC verdict. Do
+> not modify code or merge.
+
+The **human owner** starts the loop, approves claims and merges. Agents do not merge or deploy.
