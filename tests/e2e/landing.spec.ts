@@ -197,6 +197,30 @@ test.describe('Elisha Bay landing page', () => {
       .toBe('fixed');
   });
 
+  // Nav order and DOM order differ (`about` is rendered after `quality`), so this
+  // catches a scroll spy that walks the id list instead of the document.
+  const navSections = [
+    { label: 'About Us', hash: '#about', id: 'about' },
+    { label: 'Quality & Certifications', hash: '#quality', id: 'quality' },
+    { label: 'Contact Us', hash: '#contact', id: 'contact' },
+  ] as const;
+
+  for (const section of navSections) {
+    test(`clicking ${section.label} highlights it and no other section`, async ({ page }) => {
+      await openSite(page);
+      const primary = page.locator('nav[aria-label="Primary"]');
+      const link = primary.locator(`a[href="${section.hash}"]`);
+
+      await link.click();
+      await expect(page.locator(`#${section.id}`)).toBeInViewport();
+
+      await expect.poll(async () => link.getAttribute('aria-current')).toBe('location');
+
+      const activeLinks = await primary.locator('a[aria-current="location"]').allTextContents();
+      expect(activeLinks).toEqual([section.label]);
+    });
+  }
+
   test('product card pre-fills a valid Messenger inquiry', async ({ page }) => {
     await openSite(page);
     await stubPopup(page);

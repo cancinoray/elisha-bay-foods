@@ -2,8 +2,12 @@ import { useEffect, useState } from 'react';
 
 /**
  * Tracks which page section is currently in view for navigation highlighting.
- * Keeps the first matching section so the nav never loses its active state
- * between two adjacent sections.
+ *
+ * The active section is the one whose top is closest above the scroll marker,
+ * which means the result follows the *document* order, not the order of `ids`.
+ * That matters here: the nav lists About Us before Quality & Certifications,
+ * but the About section is rendered after Quality, so "last matching id wins"
+ * highlighted the wrong link.
  */
 export function useScrollSpy(ids: string[], offset = 140) {
   const [active, setActive] = useState(ids[0] ?? '');
@@ -15,11 +19,19 @@ export function useScrollSpy(ids: string[], offset = 140) {
       frame = 0;
       const marker = window.scrollY + offset;
       let current = ids[0] ?? '';
+      let currentTop = Number.NEGATIVE_INFINITY;
 
       for (const id of ids) {
         const element = document.getElementById(id);
         if (!element) continue;
-        if (element.offsetTop <= marker) current = id;
+
+        const top = element.getBoundingClientRect().top + window.scrollY;
+        // `>` keeps document order for sections that share a top; sections below
+        // the marker never become the nearest one above it.
+        if (top <= marker && top > currentTop) {
+          current = id;
+          currentTop = top;
+        }
       }
 
       const nearBottom =
