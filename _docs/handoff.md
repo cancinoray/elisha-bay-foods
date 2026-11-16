@@ -3,21 +3,22 @@
 Everything a new session, agent or reviewer needs to continue without reading the conversation that
 produced the repo. Read this first if you did not build the current state.
 
-Last updated: 2026-11-16 · Status: **live baseline, content pending**
+Last updated: 2026-11-16 · Status: **remote live on GitHub, content pending**
 
 ## 1. Status snapshot
 
 | | |
 | --- | --- |
-| Phase | Baseline complete: landing page, inquiry flow, QA suite, agent process |
+| Phase | Baseline complete and merged to `main`: landing page, inquiry flow, QA suite, agent process |
 | Code | Vite + React 19 + TypeScript + Tailwind v4; all sections in `src/` |
 | Ship | `make build` → `dist/`; hosting/domain not configured yet |
-| Gate | `make verify` (typecheck + build + 14 Playwright/axe tests) |
-| Repo | local git on `main`, bootstrap commits complete, **no remote yet** |
-| In flight | `feat/logo-integration` (logo) → `feat/real-products-contacts` (products/contacts) → `feat/product-card-images` (packshots), all awaiting human review/merge in that order |
-| Tracker | no remote/issue tracker yet; `_docs/backlog.md` is the local queue |
+| Gate | `make verify` locally, plus GitHub Actions `ci` on every push to `main` and every PR |
+| Repo | [cancinoray/elisha-bay-foods](https://github.com/cancinoray/elisha-bay-foods) — **public**; `main` at `725c378`, CI green |
+| Mode | remote in place: feature work uses branch + PR + CI; the human merge gate is unchanged |
+| In flight | `feat/logo-integration` → `feat/real-products-contacts` → `feat/product-card-images` were merged into `main` by fast-forward; the branches remain for history, no open PR |
+| Tracker | GitHub repo + Actions CI; `_docs/backlog.md` is still the queue — no issues filed on GitHub yet |
 | Blocking on you | printed sizes/final packaging copy, About approval, certification documents, street address, domain |
-| Next action | confirm printed sizes/final packaging copy and collect the remaining About/certification/address facts; the logo, ten products, packshots, combined hero and contact channels are integrated |
+| Next action | record a retroactive QA PASS for the merge, then enable branch protection; content work still waits on printed sizes/final packaging copy and the remaining facts |
 
 ## 2. What we are building and why it has this shape
 
@@ -44,6 +45,7 @@ are in [AGENTS.md](../AGENTS.md).
 | D8 | Product names/descriptions taken from the brand’s range signs; supplied packshots used on cards | Continue with generated jar cards | The supplied assets are actual; generated packaging under real names would misrepresent the range. |
 | D9 | Phone/email/Instagram added to config and contact UI | Keep the “contact details pending” state | The owner supplied the channels; the site should make contact easy. Street address remains withheld. |
 | D10 | Ten supplied packshots used directly on the product cards, with the range photo as section opener | Crop jars from the range photo | The owner supplied individual packshots; cropping the lineup produced low-resolution, cluttered tiles. |
+| D11 | Orchestrator authorized a direct fast-forward merge of the three feature branches into `main` | Hold `main` until a fresh QA session posts PASS | The human owner (orchestrator) explicitly authorized it; the merge decision is theirs, not the agent's. **No fresh QA session has posted PASS** — green CI is engineering evidence only. Record the QA PASS retroactively. |
 
 ## 4. Where everything lives
 
@@ -68,7 +70,8 @@ are in [AGENTS.md](../AGENTS.md).
 
 One paragraph: PM grooms an issue with checkable ACs; engineer branches from main, adds a failing
 test first and runs `make verify`; fresh QA runs the suite and the manual content checks, then posts
-PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.md](process.md).
+PASS/FAIL; the human owner merges and deploys; QA re-checks main. With the remote in place, the merge
+is a PR squash/merge with CI attached, and the QA verdict belongs on that PR. See [process.md](process.md).
 
 ## 6. Open questions
 
@@ -81,6 +84,7 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
 | O5 | What is the production domain, and where will the site be hosted? | Human | open |
 | O7 | Is a dedicated art-directed hero photograph still desired? | Human | optional; the current hero is a supplied-photo composite |
 | O6 | Should the form later deliver to email/CRM as well as Messenger? | Human | open |
+| O8 | Who runs the retroactive QA PASS for the 2026-11-16 merge, and against which commit? | Human | open; recommended before any deploy |
 
 ## 7. Traps and lessons
 
@@ -114,11 +118,21 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
 - **The logo is official now.** Use the transparent variants in `public/logo/`; on dark surfaces place
   it on the cream badge used in the footer. Do not recolor, crop or replace it with the earlier
   custom crest. The raw source is preserved in `assets/brand/`.
+- **The GitHub repository is public.** Every tracked file — supplied brand assets, docs, this
+  handoff, the AI usage report — is world-readable and has been since 2026-11-16. Do not commit
+  credentials, private client material, unapproved claims or internal-only notes. Run a secret scan
+  before adding anything that looks sensitive.
+- **`main` currently has no PR review trail.** The 2026-11-16 merge was a direct fast-forward, so the
+  commits on `main` were never reviewed in a PR and no CI run is attached to a PR. Branch protection
+  is not enabled yet; until it is, "pushed" does not mean "reviewed".
 
 ## 8. Next action
 
-Open the next content issue for **remaining facts**: printed sizes/final packaging copy, About
-approval, certification documents, the street address and the production domain. A dedicated hero
-reshoot is optional. The logo, ten products, packshots, combined hero and phone/email/Instagram are
-integrated; do not fill the remaining gaps with guesses. If a purely technical task is preferred first, set up the remote
-and branch protection with the human owner; the workflow is already documented for that mode.
+1. **Close the QA gap:** run a fresh-context QA session against `725c378` (the suite plus the manual
+   content checks in [testing-guidelines.md](testing-guidelines.md)) and record PASS/FAIL here and in
+   [ai-usage-report.md](ai-usage-report.md). This is owed, not optional.
+2. **Turn on branch protection** on `main` (require the `ci` check and a PR) so the documented gate is
+   enforced by the remote rather than by convention.
+3. Then return to content: printed sizes and final packaging copy, About approval, certification
+   documents, street address and the production domain. The logo, ten products, packshots, combined
+   hero and phone/email/Instagram are integrated. Do not fill the remaining gaps with guesses.

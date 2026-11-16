@@ -3,9 +3,54 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-16 — Public GitHub remote and first merge to `main`
+
+**Branch:** `main` (direct commits, no branch)
+
+**Scope:** Publish the repository, wire `origin`, push the stacked feature history, merge it to
+`main` on the owner's explicit instruction, and correct the state docs that still described a
+local-only repo.
+
+**What AI produced**
+
+- Ran `git init` (reinitialized an existing repo — no effect) and confirmed there was nothing to
+  commit and no configured remote; reported both instead of inventing a destination.
+- Scanned all 123 tracked files for secret patterns (`ghp_`/`gho_`/`sk-`/`AKIA`/private-key/`.env`)
+  before making anything public — no secrets found.
+- `gh repo create cancinoray/elisha-bay-foods --public --source=. --remote=origin`; pushed `main`
+  and `feat/product-card-images` with upstream tracking.
+- Fast-forwarded `main` `c602471 → 725c378` (all three stacked branches came in together) and
+  pushed it.
+- Rewrote the stale state sections of `_docs/handoff.md` (remote, merged branches, CI, new decision
+  D11, public-repo trap, revised next actions), updated the mode line in `AGENTS.md`, and added
+  this entry.
+
+**Builder verification**
+
+- GitHub Actions `ci` on `main`: green twice — run
+  [43897379086](https://github.com/cancinoray/elisha-bay-foods/actions/runs/43897379086) on the
+  bootstrap history and run
+  [43899055268](https://github.com/cancinoray/elisha-bay-foods/actions/runs/43899055268) on the
+  merge, both with typecheck, build and all 14 Playwright/axe tests passing.
+- `git status` clean, `main` and `origin/main` aligned at `725c378`.
+
+**Independent QA**
+
+- **None.** The merge to `main` was authorized directly by the human owner/orchestrator, which
+  bypasses the documented "QA posts PASS, then the human merges" sequence (AGENTS.md rule 9 and the
+  handoff loop). This is recorded as decision D11 in the handoff. No fresh-context QA session has
+  verified the ACs against `725c378`; CI green is engineering evidence, not a QA PASS.
+
+**Human verification required**
+
+- Authorize (or run) the retroactive QA pass against `725c378` and post the verdict.
+- Enable branch protection on `main` so the gate is enforced by the remote.
+- Note that the repo is public: supplied brand assets, docs and this report are world-readable.
+
 ## 2026-11-16 — Combined bangus + tuyo hero
 
-**Branch:** `feat/product-card-images` (stacked on the product/contact branch; unmerged)
+**Branch:** `feat/product-card-images` (stacked on the product/contact branch; merged into `main`
+by fast-forward on 2026-11-16 — see the entry above)
 
 **Scope:** Replace the concept hero still-life with a composite of the two supplied food photographs,
 keeping the product cards and page content intact.

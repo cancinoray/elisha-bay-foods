@@ -5,8 +5,9 @@ Read this first, then only the documents your task needs. This repository is a
 It is not an e-commerce store. Do not add a cart, checkout, payment flow, or a backend without an
 approved issue.
 
-**Current mode:** local git repository with a human merge/deploy gate. When a remote is added,
-switch to branch + pull request + CI; the QA gate stays the same.
+**Current mode:** remote on GitHub at
+[cancinoray/elisha-bay-foods](https://github.com/cancinoray/elisha-bay-foods) (public). Feature work
+uses branch + pull request + CI; the QA gate and the human merge/deploy gate are unchanged.
 
 ## Commands
 
