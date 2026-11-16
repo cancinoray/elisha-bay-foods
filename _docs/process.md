@@ -115,7 +115,7 @@ QA posts one comment with a fixed shape:
 - [x] US4-AC3 Valid inquiry opens Messenger pre-filled — PASS
 - [x] US5-AC3 axe reports no WCAG A/AA violations — PASS
 
-Tests: `make verify` — typecheck, build and 11 Playwright tests passed
+Tests: `make verify` — typecheck, build and 14 Playwright tests passed
 Manual: 390px menu/Escape/focus; desktop product hover/focus; certification wording scan
 Branch: `feat/42-product-content`
 ```

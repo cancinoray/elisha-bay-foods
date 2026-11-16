@@ -50,7 +50,7 @@ Post one comment in the fixed format from [`_docs/process.md`](../process.md):
 
 - `## QA: PASS` or `## QA: FAIL` on the first line
 - every AC with PASS/FAIL and one line of evidence
-- the commands and counts (`make verify` — 11 passed)
+- the commands and counts (`make verify` — 14 passed)
 - manual checks performed
 - branch/commit
 - a screenshot or failing test path for every FAIL

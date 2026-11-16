@@ -59,11 +59,19 @@ test.describe('Elisha Bay landing page', () => {
     for (const id of ['home', 'products', 'quality', 'about', 'contact']) {
       await expect(page.locator(`#${id}`)).toBeAttached();
     }
+    await expect(
+      page.getByText(/Premium Bangus and Seafood Products made with quality, care, and Filipino pride/),
+    ).toBeVisible();
 
     await expect(
       page.getByRole('heading', { name: 'Delicious Seafood Goodness' }),
     ).toBeVisible();
-    await expect(page.locator('#products ul > li')).toHaveCount(4);
+    const cards = page.locator('#products ul > li');
+    await expect(cards).toHaveCount(4);
+    for (let index = 0; index < 4; index += 1) {
+      await expect(cards.nth(index).locator('h3')).toBeVisible();
+      await expect(cards.nth(index).locator('img')).toHaveAttribute('alt', /.+/);
+    }
     await expect(
       page.getByText(/Product names, packaging and photography are placeholders/),
     ).toBeVisible();
@@ -76,6 +84,7 @@ test.describe('Elisha Bay landing page', () => {
       ogImage: document.querySelector('meta[property="og:image"]')?.getAttribute('content'),
       structuredData: document.querySelector('script[type="application/ld+json"]')?.textContent,
       manifest: document.querySelector('link[rel="manifest"]')?.getAttribute('href'),
+      heroPreload: document.querySelector('link[rel="preload"][as="image"]')?.getAttribute('href'),
       images: Array.from(document.images).map((image) => ({
         alt: image.alt,
         width: image.getAttribute('width'),
@@ -87,10 +96,27 @@ test.describe('Elisha Bay landing page', () => {
     expect(metadata.ogImage).toContain('og-image.jpg');
     expect(metadata.structuredData).toContain('Organization');
     expect(metadata.manifest).toBe('/site.webmanifest');
+    expect(metadata.heroPreload).toContain('hero-jars');
     for (const image of metadata.images) {
       expect(image.alt).toBeTruthy();
       expect(image.width).toBeTruthy();
       expect(image.height).toBeTruthy();
+    }
+  });
+
+  test('public brand and share assets are reachable', async ({ request }) => {
+    for (const path of [
+      '/favicon.svg',
+      '/apple-touch-icon.png',
+      '/icon-192.png',
+      '/icon-512.png',
+      '/site.webmanifest',
+      '/og-image.jpg',
+      '/robots.txt',
+      '/paper-grain.svg',
+    ]) {
+      const response = await request.get(path);
+      expect(response.status(), path).toBe(200);
     }
   });
 
@@ -102,6 +128,28 @@ test.describe('Elisha Bay landing page', () => {
     expect(text).not.toMatch(/US FDA Registered Facility/i);
     await expect(page.getByText('Verification pending').first()).toBeVisible();
     await expect(page.getByText(/Certification details are being verified/)).toBeVisible();
+  });
+
+  test('hero and primary navigation reach their sections', async ({ page }) => {
+    await openSite(page);
+
+    await page.locator('#home a[href="#products"]').click();
+    await expect(page.locator('#products')).toBeInViewport();
+    await page.evaluate(() => window.scrollTo(0, 0));
+
+    await page.locator('#home a[href="#contact"]').click();
+    await expect(page.locator('#contact')).toBeInViewport();
+    await page.evaluate(() => window.scrollTo(0, 0));
+
+    const primary = page.getByRole('navigation', { name: 'Primary' });
+    await primary.getByRole('link', { name: 'Our Products' }).click();
+    await expect(page.locator('#products')).toBeInViewport();
+    await primary.getByRole('link', { name: 'About Us' }).click();
+    await expect(page.locator('#about')).toBeInViewport();
+    await primary.getByRole('link', { name: 'Quality & Certifications' }).click();
+    await expect(page.locator('#quality')).toBeInViewport();
+    await primary.getByRole('link', { name: 'Contact Us' }).click();
+    await expect(page.locator('#contact')).toBeInViewport();
   });
 
   test('sticky navigation reports the section currently in view', async ({ page }) => {
@@ -143,12 +191,31 @@ test.describe('Elisha Bay landing page', () => {
     await expect(
       page.getByRole('region', { name: 'Inquiry status' }),
     ).toContainText('Your message is ready in Messenger.');
+    await expect(page.getByRole('button', { name: 'Copy message' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Open Messenger' })).toHaveAttribute(
+      'href',
+      /^https:\/\/m\.me\/elishabayfoods\?text=/,
+    );
+    await expect(page.getByText(/Phone and email contact details will be added/)).toBeVisible();
 
     const url = await openedUrl(page);
     expect(url).toContain('https://m.me/elishabayfoods?text=');
     const decoded = decodeURIComponent(url ?? '');
     expect(decoded).toContain('Name: QA Test');
     expect(decoded).toContain(PRODUCT_TOPIC);
+  });
+
+  test('quality section uses the approved heading and withheld-credential note', async ({
+    page,
+  }) => {
+    await openSite(page);
+    await expect(
+      page.getByRole('heading', { name: 'Committed to Quality and Safety' }),
+    ).toBeVisible();
+    await expect(
+      page.getByText('We follow strict food safety standards to bring you only the best.'),
+    ).toBeVisible();
+    await expect(page.getByText('Verification pending').first()).toBeVisible();
   });
 
   test('inquiry form rejects invalid input without opening Messenger', async ({ page }) => {

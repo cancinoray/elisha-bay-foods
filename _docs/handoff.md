@@ -12,7 +12,8 @@ Last updated: 2026-11-16 · Status: **live baseline, content pending**
 | Phase | Baseline complete: landing page, inquiry flow, QA suite, agent process |
 | Code | Vite + React 19 + TypeScript + Tailwind v4; all sections in `src/` |
 | Ship | `make build` → `dist/`; hosting/domain not configured yet |
-| Gate | `make verify` (typecheck + build + 11 Playwright/axe tests) |
+| Gate | `make verify` (typecheck + build + 14 Playwright/axe tests) |
+| Repo | local git on `main`, bootstrap commits complete, **no remote yet** |
 | Tracker | no remote/issue tracker yet; `_docs/backlog.md` is the local queue |
 | Blocking on you | official logo, product data/photography, About approval, certificates, contact details, domain |
 | Next action | run the PM/content-intake issue for the approved assets; then replace placeholders |

@@ -87,7 +87,7 @@ src/
   index.css               design tokens + shared styles
   main.tsx
 tests/
-  e2e/landing.spec.ts     Playwright QA suite (11 tests)
+  e2e/landing.spec.ts     Playwright QA suite (14 tests)
 _docs/
   process.md              roles, permissions and PM → engineer → QA loop
   team/                   pm.md, software-engineer.md, qa-engineer.md

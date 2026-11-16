@@ -14,18 +14,24 @@ the Messenger inquiry flow, add the PM/engineer/QA process, and create an indepe
 - Brand tokens, typography, decorative system, logo/favicon, OG image, PWA icons and manifest.
 - Configurable placeholder site/product data with explicit content guardrails.
 - Messenger inquiry handoff with validation, copy fallback and status feedback.
-- Playwright suite: 11 tests covering product prefill, validation, handoff, menu, responsive
+- Playwright suite: 14 tests covering product prefill, validation, handoff, menu, responsive
   breakpoints, axe A/AA, skip link, reduced motion, metadata and claim withholding.
 - Agent framework: `AGENTS.md`, `product-spec.md`, process, PM/SE/QA roles, task/PR templates,
   backlog, testing/design docs, Makefile and CI.
 
 **Builder verification**
 
-- `make verify` passed at the time of writing: strict TypeScript, production build, **11/11**
+- `make verify` passed at the time of writing: strict TypeScript, production build, **14/14**
   Playwright tests, axe WCAG A/AA = 0 at 1440px and 390px.
 - No browser console errors or failed asset requests in the production preview.
 - Responsive checks at 320/375/414/768/1024/1440/1920; no horizontal overflow.
 - Production assets (favicon, icons, manifest, OG image, robots, grain SVG) returned 200.
+
+**Bootstrap note**
+
+Two setup commits were made directly on `main` before the workflow was active: the initial site and
+this agent/QA setup. That is a bootstrap exception, not a feature merge. From this point, feature
+work must use a branch, independent QA and the human merge gate.
 
 **Independent QA**
 
