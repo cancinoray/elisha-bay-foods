@@ -20,6 +20,8 @@ uses branch + pull request + CI; the QA gate and the human merge/deploy gate are
 | `make test`     | Playwright journeys, responsive checks and axe accessibility.   |
 | `make verify`   | **The pre-merge gate:** lint + build + test.                    |
 | `make preview`  | Preview the built site locally.                                 |
+| `make docker-build` | Build the production image (what Railway runs).             |
+| `make docker-run`   | Serve that image at `http://localhost:8080`.                |
 
 `make verify` must pass before a change is handed to QA. A target that is broken should be fixed,
 not bypassed.
@@ -52,6 +54,9 @@ tests/e2e/          Playwright QA suite
 docs/               generated preview images
 _docs/              process, roles, spec support, testing, handoff, backlog
 .github/            CI, issue template and PR template
+deploy/nginx/       nginx config template for the production container
+Dockerfile          Vite build + nginx runtime, what Railway deploys
+railway.json        Railway builder, healthcheck and restart policy
 ```
 
 ## Rules
