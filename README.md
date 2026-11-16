@@ -57,6 +57,41 @@ cart, payment, backend or checkout — this phase is intentionally a brand/lead-
 
 ---
 
+## Deploying to Railway
+
+The site is a static build served by nginx, so Railway builds it from the repo’s `Dockerfile`
+rather than from the Vite dev server.
+
+| File | Purpose |
+| ---- | ------- |
+| `Dockerfile` | Two stages: `npm ci` + `npm run build`, then nginx serving `dist/` |
+| `deploy/nginx/default.conf.template` | Listens on `$PORT`, gzip, cache headers, `/healthz`, SPA fallback |
+| `railway.json` | Pins the Dockerfile builder, healthcheck and restart policy |
+| `.dockerignore` | Keeps docs, tests and raw assets out of the build context |
+
+**First deploy (dashboard, one-time):**
+
+1. Railway → **New Project → Deploy from GitHub repo** → `cancinoray/elisha-bay-foods`.
+2. Railway detects `railway.json` / `Dockerfile`; leave build and start commands empty.
+3. Deploy, then **Settings → Networking → Generate Domain** to get the `*.up.railway.app` URL.
+4. Check `/healthz` returns `ok` and the page loads over HTTPS.
+
+**Every later deploy:** merging to `main` triggers GitHub Actions `ci`; Railway rebuilds from the
+same commit. Treat a red `ci` run as a reason to roll back the Railway deploy, not to keep it.
+
+**Before pointing a real domain at it:** set the canonical URL and make `og:image` / `og:url`
+absolute (tracked as O5 in [_docs/handoff.md](_docs/handoff.md)). Relative Open Graph URLs do not
+resolve on social platforms, so link previews stay broken until this is done.
+
+**Local check of the production image** (needs a running Docker engine):
+
+```bash
+make docker-build   # docker build -t elisha-bay-web .
+make docker-run     # http://localhost:8080, healthcheck at /healthz
+```
+
+---
+
 ## Project structure
 
 ```text

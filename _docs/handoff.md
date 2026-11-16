@@ -11,9 +11,10 @@ Last updated: 2026-11-16 · Status: **remote live on GitHub, content pending**
 | --- | --- |
 | Phase | Baseline complete and merged to `main`: landing page, inquiry flow, QA suite, agent process |
 | Code | Vite + React 19 + TypeScript + Tailwind v4; all sections in `src/` |
-| Ship | `make build` → `dist/`; hosting/domain not configured yet |
+| Ship | `make build` → `dist/`; the production image (`Dockerfile`) serves it with nginx on `$PORT` |
+| Deploy | Railway via GitHub — `railway.json` + `Dockerfile` are ready; **no Railway service or domain exists yet** |
 | Gate | `make verify` locally, plus GitHub Actions `ci` on every push to `main` and every PR |
-| Repo | [cancinoray/elisha-bay-foods](https://github.com/cancinoray/elisha-bay-foods) — **public**; `main` at `725c378`, CI green |
+| Repo | [cancinoray/elisha-bay-foods](https://github.com/cancinoray/elisha-bay-foods) — **public**; `main` at `3498091`, CI green |
 | Mode | remote in place: feature work uses branch + PR + CI; the human merge gate is unchanged |
 | In flight | `feat/logo-integration` → `feat/real-products-contacts` → `feat/product-card-images` were merged into `main` by fast-forward; the branches remain for history, no open PR |
 | Tracker | GitHub repo + Actions CI; `_docs/backlog.md` is still the queue — no issues filed on GitHub yet |
@@ -46,6 +47,7 @@ are in [AGENTS.md](../AGENTS.md).
 | D9 | Phone/email/Instagram added to config and contact UI | Keep the “contact details pending” state | The owner supplied the channels; the site should make contact easy. Street address remains withheld. |
 | D10 | Ten supplied packshots used directly on the product cards, with the range photo as section opener | Crop jars from the range photo | The owner supplied individual packshots; cropping the lineup produced low-resolution, cluttered tiles. |
 | D11 | Orchestrator authorized a direct fast-forward merge of the three feature branches into `main` | Hold `main` until a fresh QA session posts PASS | The human owner (orchestrator) explicitly authorized it; the merge decision is theirs, not the agent's. **No fresh QA session has posted PASS** — green CI is engineering evidence only. Record the QA PASS retroactively. |
+| D12 | Railway deploys a Docker image (nginx serving `dist/`) instead of a Node/Nixpacks `serve` process | Nixpacks with `npx serve -s dist`, or a Node server | Railway has no first-class static-site product; the nginx image gives cache headers, gzip, a healthcheck and a fixed runtime with no production Node process or extra dependency. |
 
 ## 4. Where everything lives
 
@@ -62,6 +64,8 @@ are in [AGENTS.md](../AGENTS.md).
 | Brand, official links, contact config, credentials | [src/data/site.ts](../src/data/site.ts) |
 | Placeholder product data and disclaimer | [src/data/products.ts](../src/data/products.ts) |
 | CI (typecheck, build, Playwright) | [.github/workflows/ci.yml](../.github/workflows/ci.yml) |
+| Production image and Railway config | [Dockerfile](../Dockerfile) · [railway.json](../railway.json) · [.dockerignore](../.dockerignore) · [deploy/nginx/default.conf.template](../deploy/nginx/default.conf.template) |
+| Hosting runbook | [README.md](../README.md#deploying-to-railway) |
 | Current queue | [_docs/backlog.md](backlog.md) |
 | Session-by-session AI record | [_docs/ai-usage-report.md](ai-usage-report.md) |
 | Design reference | [a_clean_modern_appetizing_landing_page_website_m.png](../a_clean_modern_appetizing_landing_page_website_m.png) |
@@ -81,7 +85,7 @@ is a PR squash/merge with CI attached, and the QA verdict belongs on that PR. Se
 | O2 | Which certifications can be displayed, and with what exact wording/documents? | Human / Elisha Bay | open |
 | O3 | What is the official street address? | Human / Elisha Bay | open; phones, email, Facebook/Instagram are supplied |
 | O4 | Is the About paragraph approved as written? | Human | open |
-| O5 | What is the production domain, and where will the site be hosted? | Human | open |
+| O5 | What is the production domain, and where will the site be hosted? | Human | hosting decided (Railway); **domain still open**, so canonical/`og:` URLs stay relative |
 | O7 | Is a dedicated art-directed hero photograph still desired? | Human | optional; the current hero is a supplied-photo composite |
 | O6 | Should the form later deliver to email/CRM as well as Messenger? | Human | open |
 | O8 | Who runs the retroactive QA PASS for the 2026-11-16 merge, and against which commit? | Human | open; recommended before any deploy |
@@ -125,6 +129,11 @@ is a PR squash/merge with CI attached, and the QA verdict belongs on that PR. Se
 - **`main` currently has no PR review trail.** The 2026-11-16 merge was a direct fast-forward, so the
   commits on `main` were never reviewed in a PR and no CI run is attached to a PR. Branch protection
   is not enabled yet; until it is, "pushed" does not mean "reviewed".
+- **Deployment is a container, not a Node server.** Railway runs the `Dockerfile` and injects `PORT`;
+  nginx must keep listening on `${PORT}`. Do not add a `start` script expecting `npm start` to serve
+  the site — there is no production Node process. Local parity: `make docker-build && make docker-run`.
+- **`ci` and the Railway build are independent.** A red `ci` run does not stop Railway from deploying
+  the same commit. Check the Actions run before trusting a deploy.
 
 ## 8. Next action
 
@@ -133,6 +142,11 @@ is a PR squash/merge with CI attached, and the QA verdict belongs on that PR. Se
    [ai-usage-report.md](ai-usage-report.md). This is owed, not optional.
 2. **Turn on branch protection** on `main` (require the `ci` check and a PR) so the documented gate is
    enforced by the remote rather than by convention.
-3. Then return to content: printed sizes and final packaging copy, About approval, certification
+3. **Connect Railway** (one-time dashboard work): New Project → Deploy from GitHub repo →
+   `cancinoray/elisha-bay-foods`; Railway builds the `Dockerfile`, then generate a domain. See the
+   runbook in [README.md](../README.md#deploying-to-railway).
+4. **Make the share URLs absolute** once the public URL exists (`og:image`, `og:url`, canonical), with
+   a test for the rewritten document head — social previews stay broken while they are relative.
+5. Then return to content: printed sizes and final packaging copy, About approval, certification
    documents, street address and the production domain. The logo, ten products, packshots, combined
    hero and phone/email/Instagram are integrated. Do not fill the remaining gaps with guesses.

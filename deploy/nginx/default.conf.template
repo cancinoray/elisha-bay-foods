@@ -1,0 +1,69 @@
+# Served by nginx inside the production image. Railway's runner substitutes
+# ${PORT} at container start (the official nginx image's envsubst entrypoint);
+# nginx runtime variables such as $uri are left untouched.
+#
+# Cache policy uses `expires`, not `add_header Cache-Control`, on purpose: nginx
+# drops every server-level add_header as soon as a location declares its own, which
+# would silently strip the security headers from that location.
+
+server {
+    listen ${PORT};
+    listen [::]:${PORT};
+    server_name _;
+
+    root /usr/share/nginx/html;
+    index index.html;
+    charset utf-8;
+    default_type application/octet-stream;
+
+    # The site is a single page with anchor navigation; unknown paths render it
+    # rather than a 404, so a future deep link still lands on the page.
+    error_page 404 /index.html;
+
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_proxied any;
+    gzip_types
+        text/plain
+        text/css
+        text/javascript
+        application/javascript
+        application/json
+        application/manifest+json
+        application/xml
+        image/svg+xml;
+
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+
+    # Immutable, content-hashed build output.
+    location /assets/ {
+        expires 1y;
+        try_files $uri =404;
+    }
+
+    # Self-hosted imagery, fonts and icons: stable filenames, cache for a week.
+    location ~* \.(?:jpg|jpeg|png|webp|avif|gif|svg|ico|woff2?)$ {
+        expires 7d;
+        try_files $uri =404;
+    }
+
+    # The HTML shell revalidates so a deploy is visible immediately.
+    location = /index.html {
+        expires -1;
+    }
+
+    location = /healthz {
+        access_log off;
+        default_type text/plain;
+        return 200 "ok\n";
+    }
+
+    location / {
+        expires -1;
+        try_files $uri $uri/ /index.html;
+    }
+}

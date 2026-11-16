@@ -3,6 +3,50 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-16 — Railway deploy config (nginx container)
+
+**Branch:** `chore/railway-deploy` (open for review; not merged)
+
+**Scope:** Make the repo deployable on Railway over a GitHub connection. No application code, copy
+or assets changed — the site still ships as the same Vite build.
+
+**What AI produced**
+
+- `Dockerfile`: two stages, `npm ci` + `npm run build` on `node:22-alpine`, then `nginx:1.27-alpine`
+  serving `dist/` and listening on `$PORT` (default 8080) with a `HEALTHCHECK`.
+- `deploy/nginx/default.conf.template`: envsubst-processed `listen ${PORT}`, gzip, security headers,
+  `expires`-based caching (hashed assets 1y, imagery 7d, HTML revalidate), `/healthz`, SPA fallback.
+- `railway.json`: pins the Dockerfile builder, `/healthz` healthcheck and restart policy.
+- `.dockerignore`: keeps docs, tests, raw brand assets and local tooling out of the build context.
+- `make docker-build` / `make docker-run` for local parity with what Railway runs.
+- README runbook (“Deploying to Railway”) and handoff status/decision/trap updates (D12).
+
+**Builder verification**
+
+- `make verify` — typecheck, build and **14/14** Playwright tests passed.
+- `docker build` succeeded; container smoke-tested on `PORT=9191`:
+  - `/healthz` → `200 text/plain "ok"`
+  - `/` → `200`, `Cache-Control: no-cache`, `Content-Encoding: gzip`, `X-Content-Type-Options`,
+    `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` all present
+  - `/assets/index-*.js` → `Cache-Control: max-age=31536000`
+  - `/images/*.webp` → `Cache-Control: max-age=604800`
+  - missing asset → `404`; unknown deep path → `200` serving the page (intended fallback)
+- Browser check against the container (installed Chrome): title and `h1` correct, **15/15** images
+  loaded after scrolling, no console errors, no failed requests, no horizontal overflow at 1440px or
+  390px.
+
+**Independent QA**
+
+- **None yet.** The branch is open for review; no fresh-context QA session has verified the deploy
+  config. The evidence above is builder evidence, not a QA PASS.
+
+**Human verification required**
+
+- Connect Railway to the GitHub repo and generate the domain (**agent must not deploy** — rule 9).
+- Confirm the deploy starts and `/healthz` responds on the Railway URL.
+- Decide the production domain; then make `og:image` / `og:url` / canonical absolute with a test
+  (O5), otherwise social previews stay broken.
+
 ## 2026-11-16 — Public GitHub remote and first merge to `main`
 
 **Branch:** `main` (direct commits, no branch)

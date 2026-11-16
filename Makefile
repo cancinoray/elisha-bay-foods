@@ -1,7 +1,7 @@
 SHELL := /bin/sh
 .DEFAULT_GOAL := help
 
-.PHONY: help install dev build preview lint test test-e2e verify
+.PHONY: help install dev build preview lint test test-e2e verify docker-build docker-run
 
 help: ## Show available commands
 	@printf '%s\n' 'Usage: make <target>' '' 'Targets:'
@@ -28,3 +28,9 @@ test-e2e: ## Playwright journeys, responsive and accessibility checks
 	npm run test:e2e
 
 verify: lint build test ## The full pre-merge gate
+
+docker-build: ## Build the production container image (Railway parity)
+	docker build -t elisha-bay-web .
+
+docker-run: ## Serve the built image on http://localhost:8080
+	docker run --rm -e PORT=8080 -p 8080:8080 elisha-bay-web

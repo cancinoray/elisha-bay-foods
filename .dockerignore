@@ -1,0 +1,23 @@
+# Keep the Railway build context to what the Vite build actually needs.
+.git
+.gitignore
+node_modules
+dist
+test-results
+playwright-report
+blob-report
+.playwright
+
+# Local tooling and docs are not part of the runtime image.
+docs
+assets
+_docs
+.agents
+.github
+tests
+playwright.config.ts
+AGENTS.md
+README.md
+*.local
+
+.DS_Store
