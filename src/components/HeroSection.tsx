@@ -72,7 +72,7 @@ export function HeroSection() {
             </p>
           </div>
 
-          <div className="eb-hero-photo relative mx-auto w-full max-w-[32rem] pb-4 lg:max-w-[35rem] lg:pb-0">
+          <div className="eb-hero-photo relative mx-auto w-[78%] max-w-full pb-4 sm:w-full sm:max-w-[32rem] lg:max-w-[35rem] lg:pb-0">
             <div
               aria-hidden="true"
               className="absolute -inset-3 -z-10 rounded-[48%_48%_2.25rem_2.25rem/36%_36%_2.25rem_2.25rem] bg-gradient-to-br from-gold/25 via-cream-deep/40 to-burgundy/10 blur-[2px]"
@@ -83,7 +83,7 @@ export function HeroSection() {
                   <source
                     type="image/webp"
                     srcSet="/images/hero-bangus-tuyo-800.webp 800w, /images/hero-bangus-tuyo-1200.webp 1200w"
-                    sizes="(min-width: 1024px) 44vw, (min-width: 640px) 80vw, 92vw"
+                    sizes="(min-width: 1024px) 44vw, (min-width: 640px) 80vw, 72vw"
                   />
                   <img
                     src="/images/hero-bangus-tuyo-1200.jpg"
@@ -97,7 +97,7 @@ export function HeroSection() {
                 </picture>
               </div>
 
-              <figcaption className="mt-4 flex items-center justify-end gap-3 px-2">
+              <figcaption className="mt-4 flex flex-col items-start gap-2 px-2 sm:flex-row sm:items-center sm:justify-end sm:gap-3">
                 <span className="font-script text-[1.2rem] leading-none text-burgundy sm:text-[1.35rem]">
                   From Dagupan, with pride.
                 </span>

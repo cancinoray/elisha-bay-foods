@@ -31,6 +31,42 @@ Messenger-only “is not good”. Groomed as issue
 - Pick A, B, C or D. B and C need a privacy/consent approval because inquiry PII would leave the
   visitor's machine; A needs confirmation that the published email inbox is monitored.
 
+## 2026-11-17 — Smaller hero photograph on phones
+
+**Branch:** `fix/hero-image-mobile-size`
+
+**Scope:** Owner request — “make the image in the hero page smaller when the device is small”. The
+photograph ran the full shell width on phones (337px of a 390px viewport).
+
+**What AI produced**
+
+- Hero photo wrapper: `w-[78%]` below `640px`, back to `w-full` with the previous `32rem` cap from
+  `sm` up. Measured width went **337 → 261px at 390** and **265 → 208px at 320**; 768 and 1440 are
+  unchanged (500 / 488px).
+- Hero `sizes` and the LCP preload `imagesizes` in `index.html` both moved to `72vw` on phones, so
+  the browser does not download a candidate wider than it paints. The two must stay in sync.
+- Hero caption stacks under the photograph below `sm`; at 78% width the script line and the
+  “Pangasinan” badge no longer fit side by side without wrapping awkwardly.
+- Design-system responsive rule updated to describe the inset instead of “the image remains the
+  dominant element” at every width.
+
+**Builder verification**
+
+- New test observed failing first: `hero photograph too wide at 320px — Expected <= 0.78, Received
+  0.822`; the 390px case measured 0.845.
+- `make verify` — typecheck, build and **18/18** tests pass.
+- Screenshots at 320 / 390 / 768 / 1440 checked; no horizontal overflow, caption not clipped,
+  desktop frame unchanged.
+
+**Independent QA**
+
+- None; builder evidence only.
+
+**Human verification required**
+
+- Confirm the smaller frame still feels like the hero on a real phone, and that the stacked caption
+  reads well.
+
 ## 2026-11-17 — Fix: About Us never highlighted in the nav
 
 **Branch:** `fix/nav-scrollspy-order`

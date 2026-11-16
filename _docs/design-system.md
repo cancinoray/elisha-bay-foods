@@ -79,7 +79,8 @@ Rules:
 - Breakpoints follow Tailwind defaults; the important behavior changes are:
   - navigation switches to the mobile disclosure below `1024px`;
   - product grid: 1 column below 440px, 2 columns to 1023px, 4 columns at 1024px+, 5 columns at 1280px+ (10 products, CTA strip below); mobile uses compact horizontal cards;
-  - hero stacks below 1024px; the image remains the dominant element;
+  - hero stacks below 1024px; below `640px` the photograph is inset to 78% of the shell so the
+    proposition leads, and from `640px` up it fills its column as the dominant element;
   - contact/form and about/image stack below 1024px.
 - Verify 320, 375, 414, 768, 1024, 1440 and 1920. No horizontal overflow at any of them.
 - Images always have width/height and a meaningful `sizes`/`srcSet`. No layout shift.
