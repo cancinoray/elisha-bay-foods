@@ -87,7 +87,7 @@ is a PR squash/merge with CI attached, and the QA verdict belongs on that PR. Se
 | O4 | Is the About paragraph approved as written? | Human | open |
 | O5 | What is the production domain, and where will the site be hosted? | Human | hosting decided (Railway); **domain still open**, so canonical/`og:` URLs stay relative |
 | O7 | Is a dedicated art-directed hero photograph still desired? | Human | optional; the current hero is a supplied-photo composite |
-| O6 | Should the form later deliver to email/CRM as well as Messenger? | Human | open |
+| O6 | Should the form later deliver to email/CRM as well as Messenger? | Human | open; groomed as [#5](https://github.com/cancinoray/elisha-bay-foods/issues/5) with four options, awaiting the owner's choice |
 | O8 | Who runs the retroactive QA PASS for the 2026-11-16 merge, and against which commit? | Human | open; recommended before any deploy |
 
 ## 7. Traps and lessons

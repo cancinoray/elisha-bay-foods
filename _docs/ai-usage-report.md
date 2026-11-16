@@ -3,6 +3,34 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-17 — PM: inquiry delivery beyond Messenger (EB-105)
+
+**Role:** PM (no code written)
+
+**Scope:** Owner asked whether there is another way to send an inquiry besides Messenger, and said
+Messenger-only “is not good”. Groomed as issue
+[#5](https://github.com/cancinoray/elisha-bay-foods/issues/5); backlog EB-105 moved from *ready* to
+*groomed, needs human decision*.
+
+**What the PM produced**
+
+- Four options with cost, privacy impact and what the owner must supply: email `mailto:` handoff (A),
+  managed form endpoint (B), a small Railway API (C), chat-app deep links (D).
+- A recommendation to ship A first: no backend, no new dependency, no PII leaving the visitor's
+  machine, and it is the only option that fits invariant I5 without a spec change.
+- Draft ACs for A (US4-AC6, US4-AC7) plus the unchanged US4-AC3/AC4 and the I5/§7 wording update.
+- Backlog row and handoff O6 updated to point at the issue.
+
+**Evidence**
+
+- Nothing implemented or tested; this is a decision document. The issue is blocked on the owner
+  choosing a destination.
+
+**Human decision required**
+
+- Pick A, B, C or D. B and C need a privacy/consent approval because inquiry PII would leave the
+  visitor's machine; A needs confirmation that the published email inbox is monitored.
+
 ## 2026-11-16 — Railway deploy config (nginx container)
 
 **Branch:** `chore/railway-deploy` (merged to `main` as `8f74f35` by rebase merge)

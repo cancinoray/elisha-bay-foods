@@ -27,7 +27,7 @@ These block any honest launch. They are not “just copy”; they are the facts 
 | EB-102 | P1 | blocked | Engineer + QA | Publish approved certification wording/badges and update the withhold test | US3-AC1..4 | EB-003 |
 | EB-103 | P1 | done (branch) | Engineer + QA | Add phone/email/Instagram channels; keep street address withheld | US4-AC4/5 | EB-004 address only |
 | EB-104 | P1 | blocked | Engineer + QA | Set absolute canonical/OG/Twitter URLs for the live domain | US6-AC1..3 | EB-005 |
-| EB-105 | P2 | ready | PM | Groom an issue for a real inquiry notification/CRM backend **or** document that Messenger remains the only channel | TBD | — |
+| EB-105 | P2 | groomed · **needs human decision** | Human + PM | Choose the inquiry delivery path beyond Messenger: email handoff (A, recommended), managed endpoint (B), Railway API (C), chat apps (D) | [#5](https://github.com/cancinoray/elisha-bay-foods/issues/5); ACs drafted for A | human choice of destination |
 | EB-106 | P2 | ready | PM | Consider self-hosted fonts / performance budget after real photography lands | US6-AC4 | — |
 
 ## Explicit non-goals
