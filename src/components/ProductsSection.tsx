@@ -48,7 +48,7 @@ export function ProductsSection({ onProductInquiry }: ProductSectionProps) {
               />
               <img
                 src="/images/elisha-bay-range-1800.jpg"
-                alt="The actual Elisha Bay range: seven jars of bangus and tuyo varieties displayed with their product descriptions"
+                alt="The Elisha Bay range displayed with product signs and jars"
                 width={1800}
                 height={721}
                 loading="lazy"
@@ -66,7 +66,7 @@ export function ProductsSection({ onProductInquiry }: ProductSectionProps) {
                   The actual range.
                 </p>
                 <p className="mt-1.5 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-cream/80">
-                  Seven varieties · dagupan, philippines
+                  The Elisha Bay range · Dagupan, Philippines
                 </p>
               </div>
               <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-cream/25 bg-cream/10 px-3 py-1.5 text-[0.62rem] font-medium text-cream/90 backdrop-blur-sm">
@@ -77,16 +77,44 @@ export function ProductsSection({ onProductInquiry }: ProductSectionProps) {
           </div>
         </figure>
 
-        <ul className="mt-8 grid grid-cols-1 gap-4 min-[440px]:grid-cols-2 sm:mt-10 lg:grid-cols-4 lg:gap-5">
+        <ul className="mt-8 flex flex-wrap justify-center gap-4 sm:mt-10 lg:gap-5">
           {products.map((product, index) => (
-            <li key={product.id} data-reveal style={{ transitionDelay: `${index * 50}ms` }}>
+            <li
+              key={product.id}
+              data-reveal
+              style={{ transitionDelay: `${index * 40}ms` }}
+              className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.94rem)] xl:w-[calc(20%-1rem)]"
+            >
               <ProductCard product={product} onSelect={onProductInquiry} />
             </li>
           ))}
-          <li data-reveal style={{ transitionDelay: `${products.length * 50}ms` }}>
-            <RangeCta onSelect={onProductInquiry} />
-          </li>
         </ul>
+
+        <a
+          href="#contact"
+          onClick={() => onProductInquiry('the full Elisha Bay range')}
+          className="group mt-8 flex flex-col gap-5 rounded-[1.75rem] border border-burgundy bg-burgundy p-6 text-cream shadow-card transition-[background-color,transform,box-shadow] duration-300 hover:bg-crimson sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+        >
+          <div className="max-w-[40rem]">
+            <span className="font-display text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-cream/75">
+              Full range
+            </span>
+            <p className="mt-2 font-script text-[1.8rem] leading-tight text-cream sm:text-[2.2rem]">
+              And More Seafood Delights
+            </p>
+            <p className="mt-2 text-[0.86rem] leading-relaxed text-cream/75">
+              Looking for a specific variant, a reseller pack, or an export inquiry? Ask us about the
+              full range.
+            </p>
+          </div>
+          <span className="eb-btn eb-btn--gold w-full shrink-0 sm:w-auto">
+            Talk to us
+            <ArrowUpRight
+              className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </span>
+        </a>
 
         <div
           className="mx-auto mt-9 flex max-w-[52rem] flex-col items-center gap-4 text-center sm:mt-11"
@@ -116,57 +144,49 @@ function ProductCard({ product, onSelect }: ProductCardProps) {
     <a
       href="#contact"
       onClick={() => onSelect(product.name)}
-      className="group flex h-full flex-col rounded-[1.5rem] border border-gold/30 bg-cream-soft/90 p-5 shadow-card transition-[transform,box-shadow,border-color,background-color] duration-300 hover:-translate-y-1 hover:border-gold/65 hover:bg-cream-soft hover:shadow-[0_28px_55px_-30px_rgba(92,9,20,0.45)] focus-visible:-translate-y-1"
+      className="group flex h-full flex-row overflow-hidden rounded-[1.5rem] border border-gold/30 bg-cream-soft/90 shadow-card transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:border-gold/65 hover:shadow-[0_28px_55px_-30px_rgba(92,9,20,0.45)] focus-visible:-translate-y-1 sm:flex-col"
     >
-      <div className="flex items-start justify-between gap-3">
-        <span className="rounded-full border border-gold/30 bg-cream px-2.5 py-1 font-display text-[0.58rem] font-semibold uppercase tracking-[0.15em] text-burgundy">
+      <div className="relative w-[6.5rem] shrink-0 overflow-hidden bg-cream-deep sm:w-full">
+        <picture>
+          <source
+            type="image/webp"
+            srcSet={product.image.srcSet}
+            sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 25vw, (min-width: 640px) 46vw, 34vw"
+          />
+          <img
+            src={product.image.src.replace('webp', 'jpg')}
+            alt={product.image.alt}
+            width={product.image.width}
+            height={product.image.height}
+            loading="lazy"
+            decoding="async"
+            style={{ objectPosition: product.image.position }}
+            className="h-full min-h-[8.5rem] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] sm:aspect-[3/4] sm:h-auto sm:min-h-0"
+          />
+        </picture>
+        <span className="absolute left-2.5 top-2.5 inline-flex h-7 w-7 items-center justify-center rounded-full border border-cream/50 bg-cream/90 text-burgundy shadow-sm backdrop-blur-sm">
+          <Fish className="h-3.5 w-3.5" aria-hidden="true" />
+        </span>
+      </div>
+
+      <div className="flex min-w-0 flex-1 flex-col p-4 sm:p-4">
+        <span className="font-display text-[0.58rem] font-semibold uppercase tracking-[0.15em] text-gold-deep">
           {product.category}
         </span>
-        <Fish className="h-4 w-4 shrink-0 text-gold-deep/70" aria-hidden="true" />
-      </div>
-      <h3 className="mt-4 font-display text-[1.02rem] font-semibold leading-snug text-burgundy">
-        {product.name}
-      </h3>
-      <p className="mt-2 flex-1 text-[0.8rem] leading-relaxed text-bark-soft">
-        {product.description}
-      </p>
-      <span className="mt-4 inline-flex items-center gap-1.5 border-t border-gold/25 pt-3 font-display text-[0.7rem] font-medium text-bark-soft transition-colors group-hover:text-burgundy">
-        Inquire
-        <ArrowUpRight
-          className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-          aria-hidden="true"
-        />
-      </span>
-    </a>
-  );
-}
-
-function RangeCta({ onSelect }: { onSelect: (productName: string) => void }) {
-  return (
-    <a
-      href="#contact"
-      onClick={() => onSelect('the full Elisha Bay range')}
-      className="group flex h-full flex-col justify-between rounded-[1.5rem] border border-burgundy bg-burgundy p-5 text-cream shadow-card transition-[transform,box-shadow,background-color] duration-300 hover:-translate-y-1 hover:bg-crimson hover:shadow-[0_28px_55px_-26px_rgba(92,9,20,0.6)] focus-visible:-translate-y-1"
-    >
-      <div>
-        <span className="inline-flex items-center gap-2 rounded-full border border-cream/25 bg-cream/10 px-2.5 py-1 font-display text-[0.58rem] font-semibold uppercase tracking-[0.15em] text-cream">
-          <Fish className="h-3.5 w-3.5" aria-hidden="true" />
-          Full range
-        </span>
-        <h3 className="mt-4 font-script text-[1.75rem] leading-tight text-cream">
-          And More Seafood Delights
+        <h3 className="mt-1.5 font-display text-[0.98rem] font-semibold leading-snug text-burgundy">
+          {product.name}
         </h3>
-        <p className="mt-2 text-[0.8rem] leading-relaxed text-cream/75">
-          Looking for a specific variant, a reseller pack, or an export inquiry? Ask us.
+        <p className="mt-2 flex-1 text-[0.78rem] leading-relaxed text-bark-soft">
+          {product.description}
         </p>
+        <span className="mt-3 inline-flex items-center gap-1.5 border-t border-gold/25 pt-3 font-display text-[0.68rem] font-medium text-bark-soft transition-colors group-hover:text-burgundy">
+          Inquire
+          <ArrowUpRight
+            className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
+        </span>
       </div>
-      <span className="mt-5 inline-flex items-center gap-1.5 border-t border-cream/20 pt-3 font-display text-[0.7rem] font-medium text-cream">
-        Talk to us
-        <ArrowUpRight
-          className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-          aria-hidden="true"
-        />
-      </span>
     </a>
   );
 }

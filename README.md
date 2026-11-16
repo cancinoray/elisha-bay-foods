@@ -62,7 +62,7 @@ cart, payment, backend or checkout — this phase is intentionally a brand/lead-
 ```text
 public/
   logo/                   official transparent lockup (256/512/1024 WebP + PNG fallback)
-  images/                 real range photo, concept hero/about, paper grain
+  images/                 10 real packshots, range photo, concept hero/about, paper grain
   favicon-32.png          logo-derived favicon
   apple-touch-icon.png    logo-derived Apple icon
   icon-192.png
@@ -74,7 +74,7 @@ src/
   components/
     Navbar.tsx            sticky nav, scroll spy, mobile menu, focus trap
     HeroSection.tsx
-    ProductsSection.tsx   actual range banner + product description cards
+    ProductsSection.tsx   actual range banner + 10 product image cards + CTA
     QualitySection.tsx    certification placeholders (not claims)
     AboutSection.tsx      brand story + expandable values
     ContactSection.tsx    contact channels + inquiry form
@@ -84,7 +84,7 @@ src/
     Decor.tsx             sunburst, brush stroke, gold rule
     Waves.tsx             organic section dividers
   data/
-    products.ts           supplied product names and descriptions
+    products.ts           supplied product names, descriptions and packshots
     site.ts               brand, links, contact, credentials
   hooks/                  reveal, scroll state, scroll spy
   App.tsx
@@ -103,7 +103,7 @@ _docs/
   task-template.md
 .agents/agents/           PM, engineer and QA subagent definitions
 .github/                  CI + issue/PR templates
-assets/brand/             supplied logo and product-line source files (not served)
+assets/brand/             supplied logo, product-line and 10 packshot sources (not served)
 AGENTS.md                 agent entry point and guardrails
 product-spec.md           behaviour, ACs, invariants and non-goals
 playwright.config.ts
@@ -122,9 +122,9 @@ The **official supplied Elisha Bay logo** is integrated from `assets/brand/elish
 
 ### Product line
 
-The product names and descriptions in `src/data/products.ts` come from the brand’s own signs in the supplied range photograph: **Pinoy Adobo, Ba-Yo, Hawaiian Style Bangus, Bangus in Fresh Basil Pesto, Portuguese Style Bangus, Pesto Tuyo Delizioso** and **Tuyo Delizioso**. The section shows the actual range photograph above a card per product plus an “And More” enquiry card.
+`src/data/products.ts` contains the ten products shown in the supplied packshots and range signs: **Pinoy Adobo, Ba-Yo, Hawaiian Style Bangus, Portuguese Style Bangus, Bangus in Fresh Basil Pesto, Bangus with Tomato Sauce, Bangus with Turmeric, Bangus with Sun-Dried Tomatoes, Pesto Tuyo Delizioso** and **Tuyo Delizioso**. Each card uses its supplied packshot; the range photograph opens the section and a full-range enquiry strip closes it.
 
-Individual packshots, sizes, exact packaging copy and prices are still pending. Do not add those until confirmed. The hero still-life remains concept photography; the range photograph is actual.
+Printed sizes, batch details, exact packaging copy and prices are still pending confirmation and are intentionally not repeated in text. The hero still-life remains concept photography; the range and card packshots are actual.
 
 ### About copy
 
@@ -161,10 +161,11 @@ There is no server-side form submission in this phase. If email notification or 
 
 - Official Elisha Bay logo: supplied by the brand owner; transparent, icon and share variants derived from the supplied file.
 - Product range photograph: supplied by the brand owner (`assets/brand/elisha-bay-products-lineup-2026.jpg`); cropped and color-graded for the Products section. The trade-show context and visible third-party leaflets are excluded from the site crop.
+- Product card packshots: supplied by the brand owner (`assets/brand/products/`); lightly graded and cropped to a 3:4 card frame. The green factory/display background is part of the supplied photographs.
 - Hero still-life: generated concept photography, not actual Elisha Bay packaging. It remains the interim hero until a styled brand shoot is available.
 - About food photograph: [Unsplash image source](https://images.unsplash.com/photo-1644784643137-b9073dd262f6), used under the Unsplash License. Confirm and add photographer credit before launch.
 
-The product disclaimer in the UI states that the hero still-life is concept photography and individual packshots/sizes are pending. Replace concept imagery with approved brand photography before launch.
+The product disclaimer in the UI states that the hero still-life is concept photography, the cards use supplied packshots, and sizes/batch details are pending confirmation. Replace the concept hero with approved brand photography before launch.
 
 ---
 
@@ -199,7 +200,7 @@ Defined in `src/index.css`:
 
 ### Before launch checklist
 
-- [ ] Supply individual product packshots, sizes and approved packaging copy (product names/descriptions are done; see [backlog](_docs/backlog.md)).
+- [ ] Confirm the printed sizes, batch details and exact packaging copy (packshots are supplied; see [backlog](_docs/backlog.md)).
 - [ ] Commission the real hero still-life (three hero jars, label-forward, negative space for the headline).
 - [ ] Approve or rewrite the About copy.
 - [ ] Confirm certification wording and documents; update or remove the “verification pending” slots.

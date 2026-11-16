@@ -32,7 +32,7 @@ to merge.
 
 | Area | Proves |
 | ---- | ------ |
-| Brand + sections | H1, five sections, eight product cards, actual range photo, product disclaimer, official Facebook/Instagram links |
+| Brand + sections | H1, five sections, ten product image cards, actual range photo, product disclaimer, official Facebook/Instagram links |
 | Metadata/assets | title, description, OG image, JSON-LD (including email/phone/Instagram), manifest, official logo, range photo, icon assets, image alt + dimensions |
 | Content invariant | no “FDA Certified/Registered/Approved” claim; pending verification UI present |
 | Products → inquiry | the first real product card sets type + message + topic; valid Messenger URL and status region |
@@ -53,9 +53,10 @@ Automation cannot prove taste, claims or every keyboard path:
 
 1. Read the quality, about, product and contact copy against `AGENTS.md`.
 2. Confirm no official badges/logos or unverified “certified” language appears.
-3. Confirm the product names/descriptions match the supplied signs, the range photo is actual, and
-   the hero is not described as a packshot. Individual packshots/sizes are still pending.
-4. Keyboard-walk the page: nav, product cards, form, copy/open Messenger, footer.
+3. Confirm the ten product names/descriptions match the supplied signs/packshots, the card and range
+   photos are actual, and the hero is not described as a packshot. Printed sizes/batch details are
+   pending.
+4. Keyboard-walk the page: nav, ten product cards, form, copy/open Messenger, footer.
 5. Confirm the official logo appears in the header, footer and share image; no old custom crest
    remains. The transparent header logo should sit cleanly on cream, and the footer logo should use
    the cream badge.

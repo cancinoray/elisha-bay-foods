@@ -62,10 +62,10 @@ _docs/              process, roles, spec support, testing, handoff, backlog
 2. **Certification claims stay withheld until approved.** The Quality section must not display FDA,
    US FDA, GMP or other official marks/claims until the client supplies documentation. Keep the
    neutral “Verification pending” treatment and its note until a human confirms the exact wording.
-3. **Product data is supplied; packshots are not.** The product names/descriptions in
-   `src/data/products.ts` come from the brand’s own range signs. Keep the disclaimer visible until
-   individual packshots, sizes and final packaging copy are approved. Do not reuse the generated
-   hero as a product packshot.
+3. **Product data and packshots are supplied; sizes are not.** The ten product entries and images
+   in `src/data/products.ts` come from the brand’s own range signs and packshots. Keep the
+   disclaimer visible until printed sizes, batch details and final packaging copy are approved. Do
+   not reuse the generated hero as a product packshot.
 4. **No e-commerce.** No cart, checkout, payment gateway, inventory or account system in this phase.
 5. **Use the confirmed contact channels.** Phone, email, Facebook, Instagram and Messenger are
    configured in `src/data/site.ts`; do not invent additional channels or a different form backend.
@@ -86,8 +86,8 @@ _docs/              process, roles, spec support, testing, handoff, backlog
 
 These are product requirements, not suggestions:
 
-- Product names and descriptions are supplied by the brand; individual packshots, sizes and final
-  packaging copy are still pending.
+- Product names, descriptions and individual packshots are supplied by the brand; printed sizes,
+  batch details and final packaging copy are still pending.
 - The hero still-life is **concept photography**. The range photograph is actual product
   photography; do not describe the hero as an actual packshot.
 - The About paragraph is **proposed copy**, not verified history.

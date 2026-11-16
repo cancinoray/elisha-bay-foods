@@ -3,7 +3,7 @@
 > A premium Filipino seafood brand landing page that builds trust and turns discovery into an
 > inquiry.
 
-Status: **live baseline** · Version: 1.2 · Owner: human owner · Last updated: 2026-11-16
+Status: **live baseline** · Version: 1.3 · Owner: human owner · Last updated: 2026-11-16
 
 This is the source of truth for behaviour. Code follows this document; when they disagree, one of
 them is a bug. Acceptance criteria here are what QA judges.
@@ -69,11 +69,11 @@ can start a relevant conversation.
 
 | Id | Criterion | Tag |
 | --- | --------- | --- |
-| US2-AC1 | Products shows the actual range photograph and eight cards: seven real products from `src/data/products.ts` (Pinoy Adobo, Ba-Yo, Hawaiian Style Bangus, Bangus in Fresh Basil Pesto, Portuguese Style Bangus, Pesto Tuyo Delizioso, Tuyo Delizioso) plus an “And More Seafood Delights” enquiry card. | `e2e` |
-| US2-AC2 | The disclaimer is visible beneath the grid: the hero still-life is concept photography; the range photograph is actual; individual packshots, sizes and final packaging details are pending. | `e2e` |
+| US2-AC1 | Products shows the actual range photograph and ten product cards from `src/data/products.ts` (Pinoy Adobo, Ba-Yo, Hawaiian Style, Portuguese Style, Fresh Basil Pesto, Tomato Sauce, Turmeric, Sun-Dried Tomatoes, Pesto Tuyo, Tuyo Delizioso), followed by an “And More Seafood Delights” full-range CTA. | `e2e` |
+| US2-AC2 | The disclaimer is visible beneath the CTA: the hero still-life is concept photography; product cards use supplied packshots; published sizes, batch details and final packaging copy are pending. | `e2e` |
 | US2-AC3 | Activating a product card scrolls to Contact, sets inquiry type to “Product inquiry”, and pre-fills the message with that product name. | `e2e` |
 | US2-AC4 | Cards have a visible hover/focus state and remain operable by keyboard. | `manual` |
-| US2-AC5 | Each product card displays the supplied category and description from the brand’s range signs; no invented size, price or ingredient is introduced. | `e2e` + `manual` |
+| US2-AC5 | Each product card displays the supplied category, description and its own real packshot; no invented size, price or ingredient is introduced. | `e2e` + `manual` |
 
 ### US3 — Verify quality and safety
 
@@ -131,7 +131,7 @@ identity; as the business, I can be found for relevant terms.
 | -- | --------- | ----------- | --------- |
 | I1 | No unverified business claim, certification, contact detail or history is presented as fact. | content review + config | US3-AC2..4, US4-AC5; human sign-off |
 | I2 | Inquiry destinations are the confirmed Facebook, Instagram, Messenger, email and phone channels; the form still hands off to Messenger. | `src/data/site.ts` | US4-AC3/4/5; manual link check |
-| I3 | Product names/descriptions come from the brand’s range signs; individual packshots, sizes and final packaging copy are disclosed as pending; the hero is not presented as a packshot. | `src/data/products.ts` + UI | US2-AC1/2/5 |
+| I3 | Product names/descriptions and packshots come from the brand; printed sizes and final packaging copy are disclosed as pending; the hero is not presented as a packshot. | `src/data/products.ts` + UI | US2-AC1/2/5 |
 | I4 | The site remains lead generation only: no cart, checkout, payment or account flow. | scope rules | PR review; no such routes/state |
 | I5 | Contact PII is not stored by the site. The form hands a composed message to Messenger. | no backend | code review + form test |
 
@@ -140,7 +140,7 @@ identity; as the business, I can be found for relevant terms.
 This is a static page, not an API. Its external contracts are:
 
 - **Section anchors:** `#home`, `#products`, `#quality`, `#about`, `#contact`.
-- **Product data:** `src/data/products.ts`; the UI must adapt to the array of seven products plus the enquiry card rather than hard-coding a product count.
+- **Product data:** `src/data/products.ts`; the UI must adapt to the array of ten products plus the full-range CTA rather than hard-coding a product count.
 - **Site/contact data:** `src/data/site.ts`; phone/email/Instagram rows render from confirmed config, and `credentialsVerified` controls whether the verification note remains.
 - **Inquiry handoff:** `https://m.me/elishabayfoods?text=<encoded message>`.
 - **Build outputs:** `dist/` (ignored by git), plus public SEO/icon assets.
@@ -158,9 +158,10 @@ Any change to these shapes updates this section and the affected tests in the sa
 
 ## 8. Current known limits
 
-- Product names and descriptions are supplied from the brand’s range signs. Individual packshots,
-  sizes, prices and final packaging copy are still pending.
-- The hero still-life is concept photography, not an actual Elisha Bay packshot.
+- Product names, descriptions and individual packshots are supplied by the brand. Printed sizes,
+  prices, batch details and final packaging copy are still pending.
+- The hero still-life is concept photography, not an actual Elisha Bay packshot. The product-card
+  packshots and range photograph are actual.
 - About copy is proposed, not client-approved history.
 - Phone, email and Instagram are confirmed; the street address is still unknown.
 - Certification wording is withheld; the verification-pending UI is intentional.
@@ -172,6 +173,7 @@ Any change to these shapes updates this section and the affected tests in the sa
 
 | Version | Date | Change |
 | ------- | ---- | ------ |
+| 1.3 | 2026-11-16 | Added the ten supplied product packshots, the three additional products, responsive image cards and full-range CTA. |
 | 1.2 | 2026-11-16 | Added the seven supplied products/descriptions, actual range photograph, phone/email/Instagram contacts and the full-range enquiry card. |
 | 1.1 | 2026-11-16 | Integrated the supplied official Elisha Bay logo, transparent variants, app icons and share image. |
 | 1.0 | 2026-11-16 | Baseline site, Playwright/axe QA suite, PM → engineer → QA process. |

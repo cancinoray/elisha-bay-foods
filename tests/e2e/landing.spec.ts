@@ -72,21 +72,23 @@ test.describe('Elisha Bay landing page', () => {
       page.getByRole('heading', { name: 'Delicious Seafood Goodness' }),
     ).toBeVisible();
     const cards = page.locator('#products ul > li');
-    await expect(cards).toHaveCount(8);
-    for (let index = 0; index < 8; index += 1) {
+    await expect(cards).toHaveCount(10);
+    for (let index = 0; index < 10; index += 1) {
       await expect(cards.nth(index).locator('h3')).toBeVisible();
       await expect(cards.nth(index).locator('p').first()).toBeVisible();
+      await expect(cards.nth(index).locator('img')).toHaveAttribute('alt', /.+/);
     }
+    await expect(page.getByText('And More Seafood Delights')).toBeVisible();
     await expect(cards.first()).toContainText('Pinoy Adobo');
     await expect(cards.nth(1)).toContainText('Ba-Yo (Bangus & Tuyo)');
     await expect(
       page.getByRole('img', {
-        name: /The actual Elisha Bay range/,
+        name: /The Elisha Bay range/,
       }),
     ).toBeVisible();
     await expect(cards.first()).toContainText(/special adobo sauce/);
     await expect(
-      page.getByText(/The range photograph shows actual Elisha Bay products/),
+      page.getByText(/Product cards use supplied packshots/),
     ).toBeVisible();
     await expect(
       page.getByRole('link', { name: 'Elisha Bay on Facebook' }),
@@ -128,6 +130,7 @@ test.describe('Elisha Bay landing page', () => {
       '/favicon-32.png',
       '/logo/elisha-bay-logo-512.webp',
       '/images/elisha-bay-range-1200.webp',
+      '/images/product-pinoy-adobo-800.webp',
       '/apple-touch-icon.png',
       '/icon-192.png',
       '/icon-512.png',

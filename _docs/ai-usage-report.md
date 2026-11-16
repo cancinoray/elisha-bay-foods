@@ -3,13 +3,52 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-16 — Ten product packshots and card images
+
+**Branch:** `feat/product-card-images` (stacked on `feat/real-products-contacts`; unmerged)
+
+**Scope:** Add the ten supplied product packshots to the product cards and include the three
+additional products shown in those photographs.
+
+**What AI produced**
+
+- Ten product entries in `src/data/products.ts`, including the three products not present in the
+  earlier range photo: Bangus with Tomato Sauce, Bangus with Turmeric, Bangus with Sun-Dried
+  Tomatoes.
+- Responsive images for every card (400/800 WebP + JPEG fallback), lightly graded and cropped to a
+  3:4 card frame. The supplied green factory/display background is retained; labels are not
+  retouched.
+- Product cards with images, descriptions and category; mobile uses compact horizontal cards; the
+  full-range CTA is now a full-width strip.
+- The range photo stays as the section opener but no longer claims a seven-product count.
+- Disclaimer updated: hero is concept photography, cards use supplied packshots, and published
+  sizes/batch details/final packaging copy are pending.
+- QA suite updated for ten cards, product image alt text and the new disclaimer.
+
+**Builder verification**
+
+- `make verify` — typecheck, build and **14/14** Playwright tests passed.
+- axe WCAG A/AA: 0 violations at 1440px and 390px.
+- No horizontal overflow; mobile horizontal card layout and desktop 4/5-column grid checked.
+
+**Independent QA**
+
+- Not yet run as a separate fresh-context session. This entry is engineering evidence, not a QA PASS.
+
+**Human verification required**
+
+- Confirm the ten names and which printed sizes may be published. Sizes remain absent from copy.
+- Confirm the green packshot background and crop are acceptable, or supply studio cutouts.
+- Confirm the three added products are current and the card descriptions are accurate.
+- A real hero photograph is still the largest outstanding visual asset.
+
 ## 2026-11-16 — Real products, range photograph and contact channels
 
 **Branch:** `feat/real-products-contacts` (stacked on `feat/logo-integration`; unmerged)
 
 **Scope:** Replace the four illustrative product cards with the seven actual products and their
 sign descriptions, use the supplied range photograph as the real product visual, and publish the
-confirmed phone/email/Instagram channels.
+confirmed phone/email/Instagram channels. **(Superseded by the ten-packshot entry above.)**
 
 **What AI produced**
 

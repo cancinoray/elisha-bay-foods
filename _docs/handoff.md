@@ -14,10 +14,10 @@ Last updated: 2026-11-16 · Status: **live baseline, content pending**
 | Ship | `make build` → `dist/`; hosting/domain not configured yet |
 | Gate | `make verify` (typecheck + build + 14 Playwright/axe tests) |
 | Repo | local git on `main`, bootstrap commits complete, **no remote yet** |
-| In flight | `feat/logo-integration` (logo) then `feat/real-products-contacts` (products/contacts), both awaiting human review/merge |
+| In flight | `feat/logo-integration` (logo) → `feat/real-products-contacts` (products/contacts) → `feat/product-card-images` (packshots), all awaiting human review/merge in that order |
 | Tracker | no remote/issue tracker yet; `_docs/backlog.md` is the local queue |
-| Blocking on you | individual product packshots/sizes, a real hero shoot, About approval, certification documents, street address, domain |
-| Next action | commission the hero/product photography and collect the remaining packshots and street address; the logo, product names/descriptions and contact channels are integrated |
+| Blocking on you | printed sizes/final packaging copy, a real hero shoot, About approval, certification documents, street address, domain |
+| Next action | confirm printed sizes/final packaging copy, commission the hero shoot and collect the remaining About/certification/address facts; the logo, ten products, packshots and contact channels are integrated |
 
 ## 2. What we are building and why it has this shape
 
@@ -35,14 +35,15 @@ are in [AGENTS.md](../AGENTS.md).
 | # | Decision | Rejected alternative | Why |
 | - | -------- | -------------------- | --- |
 | D1 | Vite + React + TypeScript + Tailwind v4 | Next.js, plain HTML | The site is a single static landing page; Vite is the simplest build with strong typing and component reuse. |
-| D2 | Inquiry via official Messenger handoff | Backend email form, invented email/phone | No confirmed business email or backend; Messenger is the real public channel and keeps the site lead-gen only. |
+| D2 | Inquiry via official Messenger handoff | Backend email form, invented contact data | No backend in this phase; Messenger remains the handoff. Email/phone are now displayed as alternative confirmed channels. |
 | D3 | Certifications withheld with neutral “Verification pending” slots | Display claimed FDA/US FDA badges | The handoff requires documentary confirmation; fabricating trust marks is unacceptable. |
-| D4 | Concept hero/About photography with visible disclosure; product cards now use the actual range photo and supplied signs | Present generated packaging as real Elisha Bay assets | Official assets arrived later; honesty remains the rule, and individual packshots are still pending. |
+| D4 | Concept hero/About photography with visible disclosure; product cards use supplied packshots and signs | Present generated packaging as real Elisha Bay assets | Official assets arrived later; the hero stays concept until a real shoot, but the cards are actual. |
 | D5 | Human merge/deploy gate | Agent merges or deploys | The repo has no protected remote yet and production is irreversible; a human owns release. |
 | D6 | Kaushan + Poppins + Inter | Single generic sans or a stock template | Preserves the warm Filipino editorial identity; script is restricted to statements. |
 | D7 | Official supplied logo used directly (transparent variants for web) | Keep the earlier custom crest | The brand owner supplied the real mark; it is the identity, not a placeholder. |
-| D8 | Product names/descriptions taken from the brand’s range signs; range photo used as the real product visual | Continue with generated jar cards | The supplied lineup is actual; keeping generated packaging under real product names would misrepresent the range. |
+| D8 | Product names/descriptions taken from the brand’s range signs; supplied packshots used on cards | Continue with generated jar cards | The supplied assets are actual; generated packaging under real names would misrepresent the range. |
 | D9 | Phone/email/Instagram added to config and contact UI | Keep the “contact details pending” state | The owner supplied the channels; the site should make contact easy. Street address remains withheld. |
+| D10 | Ten supplied packshots used directly on the product cards, with the range photo as section opener | Crop jars from the range photo | The owner supplied individual packshots; cropping the lineup produced low-resolution, cluttered tiles. |
 
 ## 4. Where everything lives
 
@@ -73,7 +74,7 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
 
 | Id | Question | Owner | Status |
 | -- | -------- | ----- | ------ |
-| O1 | What individual packshots, sizes and final packaging copy are approved? | Human / Elisha Bay | open; names/descriptions and a real range photo are supplied |
+| O1 | What printed sizes, batch details and final packaging copy are approved? | Human / Elisha Bay | open; names/descriptions and packshots are supplied |
 | O2 | Which certifications can be displayed, and with what exact wording/documents? | Human / Elisha Bay | open |
 | O3 | What is the official street address? | Human / Elisha Bay | open; phones, email, Facebook/Instagram are supplied |
 | O4 | Is the About paragraph approved as written? | Human | open |
@@ -91,8 +92,11 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
   a packshot or reuse it as an individual product image. The products disclaimer states this.
 - **The product range photo is a trade-show display.** It is cropped/colour-graded and the visible
   third-party leaflets are excluded. Do not add certification marks from that scene.
-- **Product descriptions come from the range signs.** Do not add sizes, prices or ingredients that
-  are not in the supplied source; individual packshots remain pending.
+- **Product descriptions come from the range signs; packshots are supplied.** Do not add sizes,
+  prices or ingredients that are not in the supplied source. The card photos are real packshots on
+  the factory/display green background; do not remove or fake the labels.
+- **The range photo shows seven of the ten products.** The cards show all ten; the range image is
+  contextual, not a complete catalogue count.
 - **The Messenger URL is the only channel.** Do not add an email/phone/WhatsApp link without a
   confirmed source. The form opens Messenger with a pre-filled message; there is no backend.
 - **`window.open` is stubbed in tests.** A real Messenger handoff is a manual QA check; the popup and
@@ -103,17 +107,17 @@ PASS/FAIL; the human owner merges and deploys; QA re-checks main. See [process.m
   `CI=true` if a run looks suspicious.
 - **`og:image` is relative until the domain is known.** Deployment must make canonical/OG URLs
   absolute.
-- **The product section is eight cards: seven products + the full-range enquiry card.** Adding or
-  removing a product is a content decision that needs approved data and an updated spec; the grid
-  is not an e-commerce catalogue.
+- **The product section is ten image cards plus a full-range CTA strip.** Adding or removing a
+  product is a content decision that needs approved data and an updated spec; the grid is not an
+  e-commerce catalogue.
 - **The logo is official now.** Use the transparent variants in `public/logo/`; on dark surfaces place
   it on the cream badge used in the footer. Do not recolor, crop or replace it with the earlier
   custom crest. The raw source is preserved in `assets/brand/`.
 
 ## 8. Next action
 
-Open the next content issue for **photography and remaining facts**: a styled hero shoot, individual
-product packshots/sizes, About approval, certification documents, the street address and the
-production domain. The logo, product names/descriptions and phone/email/Instagram are integrated;
+Open the next content issue for **remaining facts and a hero shoot**: printed sizes/final packaging
+copy, About approval, certification documents, the street address, the production domain and a
+styled hero photograph. The logo, ten products, packshots and phone/email/Instagram are integrated;
 do not fill the remaining gaps with guesses. If a purely technical task is preferred first, set up the remote
 and branch protection with the human owner; the workflow is already documented for that mode.

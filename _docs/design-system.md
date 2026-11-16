@@ -55,7 +55,7 @@ official vector replaces the source.
 | --------- | -------------- | ------ |
 | `Navbar` | fixed navigation, scroll spy, mobile disclosure | transparent at top, solid on scroll, open/closed, active link |
 | `HeroSection` | proposition, CTA, still-life frame | load animation, reduced motion |
-| `ProductsSection` | actual range banner, seven description cards and a full-range enquiry CTA | default, hover/focus lift, prefill on activate |
+| `ProductsSection` | actual range banner, ten packshot product cards and a full-range CTA strip | default, hover/focus lift, prefill on activate |
 | `QualitySection` | trust posture and withheld credentials | neutral “verification pending” only |
 | `AboutSection` | story, values disclosure, image | collapsed/expanded, reduced motion |
 | `ContactSection` / `InquiryForm` | channels and form | default, focus, invalid, submitted, blocked popup, copied |
@@ -78,7 +78,7 @@ Rules:
 - Content shell: `eb-shell`, max width 78rem with 1.25rem/2rem/2.5rem gutters.
 - Breakpoints follow Tailwind defaults; the important behavior changes are:
   - navigation switches to the mobile disclosure below `1024px`;
-  - product grid: 1 column below 440px, 2 columns to 1023px, 4 columns at 1024px+ (7 products + CTA = 8 cards);
+  - product grid: 1 column below 440px, 2 columns to 1023px, 4 columns at 1024px+, 5 columns at 1280px+ (10 products, CTA strip below); mobile uses compact horizontal cards;
   - hero stacks below 1024px; the image remains the dominant element;
   - contact/form and about/image stack below 1024px.
 - Verify 320, 375, 414, 768, 1024, 1440 and 1920. No horizontal overflow at any of them.
@@ -108,8 +108,8 @@ Rules:
   brand line.
 - Never invent a certification, contact detail, price, size, ingredient, award or company-history
   fact. Use the placeholder state and flag it for human approval.
-- Product copy uses the supplied name, category and description. Do not add sizes, prices or
-  ingredients that are not in the approved source.
+- Product copy uses the supplied name, category, description and packshot. Do not add sizes, prices
+  or ingredients that are not in the approved source; printed size/batch details are pending.
 - The hero still-life is concept photography; the range photograph is actual. Keep the distinction
   clear in the product disclaimer and do not present the hero as a packshot.
 - Contact channels use the confirmed phone/email/Facebook/Instagram data. The street address is

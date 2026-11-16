@@ -10,12 +10,12 @@ These block any honest launch. They are not “just copy”; they are the facts 
 
 | Id | Priority | State | Owner | Item | Notes / ACs |
 | -- | -------- | ----- | ----- | ---- | ----------- |
-| EB-001 | P0 | partial | Human | Supply individual product packshots, sizes and final packaging copy | Names/descriptions, logo and a range photo are supplied; packshots/sizes remain |
+| EB-001 | P0 | partial | Human | Confirm printed sizes, batch details and final packaging copy | Names/descriptions, logo, packshots and a range photo are supplied; size/copy approval remains |
 | EB-002 | P0 | open | Human | Approve or rewrite the About paragraph | Current copy is proposed; see US1/US3 content rules |
 | EB-003 | P0 | open | Human | Confirm certification wording and supply documents | Unblocks US3-AC1..4; do not change `credentialsVerified` before this |
 | EB-004 | P0 | partial | Human | Supply the official street address | Phone, email, Facebook and Instagram are supplied and wired |
 | EB-005 | P0 | open | Human | Confirm the live domain and hosting; make canonical/OG URLs absolute | Unblocks production SEO |
-| EB-008 | P0 | open | Human | Commission a real hero still-life (three label-forward jars, cream/wood, ingredients, copy space) and individual packshots | The current hero is concept; do not use the trade-show display as the hero |
+| EB-008 | P0 | open | Human | Commission a real hero still-life (three label-forward jars, cream/wood, ingredients, copy space) | The current hero is concept; the ten packshots are supplied, and the trade-show display is not suitable as the hero |
 | EB-006 | P1 | open | Human + PM | Complete an independent QA baseline of the current site | Run the QA role against `product-spec.md`; record the verdict |
 | EB-007 | P1 | open | Human | Create a remote repository, protect `main`, require CI, add the human merge gate | Process already documents the mode |
 
@@ -23,7 +23,7 @@ These block any honest launch. They are not “just copy”; they are the facts 
 
 | Id | Priority | State | Owner | Item | ACs | Blocked by |
 | -- | -------- | ----- | ----- | ---- | --- | ---------- |
-| EB-101 | P1 | blocked | Engineer + QA | Replace the range-only visual with individual packshots when supplied; update disclaimers | US2-AC1..5 | EB-001 |
+| EB-101 | P1 | done (branch) | Engineer + QA | Add ten supplied packshots to the product cards; update disclaimers | US2-AC1..5 | EB-001 size/copy only |
 | EB-102 | P1 | blocked | Engineer + QA | Publish approved certification wording/badges and update the withhold test | US3-AC1..4 | EB-003 |
 | EB-103 | P1 | done (branch) | Engineer + QA | Add phone/email/Instagram channels; keep street address withheld | US4-AC4/5 | EB-004 address only |
 | EB-104 | P1 | blocked | Engineer + QA | Set absolute canonical/OG/Twitter URLs for the live domain | US6-AC1..3 | EB-005 |
