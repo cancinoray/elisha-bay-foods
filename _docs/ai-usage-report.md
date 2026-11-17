@@ -3,6 +3,44 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-17 — About section uses real packshots instead of stock photography
+
+**Branch:** `feat/about-packshot-composite`
+
+**Scope:** Owner asked for the About image to reuse product photography — “combine 1 - 3 image and put
+it there, enhance it too”. The About frame previously held an Unsplash stock dish photo.
+
+**What AI produced**
+
+- A 1600×2000 composite: three supplied packshots (Pinoy Adobo front, Ba-Yo and Pesto Tuyo fanned
+  behind) as framed photo cards on a warm cream backdrop with soft shadows, an inset safe area for
+  the organic blob crop, and a warm grade (green cast pulled down, contrast + sharpening).
+- Exports: `about-collection-1600.webp`, `-900.webp`, `-900.jpg` (fallback) and `-720.webp`;
+  `about-dish-*` deleted.
+- `AboutSection`: new `srcSet` (three widths), intrinsic size 1600×2000, alt text naming the three
+  products, and the caption changed from “Concept food photography…” to real-packshot wording with
+  the pending sizes/batch note.
+- README photography credit now names the supplied source files and states no stock photography is
+  used; handoff D4 and the design-system disclosure line updated.
+
+**Builder verification**
+
+- A new test (`about section uses supplied packshots rather than stock photography`) was red against
+  the old markup (asset 404 / wrong `src`), green after; it also joins the reachability test.
+- The lazy-load assertion was flaky in the full run and is now an `expect.poll`, not a one-shot read.
+- `make verify` — **21/21** twice in a row after the fix.
+- Screenshots at 390 and 1440 confirm the fan sits inside the blob crop and the caption does not
+  cover a jar.
+
+**Independent QA**
+
+- None; builder evidence only.
+
+**Human verification required**
+
+- Approve the composition (three-of-ten products, the green factory backdrop retained because the
+  packshots are supplied as-is) and the new caption wording.
+
 ## 2026-11-17 — Email-only inquiry handoff (Messenger removed)
 
 **Branch:** `feat/inquiry-email-handoff`

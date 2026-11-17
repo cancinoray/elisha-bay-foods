@@ -97,7 +97,7 @@ make docker-run     # http://localhost:8080, healthcheck at /healthz
 ```text
 public/
   logo/                   official transparent lockup (256/512/1024 WebP + PNG fallback)
-  images/                 10 real packshots, combined hero, range photo, concept About, paper grain
+  images/                 10 real packshots, combined hero, range photo, About packshot composite, paper grain
   favicon-32.png          logo-derived favicon
   apple-touch-icon.png    logo-derived Apple icon
   icon-192.png
@@ -199,7 +199,7 @@ There is no server-side form submission in this phase. If a managed endpoint or 
 - Product range photograph: supplied by the brand owner (`assets/brand/elisha-bay-products-lineup-2026.jpg`); cropped and color-graded for the Products section. The trade-show context and visible third-party leaflets are excluded from the site crop.
 - Product card packshots: supplied by the brand owner (`assets/brand/products/`); lightly graded and cropped to a 3:4 card frame. The green factory/display background is part of the supplied photographs.
 - Hero image: a composite of two supplied photographs (`bangus-steak.jpg` and `tuyo-closeup.jpg`), colour-graded and composited with a circular tuyo detail. The baked-in bottle label and logo in the dish photograph are cropped out.
-- About food photograph: [Unsplash image source](https://images.unsplash.com/photo-1644784643137-b9073dd262f6), used under the Unsplash License. Confirm and add photographer credit before launch.
+- About section photograph: a composite of three supplied packshots (`assets/brand/products/pinoy-adobo.jpg`, `ba-yo.jpg`, `pesto-tuyo.jpg`), fanned on a cream backdrop, colour-graded and framed. No stock photography is used anywhere on the site.
 
 The product disclaimer in the UI states that the hero is a composite of supplied food photography, the cards use supplied packshots, and sizes/batch details are pending confirmation.
 
