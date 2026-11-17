@@ -1,5 +1,5 @@
-import { ArrowRight, ArrowUpRight, Fish, Info } from 'lucide-react';
-import { productDisclaimer, products, type Product } from '../data/products';
+import { ArrowRight, ArrowUpRight, Fish } from 'lucide-react';
+import { products, type Product } from '../data/products';
 import { Sunburst } from './Decor';
 import { WaveScratch } from './Waves';
 
@@ -120,10 +120,6 @@ export function ProductsSection({ onProductInquiry }: ProductSectionProps) {
           className="mx-auto mt-9 flex max-w-[52rem] flex-col items-center gap-4 text-center sm:mt-11"
           data-reveal
         >
-          <p className="flex items-start justify-center gap-2 text-[0.72rem] leading-relaxed text-bark-soft">
-            <Info className="mt-[0.15rem] h-3.5 w-3.5 shrink-0 text-gold-deep/80" aria-hidden="true" />
-            <span>{productDisclaimer}</span>
-          </p>
           <a href="#contact" className="eb-link">
             Looking for a specific product? Ask us
             <ArrowRight className="eb-arrow h-4 w-4" aria-hidden="true" />

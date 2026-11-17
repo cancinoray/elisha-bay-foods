@@ -67,11 +67,13 @@ railway.json        Railway builder, healthcheck and restart policy
    descriptions in `src/data/products.ts`.
 2. **Certification claims stay withheld until approved.** The Quality section must not display FDA,
    US FDA, GMP or other official marks/claims until the client supplies documentation. Keep the
-   neutral “Verification pending” treatment and its note until a human confirms the exact wording.
+   neutral “Verification pending” treatment until a human confirms the exact wording. The
+   explanatory note was removed by the owner on 2026-11-17; do not replace it with certification copy.
 3. **Product data and packshots are supplied; sizes are not.** The ten product entries and images
-   in `src/data/products.ts` come from the brand’s own range signs and packshots. Keep the
-   disclaimer visible until printed sizes, batch details and final packaging copy are approved. Do
-   not reuse the hero composite as an individual product packshot.
+   in `src/data/products.ts` come from the brand’s own range signs and packshots. The on-page
+   disclaimer was removed by the owner on 2026-11-17; do not add printed sizes, batch details or
+   packaging copy until they are approved, and never infer them from the labels. Do not reuse the
+   hero composite as an individual product packshot.
 4. **No e-commerce.** No cart, checkout, payment gateway, inventory or account system in this phase.
 5. **Use the confirmed contact channels.** Phone, email, Facebook and Instagram are configured in
    `src/data/site.ts`; do not invent additional channels or a different form backend. The form hands

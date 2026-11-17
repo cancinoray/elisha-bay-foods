@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, Factory, Info, ShieldCheck } from 'lucide-react';
+import { ArrowRight, BadgeCheck, Factory, ShieldCheck } from 'lucide-react';
 import { site } from '../data/site';
 
 const iconMap = {
@@ -121,12 +121,6 @@ export function QualitySection() {
               </ul>
             </div>
 
-            {!site.credentialsVerified && (
-              <p className="mt-5 flex items-start gap-2.5 rounded-xl border border-cream/12 bg-burgundy-deep/20 px-4 py-3 text-[0.73rem] leading-relaxed text-cream/75">
-                <Info className="mt-[0.12rem] h-4 w-4 shrink-0 text-gold/85" aria-hidden="true" />
-                <span>{site.credentialsNote}</span>
-              </p>
-            )}
           </div>
         </div>
       </div>

@@ -70,7 +70,7 @@ can start a relevant conversation.
 | Id | Criterion | Tag |
 | --- | --------- | --- |
 | US2-AC1 | Products shows the actual range photograph and ten product cards from `src/data/products.ts` (Pinoy Adobo, Ba-Yo, Hawaiian Style, Portuguese Style, Fresh Basil Pesto, Tomato Sauce, Turmeric, Sun-Dried Tomatoes, Pesto Tuyo, Tuyo Delizioso), followed by an “And More Seafood Delights” full-range CTA. | `e2e` |
-| US2-AC2 | The disclaimer is visible beneath the CTA: the hero is a composite of supplied food photography; product cards use supplied packshots; published sizes, batch details and final packaging copy are pending. | `e2e` |
+| US2-AC2 | No disclaimer block is rendered: the section carries no hero-composite, size, batch or packaging notice, and none is reintroduced. | `e2e` |
 | US2-AC3 | Activating a product card scrolls to Contact, sets inquiry type to “Product inquiry”, and pre-fills the message with that product name. | `e2e` |
 | US2-AC4 | Cards have a visible hover/focus state and remain operable by keyboard. | `manual` |
 | US2-AC5 | Each product card displays the supplied category, description and its own real packshot; no invented size, price or ingredient is introduced. | `e2e` + `manual` |
@@ -84,7 +84,7 @@ being shown claims the company cannot yet prove.
 | --- | --------- | --- |
 | US3-AC1 | The Quality section uses the heading “Committed to Quality and Safety”, the approved supporting sentence and neutral credential slots. | `e2e` |
 | US3-AC2 | No FDA, US FDA, GMP or other official certification wordmark, seal or “certified/registered/approved” claim is displayed while `credentialsVerified` is false. | `e2e` + `manual` |
-| US3-AC3 | Every credential slot is labelled “Verification pending” and the note explains that details are withheld until documents are confirmed. | `e2e` |
+| US3-AC3 | Every credential slot is labelled “Verification pending”. | `e2e` |
 | US3-AC4 | No official government logo, flag, or fabricated badge appears anywhere on the page. | `manual` |
 
 ### US4 — Make an inquiry
@@ -133,7 +133,7 @@ identity; as the business, I can be found for relevant terms.
 | -- | --------- | ----------- | --------- |
 | I1 | No unverified business claim, certification, contact detail or history is presented as fact. | content review + config | US3-AC2..4, US4-AC5; human sign-off |
 | I2 | Inquiry destinations are the confirmed Facebook, Instagram, email and phone channels; the form hands off to the visitor’s mail client only, and Messenger is not offered anywhere. | `src/data/site.ts` | US4-AC3/4/5/6; manual link check |
-| I3 | Product names/descriptions and packshots come from the brand; printed sizes and final packaging copy are disclosed as pending; the hero is not presented as a packshot. | `src/data/products.ts` + UI | US2-AC1/2/5 |
+| I3 | Product names/descriptions and packshots come from the brand; no size, batch, packaging or price claim is printed, and the hero is not presented as a packshot. | `src/data/products.ts` + UI | US2-AC1/2/5 |
 | I4 | The site remains lead generation only: no cart, checkout, payment or account flow. | scope rules | PR review; no such routes/state |
 | I5 | Contact PII is not stored or transmitted by the site. The form composes the message and hands it to the visitor’s mail client on request. | no backend | code review + form test |
 
@@ -166,10 +166,11 @@ Any change to these shapes updates this section and the affected tests in the sa
   product shot. The product-card packshots and range photograph are actual.
 - About copy is proposed, not client-approved history.
 - Phone, email and Instagram are confirmed; the street address is still unknown.
-- Certification wording is withheld; the verification-pending UI is intentional.
+- Certification wording is withheld; the verification-pending badges are intentional. The explanatory
+  note and the product disclaimer were removed by the owner on 2026-11-17.
 - `og:image` is relative until the production domain is known; canonical/absolute URLs are a
   deployment task.
-- The repository is local git with no remote yet; the workflow uses a human merge gate.
+- The repository is public on GitHub with Actions CI; the workflow keeps a human merge gate.
 
 ## 9. Changelog
 

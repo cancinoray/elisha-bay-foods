@@ -196,7 +196,7 @@ Handoffs are files, not conversation:
 - **Green-but-hollow tests.** A test that never failed proves nothing; observe it red first. Do not
   weaken an assertion to make CI green.
 - **Placeholder drift.** Product imagery and About copy are placeholders; replacing one without
-  updating the disclaimer or spec is a defect.
+  updating the spec is a defect.
 - **Scope creep.** No e-commerce, CMS, analytics or backend unless a human-approved issue changes
   the spec.
 - **Skipped human gate.** A passing QA run is evidence, not permission to merge. The human owner

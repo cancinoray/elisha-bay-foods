@@ -201,7 +201,7 @@ There is no server-side form submission in this phase. If a managed endpoint or 
 - Hero image: a composite of two supplied photographs (`bangus-steak.jpg` and `tuyo-closeup.jpg`), colour-graded and composited with a circular tuyo detail. The baked-in bottle label and logo in the dish photograph are cropped out.
 - About section photograph: a composite of three supplied packshots (`assets/brand/products/pinoy-adobo.jpg`, `ba-yo.jpg`, `pesto-tuyo.jpg`), fanned on a cream backdrop, colour-graded and framed. No stock photography is used anywhere on the site.
 
-The product disclaimer in the UI states that the hero is a composite of supplied food photography, the cards use supplied packshots, and sizes/batch details are pending confirmation.
+The hero is a composite of two supplied food photographs and the cards use supplied packshots; printed sizes, batch details and packaging copy are still unconfirmed, so the site states none of them. The on-page disclaimer and the certification note were removed on 2026-11-17 by owner decision.
 
 ---
 

@@ -32,7 +32,7 @@ to merge.
 
 | Area | Proves |
 | ---- | ------ |
-| Brand + sections | H1, five sections, ten product image cards, actual range photo, product disclaimer, official Facebook/Instagram links |
+| Brand + sections | H1, five sections, ten product image cards, actual range photo, no disclaimer block, official Facebook/Instagram links |
 | Metadata/assets | title, description, OG image, JSON-LD (including email/phone/Instagram), manifest, official logo, range photo, icon assets, image alt + dimensions |
 | Content invariant | no “FDA Certified/Registered/Approved” claim; pending verification UI present |
 | Products → inquiry | the first real product card sets type + message + topic; valid `mailto:` payload and status region |

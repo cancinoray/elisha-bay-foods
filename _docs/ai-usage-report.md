@@ -3,6 +3,46 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-17 — Removed the product disclaimer, certification note and About caption
+
+**Branch:** `main` (direct, on the owner's instruction)
+
+**Scope:** Owner asked to delete three on-page notices: the products disclaimer, the certification
+note under the Quality badges, and the About packshot caption.
+
+**What was removed**
+
+- `productDisclaimer` in `src/data/products.ts` and its block in `ProductsSection` (the CTA strip
+  stays).
+- `site.credentialsNote` and its block in `QualitySection`; the “Verification pending” badges remain.
+- The About caption under the composite.
+- The now-unused `Info` icons in both sections.
+
+**Deliberate trade-off, recorded**
+
+The site no longer tells visitors that printed sizes, batch details and packaging copy are pending,
+and no longer explains why the credential slots say “Verification pending”. Sizes and packaging still
+never appear in text, and no certification claim is made — the packshot labels remain the only size
+source. `AGENTS.md` rules 2 and 3, spec US2-AC2/US3-AC3/I3, the design-system rule, README, process
+and handoff were updated so no document claims a disclaimer exists.
+
+**Builder verification**
+
+- New guard test (`renders no disclaimer blocks or pending-copy notices`) asserts the four removed
+  strings are absent from the rendered page; observed red against the old build first.
+- The About image test was re-fixed: it read a lazy image after `loadLazyContent` and could miss the
+  decode, so it now scrolls the image into view before asserting.
+- `make verify` — **22/22** twice in a row.
+
+**Independent QA**
+
+- None; builder evidence only.
+
+**Human verification required**
+
+- Confirm the sections still read correctly without the notices, in particular that “Verification
+  pending” badges without any explanation are acceptable.
+
 ## 2026-11-17 — About section uses real packshots instead of stock photography
 
 **Branch:** `feat/about-packshot-composite`

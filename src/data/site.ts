@@ -54,8 +54,6 @@ export const site = {
       icon: 'factory' as const,
     },
   ],
-  credentialsNote:
-    'Certification details are being verified. They will only be displayed once supporting documents have been confirmed.',
   nav: [
     { label: 'Home', href: '#home' },
     { label: 'Our Products', href: '#products' },

@@ -178,5 +178,3 @@ export const products: Product[] = [
   },
 ];
 
-export const productDisclaimer =
-  'The hero image is a composite of supplied Elisha Bay food photography. Product cards use supplied packshots. Published sizes, batch details and final packaging copy are pending confirmation; check the label before ordering.';

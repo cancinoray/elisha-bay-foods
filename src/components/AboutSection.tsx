@@ -135,10 +135,6 @@ export function AboutSection() {
                 </span>
               </figcaption>
             </figure>
-            <p className="mt-9 text-right text-[0.62rem] leading-relaxed text-bark-soft sm:mt-8">
-              Actual Elisha Bay packshots from our range. Printed sizes and batch details are pending
-              confirmation.
-            </p>
           </div>
         </div>
       </div>

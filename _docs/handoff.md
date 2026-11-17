@@ -62,7 +62,7 @@ are in [AGENTS.md](../AGENTS.md).
 | Test policy and manual QA checks | [_docs/testing-guidelines.md](testing-guidelines.md) |
 | Tokens, components, responsive/a11y rules | [_docs/design-system.md](design-system.md) · [src/index.css](../src/index.css) |
 | Brand, official links, contact config, credentials | [src/data/site.ts](../src/data/site.ts) |
-| Placeholder product data and disclaimer | [src/data/products.ts](../src/data/products.ts) |
+| Product data and packshots | [src/data/products.ts](../src/data/products.ts) |
 | CI (typecheck, build, Playwright) | [.github/workflows/ci.yml](../.github/workflows/ci.yml) |
 | Production image and Railway config | [Dockerfile](../Dockerfile) · [railway.json](../railway.json) · [.dockerignore](../.dockerignore) · [deploy/nginx/default.conf.template](../deploy/nginx/default.conf.template) |
 | Hosting runbook | [README.md](../README.md#deploying-to-railway) |
@@ -97,8 +97,8 @@ is a PR squash/merge with CI attached, and the QA verdict belongs on that PR. Se
 - **The “no FDA claim” test is intentional.** If certification documents arrive, update the spec,
   config and test together — do not silently weaken the assertion.
 - **The hero is a composite of supplied food photographs; the range and cards are actual.** Do not
-  describe the hero as a packshot or reuse it as an individual product image. The products
-  disclaimer states this.
+  describe the hero as a packshot or reuse it as an individual product image. The on-page disclaimer
+  that said so was removed on 2026-11-17, so the rule now lives only here and in the design system.
 - **The product range photo is a trade-show display.** It is cropped/colour-graded and the visible
   third-party leaflets are excluded. Do not add certification marks from that scene.
 - **Product descriptions come from the range signs; packshots are supplied.** Do not add sizes,

@@ -88,9 +88,6 @@ test.describe('Elisha Bay landing page', () => {
     ).toBeVisible();
     await expect(cards.first()).toContainText(/special adobo sauce/);
     await expect(
-      page.getByText(/The hero image is a composite of supplied Elisha Bay food photography/),
-    ).toBeVisible();
-    await expect(
       page.getByRole('link', { name: 'Elisha Bay on Facebook' }),
     ).toHaveAttribute('href', 'https://www.facebook.com/elishabayfoods/');
     await expect(
@@ -149,9 +146,10 @@ test.describe('Elisha Bay landing page', () => {
 
   test('about section uses supplied packshots rather than stock photography', async ({ page }) => {
     await openSite(page);
-    await loadLazyContent(page);
 
+    // The image is lazy-loaded, so bring it into view before asserting it decoded.
     const image = page.locator('#about img').first();
+    await image.scrollIntoViewIfNeeded();
     await expect(image).toHaveAttribute('src', /\/images\/about-collection-900\.jpg$/);
     await expect(image).toHaveAttribute('alt', /packshots/i);
     await expect(image).toHaveAttribute('width', '1600');
@@ -176,7 +174,22 @@ test.describe('Elisha Bay landing page', () => {
     expect(text).not.toMatch(/FDA\s+(Certified|Registered|Approved)/i);
     expect(text).not.toMatch(/US FDA Registered Facility/i);
     await expect(page.getByText('Verification pending').first()).toBeVisible();
-    await expect(page.getByText(/Certification details are being verified/)).toBeVisible();
+  });
+
+  // Owner decision 2026-11-17: the hero/product disclaimer, the certification note and the About
+  // caption were removed. This guards against them drifting back in.
+  test('renders no disclaimer blocks or pending-copy notices', async ({ page }) => {
+    await openSite(page);
+    const text = await page.locator('body').innerText();
+
+    for (const removed of [
+      'composite of supplied',
+      'check the label before ordering',
+      'Certification details are being verified',
+      'Printed sizes and batch details are pending',
+    ]) {
+      expect(text, `removed copy is back: ${removed}`).not.toContain(removed);
+    }
   });
 
   test('hero and primary navigation reach their sections', async ({ page }) => {
@@ -331,7 +344,7 @@ test.describe('Elisha Bay landing page', () => {
     expect(mentionsMessenger, 'the page still mentions Messenger').toBe(false);
   });
 
-  test('quality section uses the approved heading and withheld-credential note', async ({
+  test('quality section uses the approved heading and withheld-credential slots', async ({
     page,
   }) => {
     await openSite(page);
