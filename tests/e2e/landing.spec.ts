@@ -132,6 +132,8 @@ test.describe('Elisha Bay landing page', () => {
       '/images/elisha-bay-range-1200.webp',
       '/images/product-pinoy-adobo-800.webp',
       '/images/hero-bangus-tuyo-1200.webp',
+      '/images/about-collection-900.webp',
+      '/images/about-collection-1600.webp',
       '/apple-touch-icon.png',
       '/icon-192.png',
       '/icon-512.png',
@@ -143,6 +145,28 @@ test.describe('Elisha Bay landing page', () => {
       const response = await request.get(path);
       expect(response.status(), path).toBe(200);
     }
+  });
+
+  test('about section uses supplied packshots rather than stock photography', async ({ page }) => {
+    await openSite(page);
+    await loadLazyContent(page);
+
+    const image = page.locator('#about img').first();
+    await expect(image).toHaveAttribute('src', /\/images\/about-collection-900\.jpg$/);
+    await expect(image).toHaveAttribute('alt', /packshots/i);
+    await expect(image).toHaveAttribute('width', '1600');
+    await expect(image).toHaveAttribute('height', '2000');
+
+    await expect
+      .poll(
+        async () =>
+          image.evaluate((el) => {
+            const img = el as HTMLImageElement;
+            return img.complete && img.naturalWidth > 0;
+          }),
+        { message: 'the about composite did not load' },
+      )
+      .toBe(true);
   });
 
   test('withholds unverified certification claims', async ({ page }) => {

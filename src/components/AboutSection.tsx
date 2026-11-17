@@ -111,14 +111,14 @@ export function AboutSection() {
                 <picture>
                   <source
                     type="image/webp"
-                    srcSet="/images/about-dish-720.webp 720w, /images/about-dish-900.webp 900w"
+                    srcSet="/images/about-collection-720.webp 720w, /images/about-collection-900.webp 900w, /images/about-collection-1600.webp 1600w"
                     sizes="(min-width: 1024px) 46vw, (min-width: 640px) 78vw, 92vw"
                   />
                   <img
-                    src="/images/about-dish-900.jpg"
-                    alt="Golden fried whole fish served with vegetables and calamansi on a dark slate board"
-                    width={900}
-                    height={1125}
+                    src="/images/about-collection-900.jpg"
+                    alt="Three Elisha Bay packshots — Pinoy Adobo, Ba-Yo and Pesto Tuyo — fanned on a cream backdrop"
+                    width={1600}
+                    height={2000}
                     loading="lazy"
                     decoding="async"
                     className="aspect-[4/5] w-full object-cover sm:aspect-[5/5] lg:aspect-[4/5]"
@@ -136,7 +136,8 @@ export function AboutSection() {
               </figcaption>
             </figure>
             <p className="mt-9 text-right text-[0.62rem] leading-relaxed text-bark-soft sm:mt-8">
-              Concept food photography for the brand story. Actual product photography appears in Our Products.
+              Actual Elisha Bay packshots from our range. Printed sizes and batch details are pending
+              confirmation.
             </p>
           </div>
         </div>

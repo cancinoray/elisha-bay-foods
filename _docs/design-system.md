@@ -116,5 +116,5 @@ Rules:
 - Contact channels use the confirmed phone/email/Facebook/Instagram data. The street address is
   withheld until supplied.
 - Errors say what happened and what to do next; they do not blame the user.
-- Keep disclosures legible: the supplied-photo hero, pending sizes and concept About photography are
+- Keep disclosures legible: the supplied-photo hero, pending sizes and the composite About packshots are
   visible, not buried.
