@@ -113,7 +113,7 @@ src/
     QualitySection.tsx    certification placeholders (not claims)
     AboutSection.tsx      brand story + expandable values
     ContactSection.tsx    contact channels + inquiry form
-    InquiryForm.tsx       validation + Messenger handoff
+    InquiryForm.tsx       validation + email handoff
     Footer.tsx
     Logo.tsx              official logo image lockup
     Decor.tsx             sunburst, brush stroke, gold rule
@@ -182,15 +182,16 @@ Confirmed contact channels are configured in `src/data/site.ts`:
 - Mobile: **0919 270 1448** · **0917 511 0223**
 - Email: **elisha_bay2017@yahoo.com**
 - Facebook / Instagram: **@elishabayfoods**
-- Messenger: `https://m.me/elishabayfoods`
 
 The street address is still pending and intentionally not displayed. Add it to `site.contact` when supplied. The contact section and footer render the phone, email and Instagram data automatically.
 
 ### Inquiry workflow
 
-The form validates name, email, optional phone, inquiry type, and message. On success it opens the official Messenger page in a new tab with the full inquiry pre-filled. The success panel lets the visitor reopen Messenger or copy the message as a fallback if the tab is blocked.
+The form validates name, email, optional phone, inquiry type, and message. On success it reveals a panel with **Send by email** — a `mailto:` to the confirmed address carrying the composed inquiry — plus a copy-message fallback. Nothing opens by itself and nothing is transmitted by the site.
 
-There is no server-side form submission in this phase. If email notification or a CRM integration is required, add an endpoint and keep the Messenger path as a fallback.
+Messenger is deliberately not offered: `m.me` forces a login even for visitors already signed into Facebook (owner decision, 2026-11-17).
+
+There is no server-side form submission in this phase. If a managed endpoint or CRM integration is required later, it needs an approved issue and a privacy notice; keep the email handoff as the fallback.
 
 ### Photography credits
 
@@ -240,7 +241,7 @@ Defined in `src/index.css`:
 - [ ] Approve or rewrite the About copy.
 - [ ] Confirm certification wording and documents; update or remove the “verification pending” slots.
 - [ ] Supply phone, email, and full address.
-- [ ] Confirm the Facebook/Messenger URLs with the client.
+- [ ] Confirm the Facebook and Instagram URLs with the client.
 - [ ] Set the canonical URL and make `og:image` / `og:url` absolute for the live domain.
 - [ ] Add analytics/cookie consent only if required by the deployment jurisdiction.
 - [ ] Re-run `make verify`, test the form handoff on a real phone, and verify the production URL in social previews.

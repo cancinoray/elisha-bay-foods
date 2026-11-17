@@ -1,4 +1,4 @@
-import { ArrowUp, Facebook, Heart, Instagram, Mail, MapPin, MessageCircle, ShieldCheck } from 'lucide-react';
+import { ArrowUp, Facebook, Heart, Instagram, Mail, MapPin, ShieldCheck } from 'lucide-react';
 import { site } from '../data/site';
 import { Logo } from './Logo';
 
@@ -67,15 +67,6 @@ export function Footer() {
               className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/25 text-cream transition-colors hover:border-gold hover:bg-gold hover:text-burgundy-deep"
             >
               <Instagram className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
-            </a>
-            <a
-              href={site.social.messenger}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Message Elisha Bay on Messenger"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/25 text-cream transition-colors hover:border-gold hover:bg-gold hover:text-burgundy-deep"
-            >
-              <MessageCircle className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
             </a>
           </div>
         </div>

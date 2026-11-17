@@ -16,8 +16,8 @@ mouth, then have no single place that explains the products, the quality posture
 to make contact.
 
 The site removes that gap. It is a **brand and lead-generation page**, not a store. Success is a
-visitor understanding the brand and choosing to inquire through the official Facebook/Messenger
-channel.
+visitor understanding the brand and choosing to inquire through the confirmed email, phone or social
+channels.
 
 ## 2. Users
 
@@ -96,9 +96,11 @@ resale, distribution or partnership.
 | --- | --------- | --- |
 | US4-AC1 | A required name, required valid email, optional phone, required inquiry type and required message are labelled and validated with inline errors. | `e2e` |
 | US4-AC2 | Invalid submission does not open any external channel and marks every invalid field with `aria-invalid` and an associated error. | `e2e` |
-| US4-AC3 | Valid submission opens the official Messenger URL with the inquiry pre-filled (name, email, type, message) and shows an inquiry-status region with a reopen link. | `e2e` |
-| US4-AC4 | The form exposes a copy-message fallback, and the contact section links to the confirmed Facebook, Instagram, Messenger, email and phone channels only. | `e2e` + `manual` |
+| US4-AC3 | Valid submission reveals an inquiry-status region with a single “Send by email” action (a `mailto:` handoff carrying the composed message) plus the copy-message fallback. The site opens nothing by itself and offers no Messenger link. | `e2e` |
+| US4-AC4 | The form exposes a copy-message fallback, and the contact section and footer link to the confirmed Facebook, Instagram, email and phone channels only — no Messenger link. | `e2e` + `manual` |
 | US4-AC5 | The confirmed phones (0919 270 1448 / 0917 511 0223), email (elisha_bay2017@yahoo.com) and @elishabayfoods Instagram are displayed and actionable; the street address remains unlisted. | `e2e` + `manual` |
+| US4-AC6 | The email action is a `mailto:` to the confirmed address with subject `Elisha Bay inquiry — <type>` and a body carrying name, email, phone (when given), type and message, URL-encoded. No request leaves the site. | `e2e` |
+| US4-AC7 | Invalid submission opens neither channel and shows no inquiry-status region, while still marking every invalid field with `aria-invalid`; the copy-message fallback remains available once the message is ready. | `e2e` |
 
 ### US5 — Use the site on any device and with assistive tech
 
@@ -130,10 +132,10 @@ identity; as the business, I can be found for relevant terms.
 | Id | Invariant | Enforced by | Proved by |
 | -- | --------- | ----------- | --------- |
 | I1 | No unverified business claim, certification, contact detail or history is presented as fact. | content review + config | US3-AC2..4, US4-AC5; human sign-off |
-| I2 | Inquiry destinations are the confirmed Facebook, Instagram, Messenger, email and phone channels; the form still hands off to Messenger. | `src/data/site.ts` | US4-AC3/4/5; manual link check |
+| I2 | Inquiry destinations are the confirmed Facebook, Instagram, email and phone channels; the form hands off to the visitor’s mail client only, and Messenger is not offered anywhere. | `src/data/site.ts` | US4-AC3/4/5/6; manual link check |
 | I3 | Product names/descriptions and packshots come from the brand; printed sizes and final packaging copy are disclosed as pending; the hero is not presented as a packshot. | `src/data/products.ts` + UI | US2-AC1/2/5 |
 | I4 | The site remains lead generation only: no cart, checkout, payment or account flow. | scope rules | PR review; no such routes/state |
-| I5 | Contact PII is not stored by the site. The form hands a composed message to Messenger. | no backend | code review + form test |
+| I5 | Contact PII is not stored or transmitted by the site. The form composes the message and hands it to the visitor’s mail client on request. | no backend | code review + form test |
 
 ## 6. Interface surface
 
@@ -142,7 +144,7 @@ This is a static page, not an API. Its external contracts are:
 - **Section anchors:** `#home`, `#products`, `#quality`, `#about`, `#contact`.
 - **Product data:** `src/data/products.ts`; the UI must adapt to the array of ten products plus the full-range CTA rather than hard-coding a product count.
 - **Site/contact data:** `src/data/site.ts`; phone/email/Instagram rows render from confirmed config, and `credentialsVerified` controls whether the verification note remains.
-- **Inquiry handoff:** `https://m.me/elishabayfoods?text=<encoded message>`.
+- **Inquiry handoff:** `mailto:elisha_bay2017@yahoo.com?subject=<encoded subject>&body=<encoded message>`, offered after validation. No Messenger/`m.me` deep link is exposed.
 - **Build outputs:** `dist/` (ignored by git), plus public SEO/icon assets.
 
 Any change to these shapes updates this section and the affected tests in the same change.
@@ -153,7 +155,7 @@ Any change to these shapes updates this section and the affected tests in the sa
 - A content management system or admin area.
 - Inventing or displaying certifications before documentary approval.
 - Publishing a street address before the client supplies it, or unverified certification claims.
-- Email delivery, CRM integration or a custom form backend in this phase.
+- Server-side email delivery, CRM integration or a custom form backend in this phase. The email action is a `mailto:` the visitor sends from their own client; the site never transmits it.
 - Blog, recipe library, testimonials or multilingual content before an approved issue.
 
 ## 8. Current known limits

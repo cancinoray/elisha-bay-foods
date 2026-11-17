@@ -35,7 +35,7 @@ to merge.
 | Brand + sections | H1, five sections, ten product image cards, actual range photo, product disclaimer, official Facebook/Instagram links |
 | Metadata/assets | title, description, OG image, JSON-LD (including email/phone/Instagram), manifest, official logo, range photo, icon assets, image alt + dimensions |
 | Content invariant | no “FDA Certified/Registered/Approved” claim; pending verification UI present |
-| Products → inquiry | the first real product card sets type + message + topic; valid Messenger URL and status region |
+| Products → inquiry | the first real product card sets type + message + topic; valid `mailto:` payload and status region |
 | Form validation | empty form marks four fields invalid and never opens a channel |
 | Contact channels | email, phone and Instagram links are present and correctly targeted |
 | Mobile menu | open, Escape, focus return, link closes and reaches Contact |
@@ -44,8 +44,8 @@ to merge.
 | Skip link | first Tab stop; Enter focuses `main` |
 | Reduced motion | content remains visible with `prefers-reduced-motion: reduce` |
 
-The Messenger test stubs `window.open` and asserts the composed `m.me` URL. A real handoff to
-Messenger is a manual QA check because it depends on an external service.
+The handoff test asserts the composed `mailto:` URL and its subject/body. Launching a real mail
+client is a manual QA check because it depends on the visitor's device.
 
 ## Manual checks QA still owns
 
@@ -56,7 +56,7 @@ Automation cannot prove taste, claims or every keyboard path:
 3. Confirm the ten product names/descriptions match the supplied signs/packshots, the card and range
    photos are actual, and the hero is not described as a packshot. Printed sizes/batch details are
    pending.
-4. Keyboard-walk the page: nav, ten product cards, form, copy/open Messenger, footer.
+4. Keyboard-walk the page: nav, ten product cards, form, copy/send by email, footer.
 5. Confirm the official logo appears in the header, footer and share image; no old custom crest
    remains. The transparent header logo should sit cleanly on cream, and the footer logo should use
    the cream badge.
@@ -64,8 +64,8 @@ Automation cannot prove taste, claims or every keyboard path:
    crop/overlay should keep them out of view.
 7. Inspect 375px, 768px and 1440px for clipped CTAs, awkward wrapping and missing focus.
 8. Compare the composition and identity against the design reference.
-9. Open the real Facebook/Instagram and Messenger links, email link and both phone links; confirm
-   they resolve to Elisha Bay.
+9. Open the real Facebook/Instagram links, the email link and both phone links; confirm they resolve
+   to Elisha Bay, and that no Messenger link exists anywhere.
 
 Any manual FAIL needs a screenshot or a precise reproduction in the verdict.
 
@@ -86,8 +86,8 @@ A test that has never failed proves nothing. Do not weaken an assertion, skip a 
 - Prefer accessible selectors: `getByRole`, `getByLabel`, visible text that is part of the contract.
 - Set viewport explicitly for responsive claims.
 - Disable smooth scrolling when a test needs a deterministic scroll.
-- Stub external window openings; never make the suite depend on Messenger, Facebook or Google Fonts
-  being reachable.
+- Stub external window openings; never make the suite depend on Facebook or Google Fonts being
+  reachable.
 - Assert the user-visible outcome, not implementation details or CSS class names.
 - Keep the suite independent: each test opens a fresh page and must pass alone.
 - Update this document and `product-spec.md` when a suite or AC changes.
@@ -96,7 +96,7 @@ A test that has never failed proves nothing. Do not weaken an assertion, skip a 
 
 - Third-party library internals or Google Fonts.
 - Exact animation timing.
-- A real Messenger send (manual check).
+- A real email send from the visitor's mail client (manual check).
 - Decorative-only SVG paths.
 - The wording of a log line that is not a contract.
 

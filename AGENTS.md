@@ -73,9 +73,11 @@ railway.json        Railway builder, healthcheck and restart policy
    disclaimer visible until printed sizes, batch details and final packaging copy are approved. Do
    not reuse the hero composite as an individual product packshot.
 4. **No e-commerce.** No cart, checkout, payment gateway, inventory or account system in this phase.
-5. **Use the confirmed contact channels.** Phone, email, Facebook, Instagram and Messenger are
-   configured in `src/data/site.ts`; do not invent additional channels or a different form backend.
-   The form must keep its Messenger handoff and copy fallback.
+5. **Use the confirmed contact channels.** Phone, email, Facebook and Instagram are configured in
+   `src/data/site.ts`; do not invent additional channels or a different form backend. The form hands
+   the composed inquiry to the visitor's mail client (`mailto:`) and keeps its copy fallback.
+   **Messenger is deliberately not offered** — `m.me` forces a login even for visitors already signed
+   into Facebook (owner decision, 2026-11-17).
 6. **The agent that writes code does not decide whether it is correct.** QA runs in a fresh context
    with the issue, acceptance criteria and running site. The engineer never approves its own work.
 7. **One issue, one branch.** Branch from current `main`; do not mix unrelated changes. New ideas

@@ -221,7 +221,7 @@ test.describe('Elisha Bay landing page', () => {
     });
   }
 
-  test('product card pre-fills a valid Messenger inquiry', async ({ page }) => {
+  test('product card pre-fills a valid inquiry and offers the email handoff', async ({ page }) => {
     await openSite(page);
     await stubPopup(page);
 
@@ -235,15 +235,14 @@ test.describe('Elisha Bay landing page', () => {
 
     await page.fill('#inquiry-name', 'QA Test');
     await page.fill('#inquiry-email', 'qa@example.com');
-    await page.getByRole('button', { name: 'Continue to Messenger' }).click();
+    await page.getByRole('button', { name: 'Send inquiry' }).click();
 
-    await expect(
-      page.getByRole('region', { name: 'Inquiry status' }),
-    ).toContainText('Your message is ready in Messenger.');
-    await expect(page.getByRole('button', { name: 'Copy message' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Open Messenger' })).toHaveAttribute(
+    const status = page.getByRole('region', { name: 'Inquiry status' });
+    await expect(status).toContainText('Your inquiry is ready');
+    await expect(status.getByRole('button', { name: 'Copy message' })).toBeVisible();
+    await expect(status.getByRole('link', { name: 'Send by email' })).toHaveAttribute(
       'href',
-      /^https:\/\/m\.me\/elishabayfoods\?text=/,
+      /^mailto:elisha_bay2017@yahoo\.com\?subject=/,
     );
     await expect(
       page.getByRole('link', { name: /elisha_bay2017@yahoo\.com/ }).first(),
@@ -253,11 +252,59 @@ test.describe('Elisha Bay landing page', () => {
       page.locator('a[href="https://www.instagram.com/elishabayfoods/"]').first(),
     ).toBeVisible();
 
-    const url = await openedUrl(page);
-    expect(url).toContain('https://m.me/elishabayfoods?text=');
-    const decoded = decodeURIComponent(url ?? '');
+    const mailtoHref = await status.getByRole('link', { name: 'Send by email' }).getAttribute('href');
+    const decoded = decodeURIComponent(mailtoHref ?? '');
     expect(decoded).toContain('Name: QA Test');
     expect(decoded).toContain(PRODUCT_TOPIC);
+
+    // Nothing opens until the visitor picks a channel; the site transmits nothing itself.
+    expect(await openedUrl(page)).toBeNull();
+  });
+
+  test('email handoff carries the composed inquiry to the confirmed address', async ({ page }) => {
+    await openSite(page);
+    await page.evaluate(() => document.getElementById('contact')?.scrollIntoView());
+
+    await page.fill('#inquiry-name', 'Ray Cancino');
+    await page.fill('#inquiry-email', 'ray@example.com');
+    await page.fill('#inquiry-phone', '0917 511 0223');
+    await page.selectOption('#inquiry-type', 'Wholesale / reseller');
+    await page.fill('#inquiry-message', 'Do you ship to Manila?');
+    await page.getByRole('button', { name: 'Send inquiry' }).click();
+
+    const href = await page
+      .getByRole('region', { name: 'Inquiry status' })
+      .getByRole('link', { name: 'Send by email' })
+      .getAttribute('href');
+    expect(href).toBeTruthy();
+
+    const mailto = new URL(href as string);
+    expect(mailto.protocol).toBe('mailto:');
+    expect(mailto.pathname).toBe('elisha_bay2017@yahoo.com');
+    expect(mailto.searchParams.get('subject')).toBe(
+      'Elisha Bay inquiry — Wholesale / reseller',
+    );
+
+    const body = mailto.searchParams.get('body') ?? '';
+    expect(body).toContain('Name: Ray Cancino');
+    expect(body).toContain('Email: ray@example.com');
+    expect(body).toContain('Phone: 0917 511 0223');
+    expect(body).toContain('Inquiry type: Wholesale / reseller');
+    expect(body).toContain('Do you ship to Manila?');
+  });
+
+  // Messenger forces a login even for visitors already signed into Facebook, so the
+  // site must not offer it as an inquiry channel anywhere.
+  test('inquiry is email-only: no Messenger link or mention survives', async ({ page }) => {
+    await openSite(page);
+
+    await expect(page.locator('a[href*="m.me"]')).toHaveCount(0);
+    await expect(page.locator('a[aria-label*="Messenger" i]')).toHaveCount(0);
+
+    const mentionsMessenger = await page.evaluate(() =>
+      (document.body.textContent ?? '').toLowerCase().includes('messenger'),
+    );
+    expect(mentionsMessenger, 'the page still mentions Messenger').toBe(false);
   });
 
   test('quality section uses the approved heading and withheld-credential note', async ({
@@ -273,18 +320,19 @@ test.describe('Elisha Bay landing page', () => {
     await expect(page.getByText('Verification pending').first()).toBeVisible();
   });
 
-  test('inquiry form rejects invalid input without opening Messenger', async ({ page }) => {
+  test('inquiry form rejects invalid input without opening any channel', async ({ page }) => {
     await openSite(page);
     await stubPopup(page);
     await page.evaluate(() => document.getElementById('contact')?.scrollIntoView());
 
-    await page.getByRole('button', { name: 'Continue to Messenger' }).click();
+    await page.getByRole('button', { name: 'Send inquiry' }).click();
 
     await expect(page.getByText('Please enter your full name.')).toBeVisible();
     await expect(page.getByText('Please enter a valid email address.')).toBeVisible();
     await expect(page.getByText('Please choose an inquiry type.')).toBeVisible();
     await expect(page.getByText(/at least a short message/)).toBeVisible();
     await expect(page.locator('[aria-invalid="true"]')).toHaveCount(4);
+    await expect(page.getByRole('region', { name: 'Inquiry status' })).toHaveCount(0);
     expect(await openedUrl(page)).toBeNull();
   });
 

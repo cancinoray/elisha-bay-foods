@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { site } from '../data/site';
 import { WaveScratch } from './Waves';
 import { InquiryForm } from './InquiryForm';
@@ -108,29 +108,6 @@ export function ContactSection({ topic }: ContactSectionProps) {
                     </span>
                     <span className="ml-auto text-[0.65rem] text-cream/70" aria-hidden="true">
                       Follow
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={site.social.messenger}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="flex items-center gap-4 rounded-xl px-4 py-4 transition-colors hover:bg-cream/[0.06]"
-                  >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-cream/[0.06] text-gold">
-                      <MessageCircle className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block font-display text-[0.55rem] font-semibold uppercase tracking-[0.18em] text-gold/90">
-                        Messenger
-                      </span>
-                      <span className="mt-0.5 block text-[0.9rem] text-cream">
-                        Message us directly
-                      </span>
-                    </span>
-                    <span className="ml-auto text-[0.65rem] text-cream/70" aria-hidden="true">
-                      Open
                     </span>
                   </a>
                 </li>

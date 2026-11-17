@@ -25,8 +25,8 @@ Last updated: 2026-11-16 · Status: **remote live on GitHub, content pending**
 
 A premium Filipino seafood brand landing page for Elisha Bay Dagupan Bangus and Seafoods. The site
 must make the product range feel appetizing, establish trust without inventing certifications, tell
-a Filipino brand story and turn interest into an inquiry through the official Facebook/Messenger
-channel.
+a Filipino brand story and turn interest into an inquiry through the confirmed email channel, with
+phone and social links as alternatives.
 
 It is **not** an online store. No cart, checkout, payment, inventory or account system. The
 behaviour and acceptance criteria are in [product-spec.md](../product-spec.md). The working rules
@@ -37,7 +37,7 @@ are in [AGENTS.md](../AGENTS.md).
 | # | Decision | Rejected alternative | Why |
 | - | -------- | -------------------- | --- |
 | D1 | Vite + React + TypeScript + Tailwind v4 | Next.js, plain HTML | The site is a single static landing page; Vite is the simplest build with strong typing and component reuse. |
-| D2 | Inquiry via official Messenger handoff | Backend email form, invented contact data | No backend in this phase; Messenger remains the handoff. Email/phone are now displayed as alternative confirmed channels. |
+| D2 | Inquiry via a composed message handed to the visitor's mail client | Backend email form, invented contact data, Messenger deep link | No backend in this phase. Messenger was dropped on 2026-11-17: `m.me` forces a login even for signed-in Facebook users, so email is the only form handoff; phone and social links remain. |
 | D3 | Certifications withheld with neutral “Verification pending” slots | Display claimed FDA/US FDA badges | The handoff requires documentary confirmation; fabricating trust marks is unacceptable. |
 | D4 | Hero composite from two supplied food photographs; About remains concept; product cards use supplied packshots | Present generated packaging as real Elisha Bay assets | Official assets arrived later; the hero and cards are actual, and the About image is disclosed. |
 | D5 | Human merge/deploy gate | Agent merges or deploys | The repo has no protected remote yet and production is irreversible; a human owns release. |
@@ -87,7 +87,7 @@ is a PR squash/merge with CI attached, and the QA verdict belongs on that PR. Se
 | O4 | Is the About paragraph approved as written? | Human | open |
 | O5 | What is the production domain, and where will the site be hosted? | Human | hosting decided (Railway); **domain still open**, so canonical/`og:` URLs stay relative |
 | O7 | Is a dedicated art-directed hero photograph still desired? | Human | optional; the current hero is a supplied-photo composite |
-| O6 | Should the form later deliver to email/CRM as well as Messenger? | Human | open; groomed as [#5](https://github.com/cancinoray/elisha-bay-foods/issues/5) with four options, awaiting the owner's choice |
+| O6 | Should the form later deliver to email/CRM as well as Messenger? | Human | **closed 2026-11-17: email only.** Messenger removed from the form, contact section and footer (owner: `m.me` forces a login). No backend, no stored PII. Monitoring of the published inbox still to confirm |
 | O8 | Who runs the retroactive QA PASS for the 2026-11-16 merge, and against which commit? | Human | open; recommended before any deploy |
 
 ## 7. Traps and lessons
@@ -106,10 +106,12 @@ is a PR squash/merge with CI attached, and the QA verdict belongs on that PR. Se
   the factory/display green background; do not remove or fake the labels.
 - **The range photo shows seven of the ten products.** The cards show all ten; the range image is
   contextual, not a complete catalogue count.
-- **The Messenger URL is the only channel.** Do not add an email/phone/WhatsApp link without a
-  confirmed source. The form opens Messenger with a pre-filled message; there is no backend.
-- **`window.open` is stubbed in tests.** A real Messenger handoff is a manual QA check; the popup and
-  login flow cannot be fully covered by the suite.
+- **Email is the only form handoff.** Messenger was removed on purpose (owner, 2026-11-17) because
+  `m.me` forces a login even for signed-in Facebook users; the form composes a `mailto:` and keeps a
+  copy fallback. Do not reintroduce Messenger, a form endpoint or a CRM without an approved issue.
+- **Nothing opens by itself.** The handoff is a plain link, so there is no `window.open` to stub and no
+  popup-blocker state. Launching a real `mailto:` is a manual check because it depends on the
+  visitor's mail client.
 - **Playwright uses installed Chrome locally and pinned Chromium in CI.** Do not assume a local
   Chromium download exists. CI installs it.
 - **`reuseExistingServer` is true locally.** A stale dev server can make tests lie; restart it or run

@@ -112,7 +112,7 @@ QA posts one comment with a fixed shape:
 ## QA: PASS
 
 - [x] US2-AC1 Four product cards render — PASS
-- [x] US4-AC3 Valid inquiry opens Messenger pre-filled — PASS
+- [x] US4-AC3 Valid inquiry offers the email handoff — PASS
 - [x] US5-AC3 axe reports no WCAG A/AA violations — PASS
 
 Tests: `make verify` — typecheck, build and 14 Playwright tests passed
@@ -126,8 +126,8 @@ On failure:
 ## QA: FAIL
 
 - [x] US2-AC1 Four cards render — PASS
-- [ ] US4-AC3 Messenger handoff — FAIL
-      Submitted the form; no success region appeared and `window.open` was not called.
+- [ ] US4-AC3 Email handoff — FAIL
+      Submitted the form; no success region appeared and no `mailto:` link was rendered.
 
 Tests: `make verify` — 10 passed, 1 failed (`product card pre-fills...`)
 Evidence: `test-results/.../test-failed-1.png`
