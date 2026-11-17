@@ -87,7 +87,7 @@ is a PR squash/merge with CI attached, and the QA verdict belongs on that PR. Se
 | O4 | Is the About paragraph approved as written? | Human | open |
 | O5 | What is the production domain, and where will the site be hosted? | Human | hosting decided (Railway); **domain still open**, so canonical/`og:` URLs stay relative |
 | O7 | Is a dedicated art-directed hero photograph still desired? | Human | optional; the current hero is a supplied-photo composite |
-| O6 | Should the form later deliver to email/CRM as well as Messenger? | Human | **closed 2026-11-17: email only.** Messenger removed from the form, contact section and footer (owner: `m.me` forces a login). No backend, no stored PII. Monitoring of the published inbox still to confirm |
+| O6 | Should the form later deliver to email/CRM as well as Messenger? | Human | **closed 2026-11-17: email only.** Messenger removed from the form, contact section and footer (owner: `m.me` forces a login). No backend, no stored PII. Owner confirmed 2026-11-17 that `elisha_bay2017@yahoo.com` is the inbox for inquiries and that it is monitored |
 | O8 | Who runs the retroactive QA PASS for the 2026-11-16 merge, and against which commit? | Human | open; recommended before any deploy |
 
 ## 7. Traps and lessons

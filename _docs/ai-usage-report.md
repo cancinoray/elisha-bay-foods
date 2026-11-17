@@ -47,8 +47,8 @@ section and the footer. This supersedes the two-channel version of the same bran
 
 **Human verification required**
 
-- Confirm `elisha_bay2017@yahoo.com` is the inbox that should receive inquiries and that someone
-  monitors it. A `mailto:` has no spam protection: the address is public, so noise is expected.
+- **Confirmed 2026-11-17:** `elisha_bay2017@yahoo.com` is the inbox that should receive inquiries and
+  it is monitored. A `mailto:` has no spam protection: the address is public, so noise is expected.
 - Confirm removing Messenger from the contact section and footer is acceptable — Facebook and
   Instagram remain as social routes.
 

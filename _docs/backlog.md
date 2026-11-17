@@ -27,7 +27,7 @@ These block any honest launch. They are not “just copy”; they are the facts 
 | EB-102 | P1 | blocked | Engineer + QA | Publish approved certification wording/badges and update the withhold test | US3-AC1..4 | EB-003 |
 | EB-103 | P1 | done (branch) | Engineer + QA | Add phone/email/Instagram channels; keep street address withheld | US4-AC4/5 | EB-004 address only |
 | EB-104 | P1 | blocked | Engineer + QA | Set absolute canonical/OG/Twitter URLs for the live domain | US6-AC1..3 | EB-005 |
-| EB-105 | P2 | in review (branch) | Engineer + QA | Email-only inquiry handoff; Messenger removed from the form, contact section and footer (owner: `m.me` forces a login) | US4-AC3/4/6/7; `make verify` | QA PASS; owner confirms the inbox is monitored |
+| EB-105 | P2 | merged, awaiting QA PASS | Engineer + QA | Email-only inquiry handoff; Messenger removed from the form, contact section and footer (owner: `m.me` forces a login) | US4-AC3/4/6/7; `make verify` | QA PASS for `02060ed`; inbox confirmed by the owner 2026-11-17 |
 | EB-106 | P2 | ready | PM | Consider self-hosted fonts / performance budget after real photography lands | US6-AC4 | — |
 
 ## Explicit non-goals
