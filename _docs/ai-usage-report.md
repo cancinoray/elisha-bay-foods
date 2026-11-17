@@ -3,6 +3,55 @@
 A session-by-session record of what AI produced and what a human or independent check verified.
 Append, newest first. Do not record “done” unless the evidence is named.
 
+## 2026-11-17 — Email-only inquiry handoff (Messenger removed)
+
+**Branch:** `feat/inquiry-email-handoff`
+
+**Scope:** Owner reports that “Send on Messenger” asks visitors to log in to Messenger even when they
+are already signed into Facebook, and asked for Messenger to be removed from the form, the contact
+section and the footer. This supersedes the two-channel version of the same branch.
+
+**Behaviour change**
+
+- A valid submission reveals the inquiry-status region with one action — **Send by email** (`mailto:`
+  to the confirmed address) — plus the copy-message fallback. Nothing opens by itself.
+- The email subject is `Elisha Bay inquiry — <type>`; the body carries name, email, phone (when
+  given), type and the message, percent-encoded with `encodeURIComponent`.
+- Messenger is gone everywhere: the form action, the contact-section row, the footer icon,
+  `site.social.messenger` and `buildMessengerUrl`. `m.me` no longer appears in the shipped HTML.
+- Because both remaining paths are plain links, `window.open` and the popup-blocked state are
+  deleted rather than kept.
+
+**What AI produced**
+
+- `src/data/site.ts`: `buildMailtoUrl(subject, message)`; Messenger URL and builder removed.
+- `src/components/InquiryForm.tsx`, `ContactSection.tsx`, `Footer.tsx`: Messenger removed, email is
+  the primary action.
+- `product-spec.md`: US4-AC3 and US4-AC4 rewritten, I2/I5 and the interface contract updated;
+  `AGENTS.md` rule 5 now records the owner decision and why.
+- `tests/e2e/landing.spec.ts`: a new test asserts no `m.me` link and no “Messenger” mention anywhere
+  in the page; the product-card journey asserts the email handoff only.
+- README, testing guidelines, process examples, handoff and backlog updated so no document still
+  claims Messenger is the channel.
+
+**Builder verification**
+
+- The new test was red against the two-channel build and green after the removal.
+- `make verify` — typecheck, build and **16/16** tests pass on this branch (cut from `main`, so it
+  does not include the nav or hero branches).
+- Screenshots at 390 and 1440 of the ready state; one primary action plus copy, wrapping cleanly.
+
+**Independent QA**
+
+- None; builder evidence only.
+
+**Human verification required**
+
+- Confirm `elisha_bay2017@yahoo.com` is the inbox that should receive inquiries and that someone
+  monitors it. A `mailto:` has no spam protection: the address is public, so noise is expected.
+- Confirm removing Messenger from the contact section and footer is acceptable — Facebook and
+  Instagram remain as social routes.
+
 ## 2026-11-17 — PM: inquiry delivery beyond Messenger (EB-105)
 
 **Role:** PM (no code written)

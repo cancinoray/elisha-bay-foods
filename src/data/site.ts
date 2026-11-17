@@ -13,7 +13,6 @@ export const site = {
   social: {
     facebook: 'https://www.facebook.com/elishabayfoods/',
     instagram: 'https://www.instagram.com/elishabayfoods/',
-    messenger: 'https://m.me/elishabayfoods',
     handle: '@elishabayfoods',
   },
   /**
@@ -79,7 +78,12 @@ export const site = {
 
 export type Site = typeof site;
 
-/** Compose a Messenger handoff URL with the inquiry pre-filled. */
-export function buildMessengerUrl(message: string) {
-  return `${site.social.messenger}?text=${encodeURIComponent(message)}`;
+
+/**
+ * Compose an email handoff so the inquiry can be sent from the visitor's own
+ * mail client. The site never transmits or stores the message.
+ */
+export function buildMailtoUrl(subject: string, message: string) {
+  const params = `subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+  return `mailto:${site.contact.email}?${params}`;
 }

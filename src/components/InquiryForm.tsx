@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Check, Copy, ExternalLink, Facebook, Send } from 'lucide-react';
-import { buildMessengerUrl, site } from '../data/site';
+import { Check, Copy, Mail, Send } from 'lucide-react';
+import { buildMailtoUrl, site } from '../data/site';
 
 type FormValues = {
   name: string;
@@ -32,9 +32,8 @@ type InquiryFormProps = {
 export function InquiryForm({ topic }: InquiryFormProps) {
   const [values, setValues] = useState<FormValues>(emptyValues);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [messengerUrl, setMessengerUrl] = useState('');
+  const [mailtoUrl, setMailtoUrl] = useState('');
   const [opened, setOpened] = useState(false);
-  const [blocked, setBlocked] = useState(false);
   const [copied, setCopied] = useState(false);
   const [liveMessage, setLiveMessage] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
@@ -50,7 +49,7 @@ export function InquiryForm({ topic }: InquiryFormProps) {
     }));
     setErrors((current) => ({ ...current, inquiryType: undefined, message: undefined }));
     setOpened(false);
-    setBlocked(false);
+    setMailtoUrl('');
     setCopied(false);
   }, [topic]);
 
@@ -61,8 +60,7 @@ export function InquiryForm({ topic }: InquiryFormProps) {
     }
     if (opened) {
       setOpened(false);
-      setBlocked(false);
-      setMessengerUrl('');
+      setMailtoUrl('');
       setCopied(false);
     }
   };
@@ -120,19 +118,10 @@ export function InquiryForm({ topic }: InquiryFormProps) {
     }
 
     const composed = composeMessage();
-    const url = buildMessengerUrl(composed);
-    const popup = window.open(url, '_blank');
-    if (popup) popup.opener = null;
-
-    setMessengerUrl(url);
-    setBlocked(!popup);
+    setMailtoUrl(buildMailtoUrl(`Elisha Bay inquiry — ${values.inquiryType}`, composed));
     setOpened(true);
     setCopied(false);
-    setLiveMessage(
-      popup
-        ? 'Your inquiry is ready in Messenger. Review it and press send.'
-        : 'Your browser blocked the new tab. Open Messenger below to continue.',
-    );
+    setLiveMessage('Your inquiry is ready. Send it by email.');
   };
 
   const copyMessage = async () => {
@@ -182,7 +171,7 @@ export function InquiryForm({ topic }: InquiryFormProps) {
             Send an inquiry
           </h3>
           <p className="mt-1.5 text-[0.82rem] leading-relaxed text-bark-soft">
-            Tell us what you need. We&apos;ll open Messenger with your message ready to send.
+            Tell us what you need, then send it by email. You can copy it instead if you prefer.
           </p>
         </div>
       </div>
@@ -355,13 +344,12 @@ export function InquiryForm({ topic }: InquiryFormProps) {
       </div>
 
       <button type="submit" className="eb-btn eb-btn--primary mt-5 w-full">
-        <Facebook className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
-        Continue to Messenger
-        <Send className="eb-arrow h-4 w-4" aria-hidden="true" />
+        <Send className="h-[1.05rem] w-[1.05rem]" aria-hidden="true" />
+        Send inquiry
       </button>
 
       <p className="mt-2.5 text-center text-[0.68rem] leading-relaxed text-bark-soft">
-        Opens Messenger with your message ready to send. You can review it before sending.
+        Next you send it by email. Nothing is sent until you do.
       </p>
 
       <p className="sr-only" role="status" aria-live="polite">
@@ -380,22 +368,19 @@ export function InquiryForm({ topic }: InquiryFormProps) {
             </span>
             <div>
               <p className="font-display text-[0.82rem] font-semibold text-burgundy">
-                {blocked ? 'Messenger is ready in a new tab.' : 'Your message is ready in Messenger.'}
+                Your inquiry is ready.
               </p>
               <p className="mt-1 text-[0.72rem] leading-relaxed text-bark">
-                {blocked
-                  ? 'Your browser blocked the tab. Use the button below to open Messenger, review your message, and press send.'
-                  : 'Review your message in Messenger and press send to reach the Elisha Bay team.'}
+                Send it by email and it reaches the Elisha Bay team. Review the message in your mail
+                app before sending — or copy it if you would rather use another channel.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <a
-                  href={messengerUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
+                  href={mailtoUrl}
                   className="inline-flex items-center gap-1.5 rounded-full bg-burgundy px-3.5 py-2 text-[0.72rem] font-semibold text-cream transition-colors hover:bg-crimson"
                 >
-                  Open Messenger
-                  <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                  <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                  Send by email
                 </a>
                 <button
                   type="button"
